@@ -134,6 +134,17 @@ a:hover {
   align-items: center;
 }
 
+.card-body-unavailable {
+  background-color: #6b6c6b;
+  text-align: center;
+  align-items: center;
+}
+
+.card-body-unavailable:hover {
+  background-color: #979797;
+  color: white;
+}
+
 .card-body:hover {
   background-color: #59260b;
   color: white;
@@ -149,9 +160,16 @@ a:hover {
   .card-body {
     max-height: 70px;
   }
+  .card-body-unavailable {
+    height: 70px;
+  }
   .card-body h5 {
     font-size: medium;
   }
+  .card-body-unavailable h5 {
+    font-size: medium;
+  }
+
   .navbar {
     text-align: center;
   }
