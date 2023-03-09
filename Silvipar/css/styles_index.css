@@ -74,7 +74,7 @@ a:hover {
 /*HEADER SECTION*/
 
 .content {
-  padding: 6rem 5rem 2rem 5rem;
+  padding: 15rem 5rem 2rem 5rem;
 }
 
 .content a {
@@ -149,6 +149,9 @@ a:hover {
   .card-body {
     max-height: 70px;
   }
+  .card-body h5 {
+    font-size: medium;
+  }
   .navbar {
     text-align: center;
   }
@@ -162,21 +165,16 @@ a:hover {
     text-align: center;
   }
   .nav-links ul {
-    padding: 0;
-  }
-  .footer div ul {
-    text-align: center;
-  }
-  .socials ul {
-    width: 75%;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
+    padding-left: 0;
+    list-style-type: none;
   }
   .footer {
-    width: 100vh;
+    height: 100vh;
+    opacity: 100%;
   }
-  .fo-elem {
-    padding-top: 2rem;
+  .footer ul {
+    padding-left: 20%;
+    padding-top: 2%;
   }
   .row {
     height: 100%;
