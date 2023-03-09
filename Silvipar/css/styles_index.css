@@ -1,0 +1,232 @@
+body {
+  background-image: url("images/pexels-jan-kroon-1000057.jpg");
+  background-size: cover;
+}
+
+li {
+  list-style: none;
+}
+
+/*Nav-bar*/
+
+.navbar {
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  width: 85%;
+  margin: auto;
+  box-sizing: border-box;
+  align-items: center;
+  height: 50px;
+  padding: 6rem;
+  z-index: 1;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: #126d21;
+}
+
+a:hover {
+  color: #59260b !important;
+}
+
+.navbar img {
+  width: 60px;
+  height: 60px;
+}
+
+.navbar .nav-links ul {
+  display: flex;
+}
+
+.navbar .nav-links li {
+  margin: 30px;
+}
+
+.navbar .nav-links ul li.active a {
+  color: #59260b;
+  font-weight: bold;
+}
+
+.bi-list {
+  display: none;
+}
+
+.card-body i {
+  font-size: 45px;
+  text-align: center;
+  padding: 20px;
+}
+
+.navbar .current a {
+  color: #59260b;
+  font-weight: bold;
+}
+
+/*HEADER*/
+
+.header {
+  height: 80vh;
+  width: 100%;
+}
+
+/*HEADER SECTION*/
+
+.content {
+  padding: 6rem 5rem 2rem 5rem;
+}
+
+.content a {
+  text-decoration: none;
+  color: white;
+}
+
+/*Cards*/
+
+.card-title {
+  text-align: center;
+  font-weight: bold;
+  margin: auto;
+  padding: 12px;
+}
+
+.card-text {
+  text-align: left;
+  color: rgb(165, 164, 164);
+}
+
+.card h5 {
+  position: relative;
+  font-size: 1.8rem;
+  line-height: 0.9;
+  text-align: center;
+}
+
+.card p {
+  line-height: 0.9;
+  position: relative;
+  text-align: left;
+  color: white;
+  font-weight: bolder;
+  font-size: 1rem;
+  opacity: 1;
+}
+
+.card {
+  position: relative;
+  border-radius: 20px;
+  max-height: 75px;
+  overflow: hidden;
+  padding: 0rem;
+  width: 100%;
+}
+
+.card i {
+  padding: 0;
+  text-align: center;
+  font-size: 25px;
+}
+
+.card-body {
+  background-color: #126d21;
+  text-align: center;
+  align-items: center;
+}
+
+.card-body:hover {
+  background-color: #59260b;
+  color: white;
+}
+
+@media (max-width: 767px) {
+  .hidden-mobile {
+    display: none;
+  }
+  .card {
+    max-height: 70px;
+  }
+  .card-body {
+    max-height: 70px;
+  }
+  .navbar {
+    text-align: center;
+  }
+  .logo {
+    width: 100%;
+    text-align: center;
+    padding: 20px;
+  }
+  .nav-links {
+    width: 100%;
+    text-align: center;
+  }
+  .nav-links ul {
+    padding: 0;
+  }
+  .footer div ul {
+    text-align: center;
+  }
+  .socials ul {
+    width: 75%;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+  .footer {
+    width: 100vh;
+  }
+  .fo-elem {
+    padding-top: 2rem;
+  }
+  .row {
+    height: 100%;
+  }
+}
+
+.col-6 {
+  padding-top: 10rem;
+}
+
+/*Footer*/
+
+.footer {
+  padding: 10px 0;
+  background-color: #eee;
+  width: 100%;
+  opacity: 90%;
+}
+
+.footer ul {
+  margin: auto;
+}
+
+.footer img {
+  width: 100px;
+  margin: auto;
+}
+
+.footer a {
+  text-decoration: none;
+  color: #126d21;
+}
+
+.bi {
+  font-size: 26px;
+  padding-left: 20px;
+  padding-right: 20px;
+  text-align: center;
+}
+
+.fo-elem {
+  text-align: center;
+  margin-top: auto;
+  margin-bottom: auto;
+  padding-left: 10px;
+}
+
+/*Detalles de ingreso*/
+
+.col {
+  text-align: center;
+  font-weight: bold;
+}

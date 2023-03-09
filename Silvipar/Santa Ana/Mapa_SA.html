@@ -1,0 +1,3212 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width"
+    />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <link rel="stylesheet" href="css/leaflet.css" />
+    <link rel="stylesheet" href="css/qgis2web.css" />
+    <link rel="stylesheet" href="css/fontawesome-all.min.css" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <script src="js/main.js"></script>
+    <script src="../server.js"></script>
+    <style>
+      html,
+      body,
+      #map {
+        width: 100%;
+        height: 100%;
+        padding: 0;
+        margin: 0;
+      }
+    </style>
+    <title>Mapa - Santa Ana</title>
+  </head>
+
+  <body>
+    <!-- NAVBAR -->
+
+    <nav class="nav-hamb">
+      <li>
+        <a href="../santa_ana.html" class="nav_a logo">
+          <img src="images/ST_logo.png" alt="logo-soiltech" />
+          <span class="nav__title">SoilTech</span>
+        </a>
+      </li>
+      <li>
+        <a class="nav_a hover__a" href="map.html#12/-26.9314/-56.5480">
+          <i class="fas fa-map"></i>
+          <snap class="nav-item">Mapa</snap>
+        </a>
+      </li>
+      <li>
+        <a class="nav_a hover__a" href="Datos_SA.html">
+          <i class="fas fa-bars"></i>
+          <spam class="nav-item">Datos</spam>
+        </a>
+      </li>
+    </nav>
+
+    <!-- CHART JS -->
+
+    <!-- GRAFICO CUT -->
+
+    <div class="grafico" id="graficoCUT">
+      <div id="chartwrapper">
+        <canvas id="myChart"></canvas>
+      </div>
+
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+      <script>
+        const ctx = document.getElementById("myChart");
+        let labels0 = [
+          "VSs/IIISprof,Sper,Swd",
+          "IIISs/IISprof, Sper,Swd",
+          "VSs/IVSprof/IIISper,Swd",
+          "IVSprof/IIISs,Sper,Swd",
+          "IIISs,Sprof/IISper,Swd",
+          "VSs,Sprof,Sper,Swd",
+          "Cobertura Arborea",
+        ];
+        let data = [598.22, 496.54, 2559.09, 338.42, 818.98, 1378.18, 927.09];
+        let colors = [
+          "#d63356",
+          "#cd8c1c",
+          "#1fb6dc",
+          "#8681e7",
+          "#72dd97",
+          "#9bec44",
+          "#294f05",
+        ];
+
+        new Chart(ctx, {
+          type: "doughnut",
+          data: {
+            labels: labels0,
+            datasets: [
+              {
+                backgroundColor: colors,
+                label: "Superficie",
+                data: data,
+              },
+            ],
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true,
+                grid: {
+                  display: false,
+                },
+                ticks: {
+                  display: false,
+                },
+                lines: {
+                  display: false,
+                },
+                display: false,
+              },
+            },
+            layout: {
+              padding: 10,
+            },
+            plugins: {
+              legend: {
+                display: true,
+                position: "right",
+                labels: {
+                  font: {
+                    size: 10,
+                  },
+                },
+              },
+              title: {
+                display: true,
+                text: "% Superficie ocupada según CUT",
+                position: "top",
+              },
+            },
+            responsive: true,
+          },
+        });
+      </script>
+    </div>
+
+    <!-- CA 30 - 60 -->
+
+    <div class="grafico" id="graficoCa30_60">
+      <div id="chartwrapper1">
+        <canvas id="myChart1"></canvas>
+      </div>
+
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+      <script>
+        const ctx1 = document.getElementById("myChart1");
+        let colorAlto = "#d7191c";
+        let colorMedio = "#fdae61";
+        let colorBajo = "#ffffbf";
+        let colorBosque = "#1d8641";
+        let labels1 = ["Bajo", "Cobertura Arborea"];
+        let data1 = [86.99, 13.03];
+        let colors1 = [colorBajo, colorBosque];
+        new Chart(ctx1, {
+          type: "doughnut",
+          data: {
+            labels: labels1,
+            datasets: [
+              {
+                backgroundColor: colors1,
+                label: "Superficie",
+                data: data1,
+              },
+            ],
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true,
+                grid: {
+                  display: false,
+                },
+                ticks: {
+                  display: false,
+                },
+                lines: {
+                  display: false,
+                },
+                display: false,
+              },
+            },
+            layout: {
+              padding: 10,
+            },
+            plugins: {
+              legend: {
+                display: true,
+                position: "right",
+                labels: {
+                  font: {
+                    size: 10,
+                  },
+                },
+              },
+              title: {
+                display: true,
+                text: "% Ocupado según nivel de nutriente",
+                position: "top",
+              },
+            },
+            responsive: true,
+          },
+        });
+      </script>
+    </div>
+
+    <!-- SODIO 30 - 60 -->
+
+    <div class="grafico" id="graficoS60-90">
+      <div id="chartwrapper2">
+        <canvas id="myChart2"></canvas>
+      </div>
+
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+      <script>
+        const ctx2 = document.getElementById("myChart2");
+        let labels2 = ["Alto", "Bosque", "Medio"];
+        let data2 = [75.25, 13.03, 11.74];
+        let colors2 = [colorAlto, colorBosque, colorMedio];
+        new Chart(ctx2, {
+          type: "doughnut",
+          data: {
+            labels: labels2,
+            datasets: [
+              {
+                backgroundColor: colors2,
+                label: "Superficie",
+                data: data2,
+              },
+            ],
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true,
+                grid: {
+                  display: false,
+                },
+                ticks: {
+                  display: false,
+                },
+                lines: {
+                  display: false,
+                },
+                display: false,
+              },
+            },
+            layout: {
+              padding: 10,
+            },
+            plugins: {
+              legend: {
+                display: true,
+                position: "right",
+                labels: {
+                  font: {
+                    size: 10,
+                  },
+                },
+              },
+              title: {
+                display: true,
+                text: "% Ocupado según nivel de nutriente",
+                position: "top",
+              },
+            },
+            responsive: true,
+          },
+        });
+      </script>
+    </div>
+
+    <!-- SODIO 60 - 90 -->
+
+    <div class="grafico" id="graficoS30-60">
+      <div id="chartwrapper3">
+        <canvas id="myChart3"></canvas>
+      </div>
+
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+      <script>
+        const ctx3 = document.getElementById("myChart3");
+        let labels3 = ["Alto", "Bosque", "Medio"];
+        let data3 = [63.74, 13.03, 23.25];
+        let colors3 = [colorAlto, colorBosque, colorMedio];
+        new Chart(ctx3, {
+          type: "doughnut",
+          data: {
+            labels: labels2,
+            datasets: [
+              {
+                backgroundColor: colors2,
+                label: "Superficie",
+                data: data2,
+              },
+            ],
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true,
+                grid: {
+                  display: false,
+                },
+                ticks: {
+                  display: false,
+                },
+                lines: {
+                  display: false,
+                },
+                display: false,
+              },
+            },
+            layout: {
+              padding: 10,
+            },
+            plugins: {
+              legend: {
+                display: true,
+                position: "right",
+                labels: {
+                  font: {
+                    size: 10,
+                  },
+                },
+              },
+              title: {
+                display: true,
+                text: "% Ocupado según nivel de nutriente",
+                position: "top",
+              },
+            },
+            responsive: true,
+          },
+        });
+      </script>
+    </div>
+
+    <!-- LEAFLET JS -->
+
+    <div id="map"></div>
+    <script src="js/qgis2web_expressions.js"></script>
+    <script src="js/leaflet.js"></script>
+    <script src="js/leaflet.rotatedMarker.js"></script>
+    <script src="js/leaflet.pattern.js"></script>
+    <script src="js/leaflet-hash.js"></script>
+    <script src="js/Autolinker.min.js"></script>
+    <script src="js/rbush.min.js"></script>
+    <script src="js/labelgun.min.js"></script>
+    <script src="js/labels.js"></script>
+    <script src="data/boro0_30_1.js"></script>
+    <script src="data/zinc0_30_2.js"></script>
+    <script src="data/cobre0_30_3.js"></script>
+    <script src="data/hierro0_30_4.js"></script>
+    <script src="data/manganeso0_30_5.js"></script>
+    <script src="data/fosforo0_30_6.js"></script>
+    <script src="data/asufre0_30_7.js"></script>
+    <script src="data/sodio0_30_8.js"></script>
+    <script src="data/potasio0_30_9.js"></script>
+    <script src="data/magnesio0_30_10.js"></script>
+    <script src="data/calcio0_30_11.js"></script>
+    <script src="data/P_60_90_12.js"></script>
+    <script src="data/NA_60_90_13.js"></script>
+    <script src="data/MG_60_90_14.js"></script>
+    <script src="data/K_60_90_15.js"></script>
+    <script src="data/CA_60_90_16.js"></script>
+    <script src="data/P_30_60_17.js"></script>
+    <script src="data/NA_30_60_18.js"></script>
+    <script src="data/MG_30_60_19.js"></script>
+    <script src="data/K_30_60_20.js"></script>
+    <script src="data/CA_30_60_21.js"></script>
+    <script src="data/BOSQUE_22.js"></script>
+    <script src="data/SA_Q_60_90_23.js"></script>
+    <script src="data/SA_Q_30_60_24.js"></script>
+    <script src="data/SA_Q_0_30_25.js"></script>
+    <script>
+      var map = L.map("map", {
+        zoomControl: true,
+        maxZoom: 28,
+        minZoom: 1,
+      }).fitBounds([
+        [-27.39137752286751, -57.02613960873167],
+        [-27.28494595003341, -56.81038867001867],
+      ]);
+      var hash = new L.Hash(map);
+      map.attributionControl.setPrefix(
+        '<text>Desarrollado por  </text><a href="https://www.linkedin.com/in/paulo-medina/" target="_blank">Paulo Medina</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot'
+      );
+      var autolinker = new Autolinker({
+        truncate: { length: 30, location: "smart" },
+      });
+      var bounds_group = new L.featureGroup([]);
+      function setBounds() {}
+      map.createPane("pane_ESRISATLITE_0");
+      map.getPane("pane_ESRISATLITE_0").style.zIndex = 400;
+      var layer_ESRISATLITE_0 = L.tileLayer(
+        "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+        {
+          pane: "pane_ESRISATLITE_0",
+          opacity: 1.0,
+          attribution: "",
+          minZoom: 1,
+          maxZoom: 28,
+          minNativeZoom: 0,
+          maxNativeZoom: 18,
+        }
+      );
+      layer_ESRISATLITE_0;
+      map.addLayer(layer_ESRISATLITE_0);
+      function pop_boro0_30_1(feature, layer) {
+        var popupContent =
+          '<table>\
+                    <tr>\
+                      <th scope="row">Tipo</th>\
+                        <td colspan="2">' +
+          (feature.properties["USO"] !== null
+            ? autolinker.link(feature.properties["USO"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                      <th scope="row">Superfieice</th>\
+                        <td colspan="2">' +
+          (feature.properties["SUP.HA"] !== null
+            ? autolinker.link(feature.properties["SUP.HA"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                      <th scope="row">Nivel</th>\
+                        <td colspan="2">' +
+          (feature.properties["BORO"] !== null
+            ? autolinker.link(feature.properties["BORO"].toLocaleString())
+            : "") +
+          "</td>\
+                    </tr>\
+                </table>";
+        layer.bindPopup(popupContent, { maxHeight: 400 });
+      }
+
+      function style_boro0_30_1_0(feature) {
+        switch (String(feature.properties["BORO"])) {
+          case "Bosque":
+            return {
+              pane: "pane_boro0_30_1",
+              opacity: 1,
+              color: "rgba(35,35,35,1.0)",
+              dashArray: "",
+              lineCap: "butt",
+              lineJoin: "miter",
+              weight: 1.0,
+              fill: true,
+              fillOpacity: 1,
+              fillColor: "rgba(29,134,65,1.0)",
+              interactive: true,
+            };
+            break;
+          case "Medio":
+            return {
+              pane: "pane_boro0_30_1",
+              opacity: 1,
+              color: "rgba(35,35,35,1.0)",
+              dashArray: "",
+              lineCap: "butt",
+              lineJoin: "miter",
+              weight: 1.0,
+              fill: true,
+              fillOpacity: 1,
+              fillColor: "rgba(253,174,97,1.0)",
+              interactive: true,
+            };
+            break;
+        }
+      }
+      map.createPane("pane_boro0_30_1");
+      map.getPane("pane_boro0_30_1").style.zIndex = 421;
+      map.getPane("pane_boro0_30_1").style["mix-blend-mode"] = "normal";
+      var layer_boro0_30_1 = new L.geoJson(json_boro0_30_1, {
+        attribution: "",
+        interactive: true,
+        dataVar: "json_boro0_30_1",
+        layerName: "layer_boro0_30_1",
+        pane: "pane_boro0_30_1",
+        onEachFeature: pop_boro0_30_1,
+        style: style_boro0_30_1_0,
+      });
+      bounds_group.addLayer(layer_boro0_30_1);
+      function pop_zinc0_30_2(feature, layer) {
+        var popupContent =
+          '<table>\
+                    </tr>\
+                    <tr>\
+                      <th scope="row">Tipo</th>\
+                        <td colspan="2">' +
+          (feature.properties["USO"] !== null
+            ? autolinker.link(feature.properties["USO"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                      <th scope="row">Superficie</th>\
+                        <td colspan="2">' +
+          (feature.properties["SUP.HA"] !== null
+            ? autolinker.link(feature.properties["SUP.HA"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                      <th scope="row">Nivel</th>\
+                        <td colspan="2">' +
+          (feature.properties["ZINC"] !== null
+            ? autolinker.link(feature.properties["ZINC"].toLocaleString())
+            : "") +
+          "</td>\
+                    </tr>\
+                </table>";
+        layer.bindPopup(popupContent, { maxHeight: 400 });
+      }
+
+      function style_zinc0_30_2_0(feature) {
+        switch (String(feature.properties["ZINC"])) {
+          case "Alto":
+            return {
+              pane: "pane_zinc0_30_2",
+              opacity: 1,
+              color: "rgba(35,35,35,1.0)",
+              dashArray: "",
+              lineCap: "butt",
+              lineJoin: "miter",
+              weight: 1.0,
+              fill: true,
+              fillOpacity: 1,
+              fillColor: "rgba(215,25,28,1.0)",
+              interactive: true,
+            };
+            break;
+          case "Bosque":
+            return {
+              pane: "pane_zinc0_30_2",
+              opacity: 1,
+              color: "rgba(35,35,35,1.0)",
+              dashArray: "",
+              lineCap: "butt",
+              lineJoin: "miter",
+              weight: 1.0,
+              fill: true,
+              fillOpacity: 1,
+              fillColor: "rgba(29,134,65,1.0)",
+              interactive: true,
+            };
+            break;
+          case "Medio":
+            return {
+              pane: "pane_zinc0_30_2",
+              opacity: 1,
+              color: "rgba(35,35,35,1.0)",
+              dashArray: "",
+              lineCap: "butt",
+              lineJoin: "miter",
+              weight: 1.0,
+              fill: true,
+              fillOpacity: 1,
+              fillColor: "rgba(253,174,97,1.0)",
+              interactive: true,
+            };
+            break;
+        }
+      }
+      map.createPane("pane_zinc0_30_2");
+      map.getPane("pane_zinc0_30_2").style.zIndex = 420;
+      map.getPane("pane_zinc0_30_2").style["mix-blend-mode"] = "normal";
+      var layer_zinc0_30_2 = new L.geoJson(json_zinc0_30_2, {
+        attribution: "",
+        interactive: true,
+        dataVar: "json_zinc0_30_2",
+        layerName: "layer_zinc0_30_2",
+        pane: "pane_zinc0_30_2",
+        onEachFeature: pop_zinc0_30_2,
+        style: style_zinc0_30_2_0,
+      });
+      bounds_group.addLayer(layer_zinc0_30_2);
+      function pop_cobre0_30_3(feature, layer) {
+        var popupContent =
+          '<table>\
+                    <tr>\
+                      <th scope="row">Tipo</th>\
+                        <td colspan="2">' +
+          (feature.properties["USO"] !== null
+            ? autolinker.link(feature.properties["USO"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                      <th scope="row">Superficie</th>\
+                        <td colspan="2">' +
+          (feature.properties["SUP.HA"] !== null
+            ? autolinker.link(feature.properties["SUP.HA"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                      <th scope="row">Nivel</th>\
+                        <td colspan="2">' +
+          (feature.properties["COBRE"] !== null
+            ? autolinker.link(feature.properties["COBRE"].toLocaleString())
+            : "") +
+          "</td>\
+                    </tr>\
+                </table>";
+        layer.bindPopup(popupContent, { maxHeight: 400 });
+      }
+
+      function style_cobre0_30_3_0(feature) {
+        switch (String(feature.properties["COBRE"])) {
+          case "Alto":
+            return {
+              pane: "pane_cobre0_30_3",
+              opacity: 1,
+              color: "rgba(35,35,35,1.0)",
+              dashArray: "",
+              lineCap: "butt",
+              lineJoin: "miter",
+              weight: 1.0,
+              fill: true,
+              fillOpacity: 1,
+              fillColor: "rgba(215,25,28,1.0)",
+              interactive: true,
+            };
+            break;
+          case "Bosque":
+            return {
+              pane: "pane_cobre0_30_3",
+              opacity: 1,
+              color: "rgba(35,35,35,1.0)",
+              dashArray: "",
+              lineCap: "butt",
+              lineJoin: "miter",
+              weight: 1.0,
+              fill: true,
+              fillOpacity: 1,
+              fillColor: "rgba(29,134,65,1.0)",
+              interactive: true,
+            };
+            break;
+        }
+      }
+      map.createPane("pane_cobre0_30_3");
+      map.getPane("pane_cobre0_30_3").style.zIndex = 419;
+      map.getPane("pane_cobre0_30_3").style["mix-blend-mode"] = "normal";
+      var layer_cobre0_30_3 = new L.geoJson(json_cobre0_30_3, {
+        attribution: "",
+        interactive: true,
+        dataVar: "json_cobre0_30_3",
+        layerName: "layer_cobre0_30_3",
+        pane: "pane_cobre0_30_3",
+        onEachFeature: pop_cobre0_30_3,
+        style: style_cobre0_30_3_0,
+      });
+      bounds_group.addLayer(layer_cobre0_30_3);
+      function pop_hierro0_30_4(feature, layer) {
+        var popupContent =
+          '<table>\
+                    <tr>\
+                      <th scope="row">Tipo</th>\
+                        <td colspan="2">' +
+          (feature.properties["USO"] !== null
+            ? autolinker.link(feature.properties["USO"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                      <th scope="row">Superficie</th>\
+                        <td colspan="2">' +
+          (feature.properties["SUP.HA"] !== null
+            ? autolinker.link(feature.properties["SUP.HA"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                      <th scope="row">Nivel</th>\
+                        <td colspan="2">' +
+          (feature.properties["HIERRO"] !== null
+            ? autolinker.link(feature.properties["HIERRO"].toLocaleString())
+            : "") +
+          "</td>\
+                    </tr>\
+                </table>";
+        layer.bindPopup(popupContent, { maxHeight: 400 });
+      }
+
+      function style_hierro0_30_4_0(feature) {
+        switch (String(feature.properties["HIERRO"])) {
+          case "Alto":
+            return {
+              pane: "pane_hierro0_30_4",
+              opacity: 1,
+              color: "rgba(35,35,35,1.0)",
+              dashArray: "",
+              lineCap: "butt",
+              lineJoin: "miter",
+              weight: 1.0,
+              fill: true,
+              fillOpacity: 1,
+              fillColor: "rgba(215,25,28,1.0)",
+              interactive: true,
+            };
+            break;
+          case "Bosque":
+            return {
+              pane: "pane_hierro0_30_4",
+              opacity: 1,
+              color: "rgba(35,35,35,1.0)",
+              dashArray: "",
+              lineCap: "butt",
+              lineJoin: "miter",
+              weight: 1.0,
+              fill: true,
+              fillOpacity: 1,
+              fillColor: "rgba(29,134,65,1.0)",
+              interactive: true,
+            };
+            break;
+        }
+      }
+      map.createPane("pane_hierro0_30_4");
+      map.getPane("pane_hierro0_30_4").style.zIndex = 418;
+      map.getPane("pane_hierro0_30_4").style["mix-blend-mode"] = "normal";
+      var layer_hierro0_30_4 = new L.geoJson(json_hierro0_30_4, {
+        attribution: "",
+        interactive: true,
+        dataVar: "json_hierro0_30_4",
+        layerName: "layer_hierro0_30_4",
+        pane: "pane_hierro0_30_4",
+        onEachFeature: pop_hierro0_30_4,
+        style: style_hierro0_30_4_0,
+      });
+      bounds_group.addLayer(layer_hierro0_30_4);
+      function pop_manganeso0_30_5(feature, layer) {
+        var popupContent =
+          '<table>\
+                    </tr>\
+                    <tr>\
+                      <th scope="row">Nivel</th>\
+                        <td colspan="2">' +
+          (feature.properties["USO"] !== null
+            ? autolinker.link(feature.properties["USO"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                      <th scope="row">Superficie</th>\
+                        <td colspan="2">' +
+          (feature.properties["SUP.HA"] !== null
+            ? autolinker.link(feature.properties["SUP.HA"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                      <th scope="row">Nivel</th>\
+                        <td colspan="2">' +
+          (feature.properties["MANGANESO"] !== null
+            ? autolinker.link(feature.properties["MANGANESO"].toLocaleString())
+            : "") +
+          "</td>\
+                    </tr>\
+                </table>";
+        layer.bindPopup(popupContent, { maxHeight: 400 });
+      }
+
+      function style_manganeso0_30_5_0(feature) {
+        switch (String(feature.properties["MANGANESO"])) {
+          case "Alto":
+            return {
+              pane: "pane_manganeso0_30_5",
+              opacity: 1,
+              color: "rgba(35,35,35,1.0)",
+              dashArray: "",
+              lineCap: "butt",
+              lineJoin: "miter",
+              weight: 1.0,
+              fill: true,
+              fillOpacity: 1,
+              fillColor: "rgba(215,25,28,1.0)",
+              interactive: true,
+            };
+            break;
+          case "Bosque":
+            return {
+              pane: "pane_manganeso0_30_5",
+              opacity: 1,
+              color: "rgba(35,35,35,1.0)",
+              dashArray: "",
+              lineCap: "butt",
+              lineJoin: "miter",
+              weight: 1.0,
+              fill: true,
+              fillOpacity: 1,
+              fillColor: "rgba(29,134,65,1.0)",
+              interactive: true,
+            };
+            break;
+        }
+      }
+      map.createPane("pane_manganeso0_30_5");
+      map.getPane("pane_manganeso0_30_5").style.zIndex = 417;
+      map.getPane("pane_manganeso0_30_5").style["mix-blend-mode"] = "normal";
+      var layer_manganeso0_30_5 = new L.geoJson(json_manganeso0_30_5, {
+        attribution: "",
+        interactive: true,
+        dataVar: "json_manganeso0_30_5",
+        layerName: "layer_manganeso0_30_5",
+        pane: "pane_manganeso0_30_5",
+        onEachFeature: pop_manganeso0_30_5,
+        style: style_manganeso0_30_5_0,
+      });
+      bounds_group.addLayer(layer_manganeso0_30_5);
+      function pop_fosforo0_30_6(feature, layer) {
+        var popupContent =
+          '<table>\
+                    <tr>\
+                      <th scope="row">Tipo</th>\
+                        <td colspan="2">' +
+          (feature.properties["USO"] !== null
+            ? autolinker.link(feature.properties["USO"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                      <th scope="row">Superficie</th>\
+                        <td colspan="2">' +
+          (feature.properties["SUP.HA"] !== null
+            ? autolinker.link(feature.properties["SUP.HA"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                      <th scope="row">Nivel</th>\
+                        <td colspan="2">' +
+          (feature.properties["FOSFORO"] !== null
+            ? autolinker.link(feature.properties["FOSFORO"].toLocaleString())
+            : "") +
+          "</td>\
+                    </tr>\
+                </table>";
+        layer.bindPopup(popupContent, { maxHeight: 400 });
+      }
+
+      function style_fosforo0_30_6_0(feature) {
+        switch (String(feature.properties["FOSFORO"])) {
+          case "Bajo":
+            return {
+              pane: "pane_fosforo0_30_6",
+              opacity: 1,
+              color: "rgba(35,35,35,1.0)",
+              dashArray: "",
+              lineCap: "butt",
+              lineJoin: "miter",
+              weight: 1.0,
+              fill: true,
+              fillOpacity: 1,
+              fillColor: "rgba(255,255,191,1.0)",
+              interactive: true,
+            };
+            break;
+          case "Bosque":
+            return {
+              pane: "pane_fosforo0_30_6",
+              opacity: 1,
+              color: "rgba(35,35,35,1.0)",
+              dashArray: "",
+              lineCap: "butt",
+              lineJoin: "miter",
+              weight: 1.0,
+              fill: true,
+              fillOpacity: 1,
+              fillColor: "rgba(29,134,65,1.0)",
+              interactive: true,
+            };
+            break;
+        }
+      }
+      map.createPane("pane_fosforo0_30_6");
+      map.getPane("pane_fosforo0_30_6").style.zIndex = 416;
+      map.getPane("pane_fosforo0_30_6").style["mix-blend-mode"] = "normal";
+      var layer_fosforo0_30_6 = new L.geoJson(json_fosforo0_30_6, {
+        attribution: "",
+        interactive: true,
+        dataVar: "json_fosforo0_30_6",
+        layerName: "layer_fosforo0_30_6",
+        pane: "pane_fosforo0_30_6",
+        onEachFeature: pop_fosforo0_30_6,
+        style: style_fosforo0_30_6_0,
+      });
+      bounds_group.addLayer(layer_fosforo0_30_6);
+      function pop_asufre0_30_7(feature, layer) {
+        var popupContent =
+          '<table>\
+                    <tr>\
+                      <th scope="row">Tipo</th>\
+                        <td colspan="2">' +
+          (feature.properties["USO"] !== null
+            ? autolinker.link(feature.properties["USO"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                      <th scope="row">Superficie</th>\
+                        <td colspan="2">' +
+          (feature.properties["SUP.HA"] !== null
+            ? autolinker.link(feature.properties["SUP.HA"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                      <th scope="row">Nivel</th>\
+                        <td colspan="2">' +
+          (feature.properties["SO4"] !== null
+            ? autolinker.link(feature.properties["SO4"].toLocaleString())
+            : "") +
+          "</td>\
+                    </tr>\
+                </table>";
+        layer.bindPopup(popupContent, { maxHeight: 400 });
+      }
+
+      function style_asufre0_30_7_0(feature) {
+        switch (String(feature.properties["SO4"])) {
+          case "Bajo":
+            return {
+              pane: "pane_asufre0_30_7",
+              opacity: 1,
+              color: "rgba(35,35,35,1.0)",
+              dashArray: "",
+              lineCap: "butt",
+              lineJoin: "miter",
+              weight: 1.0,
+              fill: true,
+              fillOpacity: 1,
+              fillColor: "rgba(255,255,191,1.0)",
+              interactive: true,
+            };
+            break;
+          case "Bosque":
+            return {
+              pane: "pane_asufre0_30_7",
+              opacity: 1,
+              color: "rgba(35,35,35,1.0)",
+              dashArray: "",
+              lineCap: "butt",
+              lineJoin: "miter",
+              weight: 1.0,
+              fill: true,
+              fillOpacity: 1,
+              fillColor: "rgba(29,134,65,1.0)",
+              interactive: true,
+            };
+            break;
+          case "Medio":
+            return {
+              pane: "pane_asufre0_30_7",
+              opacity: 1,
+              color: "rgba(35,35,35,1.0)",
+              dashArray: "",
+              lineCap: "butt",
+              lineJoin: "miter",
+              weight: 1.0,
+              fill: true,
+              fillOpacity: 1,
+              fillColor: "rgba(253,174,97,1.0)",
+              interactive: true,
+            };
+            break;
+        }
+      }
+      map.createPane("pane_asufre0_30_7");
+      map.getPane("pane_asufre0_30_7").style.zIndex = 415;
+      map.getPane("pane_asufre0_30_7").style["mix-blend-mode"] = "normal";
+      var layer_asufre0_30_7 = new L.geoJson(json_asufre0_30_7, {
+        attribution: "",
+        interactive: true,
+        dataVar: "json_asufre0_30_7",
+        layerName: "layer_asufre0_30_7",
+        pane: "pane_asufre0_30_7",
+        onEachFeature: pop_asufre0_30_7,
+        style: style_asufre0_30_7_0,
+      });
+      bounds_group.addLayer(layer_asufre0_30_7);
+      function pop_sodio0_30_8(feature, layer) {
+        var popupContent =
+          '<table>\
+                    <tr>\
+                      <th scope="row">Tipo</th>\
+                        <td colspan="2">' +
+          (feature.properties["USO"] !== null
+            ? autolinker.link(feature.properties["USO"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                      <th scope="row">Superficie</th>\
+                        <td colspan="2">' +
+          (feature.properties["SUP.HA"] !== null
+            ? autolinker.link(feature.properties["SUP.HA"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                      <th scope="row">Nivel</th>\
+                        <td colspan="2">' +
+          (feature.properties["SODIO"] !== null
+            ? autolinker.link(feature.properties["SODIO"].toLocaleString())
+            : "") +
+          "</td>\
+                    </tr>\
+                </table>";
+        layer.bindPopup(popupContent, { maxHeight: 400 });
+      }
+
+      function style_sodio0_30_8_0(feature) {
+        switch (String(feature.properties["SODIO"])) {
+          case "Alto":
+            return {
+              pane: "pane_sodio0_30_8",
+              opacity: 1,
+              color: "rgba(35,35,35,1.0)",
+              dashArray: "",
+              lineCap: "butt",
+              lineJoin: "miter",
+              weight: 1.0,
+              fill: true,
+              fillOpacity: 1,
+              fillColor: "rgba(215,25,28,1.0)",
+              interactive: true,
+            };
+            break;
+          case "Bosque":
+            return {
+              pane: "pane_sodio0_30_8",
+              opacity: 1,
+              color: "rgba(35,35,35,1.0)",
+              dashArray: "",
+              lineCap: "butt",
+              lineJoin: "miter",
+              weight: 1.0,
+              fill: true,
+              fillOpacity: 1,
+              fillColor: "rgba(29,134,65,1.0)",
+              interactive: true,
+            };
+            break;
+          case "Medio":
+            return {
+              pane: "pane_sodio0_30_8",
+              opacity: 1,
+              color: "rgba(35,35,35,1.0)",
+              dashArray: "",
+              lineCap: "butt",
+              lineJoin: "miter",
+              weight: 1.0,
+              fill: true,
+              fillOpacity: 1,
+              fillColor: "rgba(253,174,97,1.0)",
+              interactive: true,
+            };
+            break;
+        }
+      }
+      map.createPane("pane_sodio0_30_8");
+      map.getPane("pane_sodio0_30_8").style.zIndex = 414;
+      map.getPane("pane_sodio0_30_8").style["mix-blend-mode"] = "normal";
+      var layer_sodio0_30_8 = new L.geoJson(json_sodio0_30_8, {
+        attribution: "",
+        interactive: true,
+        dataVar: "json_sodio0_30_8",
+        layerName: "layer_sodio0_30_8",
+        pane: "pane_sodio0_30_8",
+        onEachFeature: pop_sodio0_30_8,
+        style: style_sodio0_30_8_0,
+      });
+      bounds_group.addLayer(layer_sodio0_30_8);
+      function pop_potasio0_30_9(feature, layer) {
+        var popupContent =
+          '<table>\
+                    <tr>\
+                      <th scope="row">Tipo</th>\
+                        <td colspan="2">' +
+          (feature.properties["USO"] !== null
+            ? autolinker.link(feature.properties["USO"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                      <th scope="row">Superficie</th>\
+                        <td colspan="2">' +
+          (feature.properties["SUP.HA"] !== null
+            ? autolinker.link(feature.properties["SUP.HA"].toLocaleString())
+            : "") +
+          '</td>\
+                    <tr>\
+                      <th scope="row">Nivel</th>\
+                        <td colspan="2">' +
+          (feature.properties["POTASIO"] !== null
+            ? autolinker.link(feature.properties["POTASIO"].toLocaleString())
+            : "") +
+          "</td>\
+                    </tr>\
+                </table>";
+        layer.bindPopup(popupContent, { maxHeight: 400 });
+      }
+
+      function style_potasio0_30_9_0(feature) {
+        switch (String(feature.properties["POTASIO"])) {
+          case "Bajo":
+            return {
+              pane: "pane_potasio0_30_9",
+              opacity: 1,
+              color: "rgba(35,35,35,1.0)",
+              dashArray: "",
+              lineCap: "butt",
+              lineJoin: "miter",
+              weight: 1.0,
+              fill: true,
+              fillOpacity: 1,
+              fillColor: "rgba(255,255,191,1.0)",
+              interactive: true,
+            };
+            break;
+          case "Bosque":
+            return {
+              pane: "pane_potasio0_30_9",
+              opacity: 1,
+              color: "rgba(35,35,35,1.0)",
+              dashArray: "",
+              lineCap: "butt",
+              lineJoin: "miter",
+              weight: 1.0,
+              fill: true,
+              fillOpacity: 1,
+              fillColor: "rgba(29,134,65,1.0)",
+              interactive: true,
+            };
+            break;
+        }
+      }
+      map.createPane("pane_potasio0_30_9");
+      map.getPane("pane_potasio0_30_9").style.zIndex = 413;
+      map.getPane("pane_potasio0_30_9").style["mix-blend-mode"] = "normal";
+      var layer_potasio0_30_9 = new L.geoJson(json_potasio0_30_9, {
+        attribution: "",
+        interactive: true,
+        dataVar: "json_potasio0_30_9",
+        layerName: "layer_potasio0_30_9",
+        pane: "pane_potasio0_30_9",
+        onEachFeature: pop_potasio0_30_9,
+        style: style_potasio0_30_9_0,
+      });
+      bounds_group.addLayer(layer_potasio0_30_9);
+      function pop_magnesio0_30_10(feature, layer) {
+        var popupContent =
+          '<table>\
+                    <tr>\
+                        <td colspan="2">' +
+          (feature.properties["id"] !== null
+            ? autolinker.link(feature.properties["id"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                      <th scope="row">Tipo</th>\
+                        <td colspan="2">' +
+          (feature.properties["USO"] !== null
+            ? autolinker.link(feature.properties["USO"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                      <th scope="row">Superficie</th>\
+                        <td colspan="2">' +
+          (feature.properties["SUP.HA"] !== null
+            ? autolinker.link(feature.properties["SUP.HA"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\<th scope="row">Nivel</th>\
+                        <td colspan="2">' +
+          (feature.properties["MAGNESIO"] !== null
+            ? autolinker.link(feature.properties["MAGNESIO"].toLocaleString())
+            : "") +
+          "</td>\
+                    </tr>\
+                </table>";
+        layer.bindPopup(popupContent, { maxHeight: 400 });
+      }
+
+      function style_magnesio0_30_10_0(feature) {
+        switch (String(feature.properties["MAGNESIO"])) {
+          case "Bajo":
+            return {
+              pane: "pane_magnesio0_30_10",
+              opacity: 1,
+              color: "rgba(35,35,35,1.0)",
+              dashArray: "",
+              lineCap: "butt",
+              lineJoin: "miter",
+              weight: 1.0,
+              fill: true,
+              fillOpacity: 1,
+              fillColor: "rgba(255,255,191,1.0)",
+              interactive: true,
+            };
+            break;
+          case "Bosque":
+            return {
+              pane: "pane_magnesio0_30_10",
+              opacity: 1,
+              color: "rgba(35,35,35,1.0)",
+              dashArray: "",
+              lineCap: "butt",
+              lineJoin: "miter",
+              weight: 1.0,
+              fill: true,
+              fillOpacity: 1,
+              fillColor: "rgba(29,134,65,1.0)",
+              interactive: true,
+            };
+            break;
+        }
+      }
+      map.createPane("pane_magnesio0_30_10");
+      map.getPane("pane_magnesio0_30_10").style.zIndex = 412;
+      map.getPane("pane_magnesio0_30_10").style["mix-blend-mode"] = "normal";
+      var layer_magnesio0_30_10 = new L.geoJson(json_magnesio0_30_10, {
+        attribution: "",
+        interactive: true,
+        dataVar: "json_magnesio0_30_10",
+        layerName: "layer_magnesio0_30_10",
+        pane: "pane_magnesio0_30_10",
+        onEachFeature: pop_magnesio0_30_10,
+        style: style_magnesio0_30_10_0,
+      });
+      bounds_group.addLayer(layer_magnesio0_30_10);
+      function pop_calcio0_30_11(feature, layer) {
+        var popupContent =
+          '<table>\
+                    <tr>\
+                      <th scope="row">Tipo</th>\
+                        <td colspan="2">' +
+          (feature.properties["USO"] !== null
+            ? autolinker.link(feature.properties["USO"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                      <th scope="row">Superficie</th>\
+                        <td colspan="2">' +
+          (feature.properties["SUP.HA"] !== null
+            ? autolinker.link(feature.properties["SUP.HA"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                      <th scope="row">Nivel</th>\
+                        <td colspan="2">' +
+          (feature.properties["CALCIO"] !== null
+            ? autolinker.link(feature.properties["CALCIO"].toLocaleString())
+            : "") +
+          "</td>\
+                    </tr>\
+                </table>";
+        layer.bindPopup(popupContent, { maxHeight: 400 });
+      }
+
+      function style_calcio0_30_11_0(feature) {
+        switch (String(feature.properties["CALCIO"])) {
+          case "Bajo":
+            return {
+              pane: "pane_calcio0_30_11",
+              opacity: 1,
+              color: "rgba(35,35,35,1.0)",
+              dashArray: "",
+              lineCap: "butt",
+              lineJoin: "miter",
+              weight: 1.0,
+              fill: true,
+              fillOpacity: 1,
+              fillColor: "rgba(255,255,191,1.0)",
+              interactive: true,
+            };
+            break;
+          case "Bosque":
+            return {
+              pane: "pane_calcio0_30_11",
+              opacity: 1,
+              color: "rgba(35,35,35,1.0)",
+              dashArray: "",
+              lineCap: "butt",
+              lineJoin: "miter",
+              weight: 1.0,
+              fill: true,
+              fillOpacity: 1,
+              fillColor: "rgba(29,134,65,1.0)",
+              interactive: true,
+            };
+            break;
+        }
+      }
+      map.createPane("pane_calcio0_30_11");
+      map.getPane("pane_calcio0_30_11").style.zIndex = 411;
+      map.getPane("pane_calcio0_30_11").style["mix-blend-mode"] = "normal";
+      var layer_calcio0_30_11 = new L.geoJson(json_calcio0_30_11, {
+        attribution: "",
+        interactive: true,
+        dataVar: "json_calcio0_30_11",
+        layerName: "layer_calcio0_30_11",
+        pane: "pane_calcio0_30_11",
+        onEachFeature: pop_calcio0_30_11,
+        style: style_calcio0_30_11_0,
+      });
+      bounds_group.addLayer(layer_calcio0_30_11);
+      function pop_P_60_90_12(feature, layer) {
+        var popupContent =
+          '<table>\
+                    <tr>\
+                      <th scope="row">Tipo</th>\
+                        <td colspan="2">' +
+          (feature.properties["USO"] !== null
+            ? autolinker.link(feature.properties["USO"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                      <th scope="row">Superficie</th>\
+                        <td colspan="2">' +
+          (feature.properties["SUP.HA"] !== null
+            ? autolinker.link(feature.properties["SUP.HA"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                      <th scope="row">Nivel</th>\
+                        <td colspan="2">' +
+          (feature.properties["FOSFORO"] !== null
+            ? autolinker.link(feature.properties["FOSFORO"].toLocaleString())
+            : "") +
+          "</td>\
+                    </tr>\
+                </table>";
+        layer.bindPopup(popupContent, { maxHeight: 400 });
+      }
+
+      function style_P_60_90_12_0(feature) {
+        switch (String(feature.properties["FOSFORO"])) {
+          case "Bajo":
+            return {
+              pane: "pane_P_60_90_12",
+              opacity: 1,
+              color: "rgba(35,35,35,1.0)",
+              dashArray: "",
+              lineCap: "butt",
+              lineJoin: "miter",
+              weight: 1.0,
+              fill: true,
+              fillOpacity: 1,
+              fillColor: "rgba(255,255,191,1.0)",
+              interactive: true,
+            };
+            break;
+          case "Bosque":
+            return {
+              pane: "pane_P_60_90_12",
+              opacity: 1,
+              color: "rgba(35,35,35,1.0)",
+              dashArray: "",
+              lineCap: "butt",
+              lineJoin: "miter",
+              weight: 1.0,
+              fill: true,
+              fillOpacity: 1,
+              fillColor: "rgba(29,134,65,1.0)",
+              interactive: true,
+            };
+            break;
+        }
+      }
+      map.createPane("pane_P_60_90_12");
+      map.getPane("pane_P_60_90_12").style.zIndex = 410;
+      map.getPane("pane_P_60_90_12").style["mix-blend-mode"] = "normal";
+      var layer_P_60_90_12 = new L.geoJson(json_P_60_90_12, {
+        attribution: "",
+        interactive: true,
+        dataVar: "json_P_60_90_12",
+        layerName: "layer_P_60_90_12",
+        pane: "pane_P_60_90_12",
+        onEachFeature: pop_P_60_90_12,
+        style: style_P_60_90_12_0,
+      });
+      bounds_group.addLayer(layer_P_60_90_12);
+      function pop_NA_60_90_13(feature, layer) {
+        var popupContent =
+          '<table>\
+                    <tr>\
+                      <th scope="row">Tipo</th>\
+                        <td colspan="2">' +
+          (feature.properties["USO"] !== null
+            ? autolinker.link(feature.properties["USO"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                      <th scope="row">Superficie</th>\
+                        <td colspan="2">' +
+          (feature.properties["SUP.HA"] !== null
+            ? autolinker.link(feature.properties["SUP.HA"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                      <th scope="row">Nivel</th>\
+                        <td colspan="2">' +
+          (feature.properties["SODIO"] !== null
+            ? autolinker.link(feature.properties["SODIO"].toLocaleString())
+            : "") +
+          "</td>\
+                    </tr>\
+                </table>";
+        layer.bindPopup(popupContent, { maxHeight: 400 });
+      }
+
+      function style_NA_60_90_13_0(feature) {
+        switch (String(feature.properties["SODIO"])) {
+          case "Alto":
+            return {
+              pane: "pane_NA_60_90_13",
+              opacity: 1,
+              color: "rgba(35,35,35,1.0)",
+              dashArray: "",
+              lineCap: "butt",
+              lineJoin: "miter",
+              weight: 1.0,
+              fill: true,
+              fillOpacity: 1,
+              fillColor: "rgba(215,25,28,1.0)",
+              interactive: true,
+            };
+            break;
+          case "Bosque":
+            return {
+              pane: "pane_NA_60_90_13",
+              opacity: 1,
+              color: "rgba(35,35,35,1.0)",
+              dashArray: "",
+              lineCap: "butt",
+              lineJoin: "miter",
+              weight: 1.0,
+              fill: true,
+              fillOpacity: 1,
+              fillColor: "rgba(29,134,65,1.0)",
+              interactive: true,
+            };
+            break;
+          case "Medio":
+            return {
+              pane: "pane_NA_60_90_13",
+              opacity: 1,
+              color: "rgba(35,35,35,1.0)",
+              dashArray: "",
+              lineCap: "butt",
+              lineJoin: "miter",
+              weight: 1.0,
+              fill: true,
+              fillOpacity: 1,
+              fillColor: "rgba(253,174,97,1.0)",
+              interactive: true,
+            };
+            break;
+        }
+      }
+      map.createPane("pane_NA_60_90_13");
+      map.getPane("pane_NA_60_90_13").style.zIndex = 409;
+      map.getPane("pane_NA_60_90_13").style["mix-blend-mode"] = "normal";
+      var layer_NA_60_90_13 = new L.geoJson(json_NA_60_90_13, {
+        attribution: "",
+        interactive: true,
+        dataVar: "json_NA_60_90_13",
+        layerName: "layer_NA_60_90_13",
+        pane: "pane_NA_60_90_13",
+        onEachFeature: pop_NA_60_90_13,
+        style: style_NA_60_90_13_0,
+      });
+      bounds_group.addLayer(layer_NA_60_90_13);
+      function pop_MG_60_90_14(feature, layer) {
+        var popupContent =
+          '<table>\
+                    <tr>\
+                      <th scope="row">Tipo</th>\
+                        <td colspan="2">' +
+          (feature.properties["USO"] !== null
+            ? autolinker.link(feature.properties["USO"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                      <th scope="row">Superficie</th>\
+                        <td colspan="2">' +
+          (feature.properties["SUP.HA"] !== null
+            ? autolinker.link(feature.properties["SUP.HA"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                      <th scope="row">Nivel</th>\
+                        <td colspan="2">' +
+          (feature.properties["magnesio"] !== null
+            ? autolinker.link(feature.properties["magnesio"].toLocaleString())
+            : "") +
+          "</td>\
+                    </tr>\
+                </table>";
+        layer.bindPopup(popupContent, { maxHeight: 400 });
+      }
+
+      function style_MG_60_90_14_0(feature) {
+        switch (String(feature.properties["magnesio"])) {
+          case "Bajo":
+            return {
+              pane: "pane_MG_60_90_14",
+              opacity: 1,
+              color: "rgba(35,35,35,1.0)",
+              dashArray: "",
+              lineCap: "butt",
+              lineJoin: "miter",
+              weight: 1.0,
+              fill: true,
+              fillOpacity: 1,
+              fillColor: "rgba(255,255,191,1.0)",
+              interactive: true,
+            };
+            break;
+          case "Bosque":
+            return {
+              pane: "pane_MG_60_90_14",
+              opacity: 1,
+              color: "rgba(35,35,35,1.0)",
+              dashArray: "",
+              lineCap: "butt",
+              lineJoin: "miter",
+              weight: 1.0,
+              fill: true,
+              fillOpacity: 1,
+              fillColor: "rgba(29,134,65,1.0)",
+              interactive: true,
+            };
+            break;
+          case "Medio":
+            return {
+              pane: "pane_MG_60_90_14",
+              opacity: 1,
+              color: "rgba(35,35,35,1.0)",
+              dashArray: "",
+              lineCap: "butt",
+              lineJoin: "miter",
+              weight: 1.0,
+              fill: true,
+              fillOpacity: 1,
+              fillColor: "rgba(253,174,97,1.0)",
+              interactive: true,
+            };
+            break;
+        }
+      }
+      map.createPane("pane_MG_60_90_14");
+      map.getPane("pane_MG_60_90_14").style.zIndex = 408;
+      map.getPane("pane_MG_60_90_14").style["mix-blend-mode"] = "normal";
+      var layer_MG_60_90_14 = new L.geoJson(json_MG_60_90_14, {
+        attribution: "",
+        interactive: true,
+        dataVar: "json_MG_60_90_14",
+        layerName: "layer_MG_60_90_14",
+        pane: "pane_MG_60_90_14",
+        onEachFeature: pop_MG_60_90_14,
+        style: style_MG_60_90_14_0,
+      });
+      bounds_group.addLayer(layer_MG_60_90_14);
+      function pop_K_60_90_15(feature, layer) {
+        var popupContent =
+          '<table>\
+                    <tr>\
+                      <th scope="row">Tipo</th>\
+                        <td colspan="2">' +
+          (feature.properties["USO"] !== null
+            ? autolinker.link(feature.properties["USO"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                      <th scope="row">Superficie</th>\
+                        <td colspan="2">' +
+          (feature.properties["SUP.HA"] !== null
+            ? autolinker.link(feature.properties["SUP.HA"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                      <th scope="row">Nivel</th>\
+                        <td colspan="2">' +
+          (feature.properties["POTASIO"] !== null
+            ? autolinker.link(feature.properties["POTASIO"].toLocaleString())
+            : "") +
+          "</td>\
+                    </tr>\
+                </table>";
+        layer.bindPopup(popupContent, { maxHeight: 400 });
+      }
+
+      function style_K_60_90_15_0(feature) {
+        switch (String(feature.properties["POTASIO"])) {
+          case "Bajo":
+            return {
+              pane: "pane_K_60_90_15",
+              opacity: 1,
+              color: "rgba(35,35,35,1.0)",
+              dashArray: "",
+              lineCap: "butt",
+              lineJoin: "miter",
+              weight: 1.0,
+              fill: true,
+              fillOpacity: 1,
+              fillColor: "rgba(255,255,191,1.0)",
+              interactive: true,
+            };
+            break;
+          case "Bosque":
+            return {
+              pane: "pane_K_60_90_15",
+              opacity: 1,
+              color: "rgba(35,35,35,1.0)",
+              dashArray: "",
+              lineCap: "butt",
+              lineJoin: "miter",
+              weight: 1.0,
+              fill: true,
+              fillOpacity: 1,
+              fillColor: "rgba(29,134,65,1.0)",
+              interactive: true,
+            };
+            break;
+        }
+      }
+      map.createPane("pane_K_60_90_15");
+      map.getPane("pane_K_60_90_15").style.zIndex = 407;
+      map.getPane("pane_K_60_90_15").style["mix-blend-mode"] = "normal";
+      var layer_K_60_90_15 = new L.geoJson(json_K_60_90_15, {
+        attribution: "",
+        interactive: true,
+        dataVar: "json_K_60_90_15",
+        layerName: "layer_K_60_90_15",
+        pane: "pane_K_60_90_15",
+        onEachFeature: pop_K_60_90_15,
+        style: style_K_60_90_15_0,
+      });
+      bounds_group.addLayer(layer_K_60_90_15);
+      function pop_CA_60_90_16(feature, layer) {
+        var popupContent =
+          '<table>\
+                    <tr>\
+                      <th scope="row">Tipo</th>\
+                        <td colspan="2">' +
+          (feature.properties["USO"] !== null
+            ? autolinker.link(feature.properties["USO"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                      <th scope="row">Superficie</th>\
+                        <td colspan="2">' +
+          (feature.properties["SUP.HA"] !== null
+            ? autolinker.link(feature.properties["SUP.HA"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                      <th scope="row">Nivel</th>\
+                        <td colspan="2">' +
+          (feature.properties["calcio"] !== null
+            ? autolinker.link(feature.properties["calcio"].toLocaleString())
+            : "") +
+          "</td>\
+                    </tr>\
+                </table>";
+        layer.bindPopup(popupContent, { maxHeight: 400 });
+      }
+
+      function style_CA_60_90_16_0(feature) {
+        switch (String(feature.properties["calcio"])) {
+          case "Bajo":
+            return {
+              pane: "pane_CA_60_90_16",
+              opacity: 1,
+              color: "rgba(35,35,35,1.0)",
+              dashArray: "",
+              lineCap: "butt",
+              lineJoin: "miter",
+              weight: 1.0,
+              fill: true,
+              fillOpacity: 1,
+              fillColor: "rgba(255,255,191,1.0)",
+              interactive: true,
+            };
+            break;
+          case "Bosque":
+            return {
+              pane: "pane_CA_60_90_16",
+              opacity: 1,
+              color: "rgba(35,35,35,1.0)",
+              dashArray: "",
+              lineCap: "butt",
+              lineJoin: "miter",
+              weight: 1.0,
+              fill: true,
+              fillOpacity: 1,
+              fillColor: "rgba(29,134,65,1.0)",
+              interactive: true,
+            };
+            break;
+        }
+      }
+      map.createPane("pane_CA_60_90_16");
+      map.getPane("pane_CA_60_90_16").style.zIndex = 406;
+      map.getPane("pane_CA_60_90_16").style["mix-blend-mode"] = "normal";
+      var layer_CA_60_90_16 = new L.geoJson(json_CA_60_90_16, {
+        attribution: "",
+        interactive: true,
+        dataVar: "json_CA_60_90_16",
+        layerName: "layer_CA_60_90_16",
+        pane: "pane_CA_60_90_16",
+        onEachFeature: pop_CA_60_90_16,
+        style: style_CA_60_90_16_0,
+      });
+      bounds_group.addLayer(layer_CA_60_90_16);
+      function pop_P_30_60_17(feature, layer) {
+        var popupContent =
+          '<table>\
+                    <tr>\
+                      <th scope="row">Tipo</th>\
+                        <td colspan="2">' +
+          (feature.properties["USO"] !== null
+            ? autolinker.link(feature.properties["USO"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                      <th scope="row">Superficie</th>\
+                        <td colspan="2">' +
+          (feature.properties["SUP.HA"] !== null
+            ? autolinker.link(feature.properties["SUP.HA"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                      <th scope="row">Nivel</th>\
+                        <td colspan="2">' +
+          (feature.properties["FOSFORO"] !== null
+            ? autolinker.link(feature.properties["FOSFORO"].toLocaleString())
+            : "") +
+          "</td>\
+                    </tr>\
+                </table>";
+        layer.bindPopup(popupContent, { maxHeight: 400 });
+      }
+
+      function style_P_30_60_17_0(feature) {
+        switch (String(feature.properties["FOSFORO"])) {
+          case "Bajo":
+            return {
+              pane: "pane_P_30_60_17",
+              opacity: 1,
+              color: "rgba(35,35,35,1.0)",
+              dashArray: "",
+              lineCap: "butt",
+              lineJoin: "miter",
+              weight: 1.0,
+              fill: true,
+              fillOpacity: 1,
+              fillColor: "rgba(255,255,191,1.0)",
+              interactive: true,
+            };
+            break;
+          case "Bosque":
+            return {
+              pane: "pane_P_30_60_17",
+              opacity: 1,
+              color: "rgba(35,35,35,1.0)",
+              dashArray: "",
+              lineCap: "butt",
+              lineJoin: "miter",
+              weight: 1.0,
+              fill: true,
+              fillOpacity: 1,
+              fillColor: "rgba(29,134,65,1.0)",
+              interactive: true,
+            };
+            break;
+        }
+      }
+      map.createPane("pane_P_30_60_17");
+      map.getPane("pane_P_30_60_17").style.zIndex = 405;
+      map.getPane("pane_P_30_60_17").style["mix-blend-mode"] = "normal";
+      var layer_P_30_60_17 = new L.geoJson(json_P_30_60_17, {
+        attribution: "",
+        interactive: true,
+        dataVar: "json_P_30_60_17",
+        layerName: "layer_P_30_60_17",
+        pane: "pane_P_30_60_17",
+        onEachFeature: pop_P_30_60_17,
+        style: style_P_30_60_17_0,
+      });
+      bounds_group.addLayer(layer_P_30_60_17);
+      function pop_NA_30_60_18(feature, layer) {
+        var popupContent =
+          '<table>\
+                    <tr>\
+                      <th scope="row">Tipo</th>\
+                        <td colspan="2">' +
+          (feature.properties["USO"] !== null
+            ? autolinker.link(feature.properties["USO"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                      <th scope="row">Superficie</th>\
+                        <td colspan="2">' +
+          (feature.properties["SUP.HA"] !== null
+            ? autolinker.link(feature.properties["SUP.HA"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                      <th scope="row">Nivel</th>\
+                        <td colspan="2">' +
+          (feature.properties["SODIO"] !== null
+            ? autolinker.link(feature.properties["SODIO"].toLocaleString())
+            : "") +
+          "</td>\
+                    </tr>\
+                </table>";
+        layer.bindPopup(popupContent, { maxHeight: 400 });
+      }
+
+      function style_NA_30_60_18_0(feature) {
+        switch (String(feature.properties["SODIO"])) {
+          case "Alto":
+            return {
+              pane: "pane_NA_30_60_18",
+              opacity: 1,
+              color: "rgba(35,35,35,1.0)",
+              dashArray: "",
+              lineCap: "butt",
+              lineJoin: "miter",
+              weight: 1.0,
+              fill: true,
+              fillOpacity: 1,
+              fillColor: "rgba(215,25,28,1.0)",
+              interactive: true,
+            };
+            break;
+          case "Bosque":
+            return {
+              pane: "pane_NA_30_60_18",
+              opacity: 1,
+              color: "rgba(35,35,35,1.0)",
+              dashArray: "",
+              lineCap: "butt",
+              lineJoin: "miter",
+              weight: 1.0,
+              fill: true,
+              fillOpacity: 1,
+              fillColor: "rgba(29,134,65,1.0)",
+              interactive: true,
+            };
+            break;
+          case "Medio":
+            return {
+              pane: "pane_NA_30_60_18",
+              opacity: 1,
+              color: "rgba(35,35,35,1.0)",
+              dashArray: "",
+              lineCap: "butt",
+              lineJoin: "miter",
+              weight: 1.0,
+              fill: true,
+              fillOpacity: 1,
+              fillColor: "rgba(253,174,97,1.0)",
+              interactive: true,
+            };
+            break;
+        }
+      }
+      map.createPane("pane_NA_30_60_18");
+      map.getPane("pane_NA_30_60_18").style.zIndex = 404;
+      map.getPane("pane_NA_30_60_18").style["mix-blend-mode"] = "normal";
+      var layer_NA_30_60_18 = new L.geoJson(json_NA_30_60_18, {
+        attribution: "",
+        interactive: true,
+        dataVar: "json_NA_30_60_18",
+        layerName: "layer_NA_30_60_18",
+        pane: "pane_NA_30_60_18",
+        onEachFeature: pop_NA_30_60_18,
+        style: style_NA_30_60_18_0,
+      });
+      bounds_group.addLayer(layer_NA_30_60_18);
+      function pop_MG_30_60_19(feature, layer) {
+        var popupContent =
+          '<table>\
+                    <tr>\
+                      <th scope="row">Tipo</th>\
+                        <td colspan="2">' +
+          (feature.properties["USO"] !== null
+            ? autolinker.link(feature.properties["USO"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                      <th scope="row">Superficie</th>\
+                        <td colspan="2">' +
+          (feature.properties["SUP.HA"] !== null
+            ? autolinker.link(feature.properties["SUP.HA"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                      <th scope="row">Nivel</th>\
+                        <td colspan="2">' +
+          (feature.properties["magnesio"] !== null
+            ? autolinker.link(feature.properties["magnesio"].toLocaleString())
+            : "") +
+          "</td>\
+                    </tr>\
+                </table>";
+        layer.bindPopup(popupContent, { maxHeight: 400 });
+      }
+
+      function style_MG_30_60_19_0(feature) {
+        switch (String(feature.properties["magnesio"])) {
+          case "Bajo":
+            return {
+              pane: "pane_MG_30_60_19",
+              opacity: 1,
+              color: "rgba(35,35,35,1.0)",
+              dashArray: "",
+              lineCap: "butt",
+              lineJoin: "miter",
+              weight: 1.0,
+              fill: true,
+              fillOpacity: 1,
+              fillColor: "rgba(255,255,191,1.0)",
+              interactive: true,
+            };
+            break;
+          case "Bosque":
+            return {
+              pane: "pane_MG_30_60_19",
+              opacity: 1,
+              color: "rgba(35,35,35,1.0)",
+              dashArray: "",
+              lineCap: "butt",
+              lineJoin: "miter",
+              weight: 1.0,
+              fill: true,
+              fillOpacity: 1,
+              fillColor: "rgba(29,134,65,1.0)",
+              interactive: true,
+            };
+            break;
+        }
+      }
+      map.createPane("pane_MG_30_60_19");
+      map.getPane("pane_MG_30_60_19").style.zIndex = 404;
+      map.getPane("pane_MG_30_60_19").style["mix-blend-mode"] = "normal";
+      var layer_MG_30_60_19 = new L.geoJson(json_MG_30_60_19, {
+        attribution: "",
+        interactive: true,
+        dataVar: "json_MG_30_60_19",
+        layerName: "layer_MG_30_60_19",
+        pane: "pane_MG_30_60_19",
+        onEachFeature: pop_MG_30_60_19,
+        style: style_MG_30_60_19_0,
+      });
+      bounds_group.addLayer(layer_MG_30_60_19);
+      function pop_K_30_60_20(feature, layer) {
+        var popupContent =
+          '<table>\
+                    <tr>\
+                      <th scope="row">Tipo</th>\
+                        <td colspan="2">' +
+          (feature.properties["USO"] !== null
+            ? autolinker.link(feature.properties["USO"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                      <th scope="row">Superficie</th>\
+                        <td colspan="2">' +
+          (feature.properties["SUP.HA"] !== null
+            ? autolinker.link(feature.properties["SUP.HA"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                      <th scope="row">Nivel</th>\
+                        <td colspan="2">' +
+          (feature.properties["POTASIO"] !== null
+            ? autolinker.link(feature.properties["POTASIO"].toLocaleString())
+            : "") +
+          "</td>\
+                    </tr>\
+                </table>";
+        layer.bindPopup(popupContent, { maxHeight: 400 });
+      }
+
+      function style_K_30_60_20_0(feature) {
+        switch (String(feature.properties["POTASIO"])) {
+          case "Bajo":
+            return {
+              pane: "pane_K_30_60_20",
+              opacity: 1,
+              color: "rgba(35,35,35,1.0)",
+              dashArray: "",
+              lineCap: "butt",
+              lineJoin: "miter",
+              weight: 1.0,
+              fill: true,
+              fillOpacity: 1,
+              fillColor: "rgba(255,255,191,1.0)",
+              interactive: true,
+            };
+            break;
+          case "Bosque":
+            return {
+              pane: "pane_K_30_60_20",
+              opacity: 1,
+              color: "rgba(35,35,35,1.0)",
+              dashArray: "",
+              lineCap: "butt",
+              lineJoin: "miter",
+              weight: 1.0,
+              fill: true,
+              fillOpacity: 1,
+              fillColor: "rgba(29,134,65,1.0)",
+              interactive: true,
+            };
+            break;
+        }
+      }
+      map.createPane("pane_K_30_60_20");
+      map.getPane("pane_K_30_60_20").style.zIndex = 403;
+      map.getPane("pane_K_30_60_20").style["mix-blend-mode"] = "normal";
+      var layer_K_30_60_20 = new L.geoJson(json_K_30_60_20, {
+        attribution: "",
+        interactive: true,
+        dataVar: "json_K_30_60_20",
+        layerName: "layer_K_30_60_20",
+        pane: "pane_K_30_60_20",
+        onEachFeature: pop_K_30_60_20,
+        style: style_K_30_60_20_0,
+      });
+      bounds_group.addLayer(layer_K_30_60_20);
+      function pop_CA_30_60_21(feature, layer) {
+        var popupContent =
+          '<table>\
+                    <tr>\
+                      <th scope="row">Tipo</th>\
+                        <td colspan="2">' +
+          (feature.properties["USO"] !== null
+            ? autolinker.link(feature.properties["USO"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                      <th scope="row">Superficie</th>\
+                        <td colspan="2">' +
+          (feature.properties["SUP.HA"] !== null
+            ? autolinker.link(feature.properties["SUP.HA"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                      <th scope="row">Nivel</th>\
+                        <td colspan="2">' +
+          (feature.properties["calcio"] !== null
+            ? autolinker.link(feature.properties["calcio"].toLocaleString())
+            : "") +
+          "</td>\
+                    </tr>\
+                </table>";
+        layer.bindPopup(popupContent, { maxHeight: 400 });
+      }
+
+      function style_CA_30_60_21_0(feature) {
+        switch (String(feature.properties["calcio"])) {
+          case "Bajo":
+            return {
+              pane: "pane_CA_30_60_21",
+              opacity: 1,
+              color: "rgba(35,35,35,1.0)",
+              dashArray: "",
+              lineCap: "butt",
+              lineJoin: "miter",
+              weight: 1.0,
+              fill: true,
+              fillOpacity: 1,
+              fillColor: "rgba(255,255,191,1.0)",
+              interactive: true,
+            };
+            break;
+          case "Bosque":
+            return {
+              pane: "pane_CA_30_60_21",
+              opacity: 1,
+              color: "rgba(35,35,35,1.0)",
+              dashArray: "",
+              lineCap: "butt",
+              lineJoin: "miter",
+              weight: 1.0,
+              fill: true,
+              fillOpacity: 1,
+              fillColor: "rgba(29,134,65,1.0)",
+              interactive: true,
+            };
+            break;
+        }
+      }
+      map.createPane("pane_CA_30_60_21");
+      map.getPane("pane_CA_30_60_21").style.zIndex = 402;
+      map.getPane("pane_CA_30_60_21").style["mix-blend-mode"] = "normal";
+      var layer_CA_30_60_21 = new L.geoJson(json_CA_30_60_21, {
+        attribution: "",
+        interactive: true,
+        dataVar: "json_CA_30_60_21",
+        layerName: "layer_CA_30_60_21",
+        pane: "pane_CA_30_60_21",
+        onEachFeature: pop_CA_30_60_21,
+        style: style_CA_30_60_21_0,
+      });
+      bounds_group.addLayer(layer_CA_30_60_21);
+      function pop_BOSQUE_22(feature, layer) {
+        var popupContent =
+          '<table>\
+                    <tr>\
+                      <th scope="row">Tipo</th>\
+                        <td colspan="2">' +
+          (feature.properties["USO"] !== null
+            ? autolinker.link(feature.properties["USO"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                      <th scope="row">Superficie</th>\
+                        <td colspan="2">' +
+          (feature.properties["SUP.HA"] !== null
+            ? autolinker.link(feature.properties["SUP.HA"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' +
+          (feature.properties["Recomendac"] !== null
+            ? autolinker.link(feature.properties["Recomendac"].toLocaleString())
+            : "") +
+          "</td>\
+                    </tr>\
+                </table>";
+        layer.bindPopup(popupContent, { maxHeight: 400 });
+      }
+
+      function style_BOSQUE_22_0(feature) {
+        switch (String(feature.properties["USO"])) {
+          case "Cobertura Arborea":
+            return {
+              pane: "pane_BOSQUE_22",
+              opacity: 1,
+              color: "rgba(35,35,35,1.0)",
+              dashArray: "",
+              lineCap: "butt",
+              lineJoin: "miter",
+              weight: 1.0,
+              fill: true,
+              fillOpacity: 1,
+              fillColor: "rgba(41,79,5,1.0)",
+              interactive: true,
+            };
+            break;
+          case "IIISs,Sprof/IISper,Swd":
+            return {
+              pane: "pane_BOSQUE_22",
+              opacity: 1,
+              color: "rgba(35,35,35,1.0)",
+              dashArray: "",
+              lineCap: "butt",
+              lineJoin: "miter",
+              weight: 1.0,
+              fill: true,
+              fillOpacity: 1,
+              fillColor: "rgba(114,221,151,1.0)",
+              interactive: true,
+            };
+            break;
+          case "IIISs/IISprof, Sper,Swd":
+            return {
+              pane: "pane_BOSQUE_22",
+              opacity: 1,
+              color: "rgba(35,35,35,1.0)",
+              dashArray: "",
+              lineCap: "butt",
+              lineJoin: "miter",
+              weight: 1.0,
+              fill: true,
+              fillOpacity: 1,
+              fillColor: "rgba(205,140,28,1.0)",
+              interactive: true,
+            };
+            break;
+          case "IVSprof/IIISs,Sper,Swd":
+            return {
+              pane: "pane_BOSQUE_22",
+              opacity: 1,
+              color: "rgba(35,35,35,1.0)",
+              dashArray: "",
+              lineCap: "butt",
+              lineJoin: "miter",
+              weight: 1.0,
+              fill: true,
+              fillOpacity: 1,
+              fillColor: "rgba(134,129,231,1.0)",
+              interactive: true,
+            };
+            break;
+          case "VSs/IIISprof,Sper,Swd":
+            return {
+              pane: "pane_BOSQUE_22",
+              opacity: 1,
+              color: "rgba(35,35,35,1.0)",
+              dashArray: "",
+              lineCap: "butt",
+              lineJoin: "miter",
+              weight: 1.0,
+              fill: true,
+              fillOpacity: 1,
+              fillColor: "rgba(214,51,86,1.0)",
+              interactive: true,
+            };
+            break;
+          case "VSs/IVSprof/IIISper,Swd":
+            return {
+              pane: "pane_BOSQUE_22",
+              opacity: 1,
+              color: "rgba(35,35,35,1.0)",
+              dashArray: "",
+              lineCap: "butt",
+              lineJoin: "miter",
+              weight: 1.0,
+              fill: true,
+              fillOpacity: 1,
+              fillColor: "rgba(31,182,220,1.0)",
+              interactive: true,
+            };
+            break;
+          default:
+            return {
+              pane: "pane_BOSQUE_22",
+              opacity: 1,
+              color: "rgba(35,35,35,1.0)",
+              dashArray: "",
+              lineCap: "butt",
+              lineJoin: "miter",
+              weight: 1.0,
+              fill: true,
+              fillOpacity: 1,
+              fillColor: "rgba(155,236,68,1.0)",
+              interactive: true,
+            };
+            break;
+        }
+      }
+      map.createPane("pane_BOSQUE_22");
+      map.getPane("pane_BOSQUE_22").style.zIndex = 401;
+      map.getPane("pane_BOSQUE_22").style["mix-blend-mode"] = "normal";
+      var layer_BOSQUE_22 = new L.geoJson(json_BOSQUE_22, {
+        attribution: "",
+        interactive: true,
+        dataVar: "json_BOSQUE_22",
+        layerName: "layer_BOSQUE_22",
+        pane: "pane_BOSQUE_22",
+        onEachFeature: pop_BOSQUE_22,
+        style: style_BOSQUE_22_0,
+      });
+      bounds_group.addLayer(layer_BOSQUE_22);
+      map.addLayer(layer_BOSQUE_22);
+      function pop_SA_Q_60_90_23(feature, layer) {
+        var popupContent =
+          "<h3>Calicata " +
+          (feature.properties["Calicata"] !== null
+            ? autolinker.link(feature.properties["Calicata"].toLocaleString())
+            : "") +
+          " - 30 a 60 cm" +
+          '</h3>\
+          </br>\
+          <table>\
+                    <thead>\
+                        <tr>\
+                        <th class="popupTitle">Parámetro</th>\
+                        <th class="popupTitle">Cantidad</td>\
+                        </tr>\
+                    </thead>\
+                    <tr>\
+                      <th scope="row">Calcio</th>\
+                        <td colspan="2">' +
+          (feature.properties["TEORCA"] !== null
+            ? autolinker.link(feature.properties["TEORCA"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                      <th scope="row">Magnesio</th>\
+                        <td colspan="2">' +
+          (feature.properties["TEORMG"] !== null
+            ? autolinker.link(feature.properties["TEORMG"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                      <th scope="row">Potasio</th>\
+                        <td colspan="2">' +
+          (feature.properties["TEORK"] !== null
+            ? autolinker.link(feature.properties["TEORK"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                      <th scope="row">Sodio</th>\
+                        <td colspan="2">' +
+          (feature.properties["TEORNA"] !== null
+            ? autolinker.link(feature.properties["TEORNA"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                      <th scope="row">MOS</th>\
+                        <td colspan="2">' +
+          (feature.properties["TEORMOS"] !== null
+            ? autolinker.link(feature.properties["TEORMOS"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                      <th scope="row">Fosforo</th>\
+                        <td colspan="2">' +
+          (feature.properties["Fósforo M"] !== null
+            ? autolinker.link(feature.properties["Fósforo M"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                      <th scope="row">Indice pH</th>\
+                        <td colspan="2">' +
+          (feature.properties["INDPH"] !== null
+            ? autolinker.link(feature.properties["INDPH"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                      <th scope="row">Aluminio</th>\
+                        <td colspan="2">' +
+          (feature.properties["TEORAL"] !== null
+            ? autolinker.link(feature.properties["TEORAL"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                      <th scope="row">% Calcio</th>\
+                        <td colspan="2">' +
+          (feature.properties["SATURCA"] !== null
+            ? autolinker.link(feature.properties["SATURCA"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                      <th scope="row">% Magnesio</th>\
+                        <td colspan="2">' +
+          (feature.properties["SATURMG"] !== null
+            ? autolinker.link(feature.properties["SATURMG"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                      <th scope="row">% Potasio</th>\
+                        <td colspan="2">' +
+          (feature.properties["SATURK"] !== null
+            ? autolinker.link(feature.properties["SATURK"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                      <th scope="row">% Sodio</th>\
+                        <td colspan="2">' +
+          (feature.properties["SATURNA"] !== null
+            ? autolinker.link(feature.properties["SATURNA"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                      <th scope="row">% Aluminio</th>\
+                        <td colspan="2">' +
+          (feature.properties["SATURAL"] !== null
+            ? autolinker.link(feature.properties["SATURAL"].toLocaleString())
+            : "") +
+          "</td>\
+                    </tr>\
+                </table>";
+        layer.bindPopup(popupContent, { maxHeight: 400 });
+      }
+
+      function style_SA_Q_60_90_23_0() {
+        return {
+          pane: "pane_SA_Q_60_90_23",
+          radius: 4.0,
+          opacity: 1,
+          color: "rgba(35,35,35,1.0)",
+          dashArray: "",
+          lineCap: "butt",
+          lineJoin: "miter",
+          weight: 1,
+          fill: true,
+          fillOpacity: 1,
+          fillColor: "rgba(196,60,57,1.0)",
+          interactive: true,
+        };
+      }
+      map.createPane("pane_SA_Q_60_90_23");
+      map.getPane("pane_SA_Q_60_90_23").style.zIndex = 423;
+      map.getPane("pane_SA_Q_60_90_23").style["mix-blend-mode"] = "normal";
+      var layer_SA_Q_60_90_23 = new L.geoJson(json_SA_Q_60_90_23, {
+        attribution: "",
+        interactive: true,
+        dataVar: "json_SA_Q_60_90_23",
+        layerName: "layer_SA_Q_60_90_23",
+        pane: "pane_SA_Q_60_90_23",
+        onEachFeature: pop_SA_Q_60_90_23,
+        pointToLayer: function (feature, latlng) {
+          var context = {
+            feature: feature,
+            variables: {},
+          };
+          return L.circleMarker(latlng, style_SA_Q_60_90_23_0(feature));
+        },
+      });
+      bounds_group.addLayer(layer_SA_Q_60_90_23);
+      map.addLayer(layer_SA_Q_60_90_23);
+      function pop_SA_Q_30_60_24(feature, layer) {
+        var popupContent =
+          "<h3>Calicata " +
+          (feature.properties["Calicata"] !== null
+            ? autolinker.link(feature.properties["Calicata"].toLocaleString())
+            : "") +
+          " - 30 a 60 cm" +
+          '</h3>\
+          </br>\
+          <table>\
+                    <thead>\
+                        <tr>\
+                        <th class="popupTitle">Parámetro</th>\
+                        <th class="popupTitle">Cantidad</td>\
+                        </tr>\
+                    </thead>\
+                    <tr>\
+                        <th scope="row">Calcio</th>\
+                        <td colspan="2">' +
+          (feature.properties["CALCIO"] !== null
+            ? autolinker.link(feature.properties["CALCIO"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                      <th scope="row">Magnesio</th>\
+                        <td colspan="2">' +
+          (feature.properties["MAGNESIO"] !== null
+            ? autolinker.link(feature.properties["MAGNESIO"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                      <th scope="row">Potasio</th>\
+                        <td colspan="2">' +
+          (feature.properties["POTASIO"] !== null
+            ? autolinker.link(feature.properties["POTASIO"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                      <th scope="row">Sodio</th>\
+                        <td colspan="2">' +
+          (feature.properties["SODIO"] !== null
+            ? autolinker.link(feature.properties["SODIO"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                      <th scope="row">MOS</th>\
+                        <td colspan="2">' +
+          (feature.properties["MOS"] !== null
+            ? autolinker.link(feature.properties["MOS"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                      <th scope="row">Fosforo</th>\
+                        <td colspan="2">' +
+          (feature.properties["FOSFORO"] !== null
+            ? autolinker.link(feature.properties["FOSFORO"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                      <th scope="row">CIC</th>\
+                        <td colspan="2">' +
+          (feature.properties["CIC"] !== null
+            ? autolinker.link(feature.properties["CIC"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                      <th scope="row">CICEFE</th>\
+                        <td colspan="2">' +
+          (feature.properties["CICEFE"] !== null
+            ? autolinker.link(feature.properties["CICEFE"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                      <th scope="row">Indice pH</th>\
+                        <td colspan="2">' +
+          (feature.properties["INDPH"] !== null
+            ? autolinker.link(feature.properties["INDPH"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                      <th scope="row">Aluminio</th>\
+                        <td colspan="2">' +
+          (feature.properties["TEORAL"] !== null
+            ? autolinker.link(feature.properties["TEORAL"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                      <th scope="row">Hidrógeno</th>\
+                        <td colspan="2">' +
+          (feature.properties["TEORH"] !== null
+            ? autolinker.link(feature.properties["TEORH"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                      <th scope="row">% Calcio</th>\
+                        <td colspan="2">' +
+          (feature.properties["SATURCA"] !== null
+            ? autolinker.link(feature.properties["SATURCA"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                      <th scope="row">% Magnesio</th>\
+                        <td colspan="2">' +
+          (feature.properties["SATURMG"] !== null
+            ? autolinker.link(feature.properties["SATURMG"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                      <th scope="row">% Potasio</th>\
+                        <td colspan="2">' +
+          (feature.properties["SATURK"] !== null
+            ? autolinker.link(feature.properties["SATURK"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                      <th scope="row">% Sodio</th>\
+                        <td colspan="2">' +
+          (feature.properties["SATURNA"] !== null
+            ? autolinker.link(feature.properties["SATURNA"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                      <th scope="row">% Hidrógeno</th>\
+                        <td colspan="2">' +
+          (feature.properties["SATURH"] !== null
+            ? autolinker.link(feature.properties["SATURH"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                      <th scope="row">% Aluminio</th>\
+                        <td colspan="2">' +
+          (feature.properties["SATURAL"] !== null
+            ? autolinker.link(feature.properties["SATURAL"].toLocaleString())
+            : "") +
+          "</td>\
+                    </tr>\
+                </table>";
+        layer.bindPopup(popupContent, { maxHeight: 400 });
+      }
+
+      function style_SA_Q_30_60_24_0() {
+        return {
+          pane: "pane_SA_Q_30_60_24",
+          radius: 4.0,
+          opacity: 1,
+          color: "rgba(35,35,35,1.0)",
+          dashArray: "",
+          lineCap: "butt",
+          lineJoin: "miter",
+          weight: 1,
+          fill: true,
+          fillOpacity: 1,
+          fillColor: "rgba(133,182,111,1.0)",
+          interactive: true,
+        };
+      }
+      map.createPane("pane_SA_Q_30_60_24");
+      map.getPane("pane_SA_Q_30_60_24").style.zIndex = 424;
+      map.getPane("pane_SA_Q_30_60_24").style["mix-blend-mode"] = "normal";
+      var layer_SA_Q_30_60_24 = new L.geoJson(json_SA_Q_30_60_24, {
+        attribution: "",
+        interactive: true,
+        dataVar: "json_SA_Q_30_60_24",
+        layerName: "layer_SA_Q_30_60_24",
+        pane: "pane_SA_Q_30_60_24",
+        onEachFeature: pop_SA_Q_30_60_24,
+        pointToLayer: function (feature, latlng) {
+          var context = {
+            feature: feature,
+            variables: {},
+          };
+          return L.circleMarker(latlng, style_SA_Q_30_60_24_0(feature));
+        },
+      });
+      bounds_group.addLayer(layer_SA_Q_30_60_24);
+      map.addLayer(layer_SA_Q_30_60_24);
+      function pop_SA_Q_0_30_25(feature, layer) {
+        var popupContent =
+          "<h3>Calicata " +
+          (feature.properties["Calicata"] !== null
+            ? autolinker.link(feature.properties["Calicata"].toLocaleString())
+            : "") +
+          " - 30 a 60 cm" +
+          '</h3>\
+          </br>\
+          <table>\
+                    <thead>\
+                        <tr>\
+                        <th class="popupTitle">Parámetro</th>\
+                        <th class="popupTitle">Cantidad</td>\
+                        </tr>\
+                    </thead>\
+                    <tr>\
+                      <th scope="row">Arena total</th>\
+                        <td colspan="2">' +
+          (feature.properties["AreiaTotal"] !== null
+            ? autolinker.link(feature.properties["AreiaTotal"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                      <th scope="row">Salite</th>\
+                        <td colspan="2">' +
+          (feature.properties["Silte"] !== null
+            ? autolinker.link(feature.properties["Silte"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                      <th scope="row">Arcilla</th>\
+                        <td colspan="2">' +
+          (feature.properties["Argila"] !== null
+            ? autolinker.link(feature.properties["Argila"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                      <th scope="row">Textura</th>\
+                        <td colspan="2">' +
+          (feature.properties["ClasseText"] !== null
+            ? autolinker.link(feature.properties["ClasseText"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                      <th scope="row">Tipo de suelo</th>\
+                        <td colspan="2">' +
+          (feature.properties["TipoDeSolo"] !== null
+            ? autolinker.link(feature.properties["TipoDeSolo"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                      <th scope="row">Calcio</th>\
+                        <td colspan="2">' +
+          (feature.properties["CALCIO"] !== null
+            ? autolinker.link(feature.properties["CALCIO"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                      <th scope="row">Magnesio</th>\
+                        <td colspan="2">' +
+          (feature.properties["MAGNESIO"] !== null
+            ? autolinker.link(feature.properties["MAGNESIO"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                      <th scope="row">Potasio</th>\
+                        <td colspan="2">' +
+          (feature.properties["POTASIO"] !== null
+            ? autolinker.link(feature.properties["POTASIO"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                      <th scope="row">Sodio</th>\
+                        <td colspan="2">' +
+          (feature.properties["SODIO"] !== null
+            ? autolinker.link(feature.properties["SODIO"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                      <th scope="row">MOS</th>\
+                        <td colspan="2">' +
+          (feature.properties["MOS"] !== null
+            ? autolinker.link(feature.properties["MOS"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                      <th scope="row">Azufre</th>\
+                        <td colspan="2">' +
+          (feature.properties["SO4"] !== null
+            ? autolinker.link(feature.properties["SO4"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                      <th scope="row">Fosforo</th>\
+                        <td colspan="2">' +
+          (feature.properties["FOSFORO"] !== null
+            ? autolinker.link(feature.properties["FOSFORO"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                      <th scope="row">CTC</th>\
+                        <td colspan="2">' +
+          (feature.properties["TEORCTCPH7"] !== null
+            ? autolinker.link(feature.properties["TEORCTCPH7"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                      <th scope="row">CTC Efectivo</th>\
+                        <td colspan="2">' +
+          (feature.properties["CTCEFE"] !== null
+            ? autolinker.link(feature.properties["CTCEFE"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                      <th scope="row">Manganeso</th>\
+                        <td colspan="2">' +
+          (feature.properties["MANGANESO"] !== null
+            ? autolinker.link(feature.properties["MANGANESO"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                      <th scope="row">Hierro</th>\
+                        <td colspan="2">' +
+          (feature.properties["HIERRO"] !== null
+            ? autolinker.link(feature.properties["HIERRO"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                      <th scope="row">Cobre</th>\
+                        <td colspan="2">' +
+          (feature.properties["COBRE"] !== null
+            ? autolinker.link(feature.properties["COBRE"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                      <th scope="row">Zinc</th>\
+                        <td colspan="2">' +
+          (feature.properties["ZINC"] !== null
+            ? autolinker.link(feature.properties["ZINC"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                      <th scope="row">Boro</th>\
+                        <td colspan="2">' +
+          (feature.properties["BORO"] !== null
+            ? autolinker.link(feature.properties["BORO"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                      <th scope="row">Indice de pH</th>\
+                        <td colspan="2">' +
+          (feature.properties["INDPH"] !== null
+            ? autolinker.link(feature.properties["INDPH"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                      <th scope="row">Aluminio</th>\
+                        <td colspan="2">' +
+          (feature.properties["TEORAL"] !== null
+            ? autolinker.link(feature.properties["TEORAL"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                      <th scope="row">% Hidrógeno</th>\
+                        <td colspan="2">' +
+          (feature.properties["TEORH"] !== null
+            ? autolinker.link(feature.properties["TEORH"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                      <th scope="row">% Hidrógeno</th>\
+                        <td colspan="2">' +
+          (feature.properties["SATURCA"] !== null
+            ? autolinker.link(feature.properties["SATURCA"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                      <th scope="row">% Magnesio</th>\
+                        <td colspan="2">' +
+          (feature.properties["SATURMG"] !== null
+            ? autolinker.link(feature.properties["SATURMG"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                      <th scope="row">% Potasio</th>\
+                        <td colspan="2">' +
+          (feature.properties["SATURK"] !== null
+            ? autolinker.link(feature.properties["SATURK"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                      <th scope="row">% Sodio</th>\
+                        <td colspan="2">' +
+          (feature.properties["SATURNA"] !== null
+            ? autolinker.link(feature.properties["SATURNA"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                      <th scope="row">% Hidrógeno</th>\
+                        <td colspan="2">' +
+          (feature.properties["SATURH"] !== null
+            ? autolinker.link(feature.properties["SATURH"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                      <th scope="row">% Aluminio</th>\
+                        <td colspan="2">' +
+          (feature.properties["SATURAL"] !== null
+            ? autolinker.link(feature.properties["SATURAL"].toLocaleString())
+            : "") +
+          "</td>\
+                    </tr>\
+                </table>";
+        layer.bindPopup(popupContent, { maxHeight: 400 });
+      }
+
+      function style_SA_Q_0_30_25_0() {
+        return {
+          pane: "pane_SA_Q_0_30_25",
+          radius: 4.0,
+          opacity: 1,
+          color: "rgba(35,35,35,1.0)",
+          dashArray: "",
+          lineCap: "butt",
+          lineJoin: "miter",
+          weight: 1,
+          fill: true,
+          fillOpacity: 1,
+          fillColor: "rgba(190,178,151,1.0)",
+          interactive: true,
+        };
+      }
+      map.createPane("pane_SA_Q_0_30_25");
+      map.getPane("pane_SA_Q_0_30_25").style.zIndex = 425;
+      map.getPane("pane_SA_Q_0_30_25").style["mix-blend-mode"] = "normal";
+      var layer_SA_Q_0_30_25 = new L.geoJson(json_SA_Q_0_30_25, {
+        attribution: "",
+        interactive: true,
+        dataVar: "json_SA_Q_0_30_25",
+        layerName: "layer_SA_Q_0_30_25",
+        pane: "pane_SA_Q_0_30_25",
+        onEachFeature: pop_SA_Q_0_30_25,
+        pointToLayer: function (feature, latlng) {
+          var context = {
+            feature: feature,
+            variables: {},
+          };
+          return L.circleMarker(latlng, style_SA_Q_0_30_25_0(feature));
+        },
+      });
+      bounds_group.addLayer(layer_SA_Q_0_30_25);
+      map.addLayer(layer_SA_Q_0_30_25);
+
+      /* L.CONTROL - LEYENDAS */
+
+      /* CALICATAS */
+
+      var calicatasSA = {
+        '<img src="legend/SA_Q_0_30_25.png" /> Calicatas de 0 a 30':
+          layer_SA_Q_0_30_25,
+        '<img src="legend/SA_Q_30_60_24.png" /> Calicatas de 30 a 60':
+          layer_SA_Q_30_60_24,
+        '<img src="legend/SA_Q_60_90_23.png" /> Calicatas de 60 a 90':
+          layer_SA_Q_60_90_23,
+      };
+
+      var baseMaps = {};
+
+      var calicatasLcontrol = L.control
+        .layers(baseMaps, calicatasSA, {
+          collapsed: true,
+          position: "topright",
+        })
+        .addTo(map);
+
+      /* Titulo Calicatas */
+
+      var calicataLegend = L.control({ position: "topleft" });
+
+      calicataLegend.onAdd = function () {
+        var div = L.DomUtil.create("div");
+        // here is Your part:
+        div.innerHTML =
+          '<p class="titulo-leyenda hidden-mobile">Calicatas según profundidad</p>';
+        return div;
+      };
+      calicataLegend.addTo(map);
+
+      var calicataCtrlDiv = calicatasLcontrol.getContainer();
+      calicataCtrlDiv.insertBefore(
+        calicataLegend.getContainer(),
+        calicataCtrlDiv.firstChild
+      );
+
+      /* CLASIFICACIÓN SEGUN CUT */
+
+      var CUTSA = {
+        'CUT<br /><table><tr><td style="text-align: center;"><img src="legend/BOSQUE_22_CoberturaArborea0.png" /></td><td>Cobertura Arborea</td></tr><tr><td style="text-align: center;"><img src="legend/BOSQUE_22_IIISsSprofIISperSwd1.png" /></td><td>IIISs,Sprof/IISper,Swd</td></tr><tr><td style="text-align: center;"><img src="legend/BOSQUE_22_IIISsIISprofSperSwd2.png" /></td><td>IIISs/IISprof, Sper,Swd</td></tr><tr><td style="text-align: center;"><img src="legend/BOSQUE_22_IVSprofIIISsSperSwd3.png" /></td><td>IVSprof/IIISs,Sper,Swd</td></tr><tr><td style="text-align: center;"><img src="legend/BOSQUE_22_VSsIIISprofSperSwd4.png" /></td><td>VSs/IIISprof,Sper,Swd</td></tr><tr><td style="text-align: center;"><img src="legend/BOSQUE_22_VSsIVSprofIIISperSwd5.png" /></td><td>VSs/IVSprof/IIISper,Swd</td></tr><tr><td style="text-align: center;"><img src="legend/BOSQUE_22_6.png" /><td>VSs,Sprof,Sper,Swd</td></td><td></td></tr></table>':
+          layer_BOSQUE_22,
+      };
+
+      var baseMaps = {};
+
+      var CUTLcontrol = L.control
+        .layers(baseMaps, CUTSA, {
+          collapsed: true,
+          position: "topright",
+        })
+        .addTo(map);
+
+      /* Titulo CUT */
+
+      var CUTLegend = L.control({ position: "topleft" });
+
+      CUTLegend.onAdd = function () {
+        var div = L.DomUtil.create("div");
+        // here is Your part:
+        div.innerHTML =
+          '<p class="titulo-leyenda hidden-mobile">Clasificación según Capacidad</p>';
+        return div;
+      };
+      CUTLegend.addTo(map);
+
+      var CUTCtrlDiv = CUTLcontrol.getContainer();
+      CUTCtrlDiv.insertBefore(CUTLegend.getContainer(), CUTCtrlDiv.firstChild);
+
+      /* MACRONUTRIENTES */
+
+      var macrontrientesLayers = {
+        'Calcio 30 a 60<br /><table><tr><td style="text-align: center;"><img src="legend/CA_30_60_21_Bajo0.png" /></td><td>Bajo</td></tr><tr><td style="text-align: center;"><img src="legend/CA_30_60_21_Bosque1.png" /></td><td>Bosque</td></tr></table>':
+          layer_CA_30_60_21,
+        'Potasio 30 a 60<br /><table><tr><td style="text-align: center;"><img src="legend/K_30_60_20_Bajo0.png" /></td><td>Bajo</td></tr><tr><td style="text-align: center;"><img src="legend/K_30_60_20_Bosque1.png" /></td><td>Bosque</td></tr></table>':
+          layer_K_30_60_20,
+        'Magnesio 30 a 60<br /><table><tr><td style="text-align: center;"><img src="legend/MG_30_60_19_Bajo0.png" /></td><td>Bajo</td></tr><tr><td style="text-align: center;"><img src="legend/MG_30_60_19_Bosque1.png" /></td><td>Bosque</td></tr></table>':
+          layer_MG_30_60_19,
+        'Sodio 30 a 60<br /><table><tr><td style="text-align: center;"><img src="legend/NA_30_60_18_Alto0.png" /></td><td>Alto</td></tr><tr><td style="text-align: center;"><img src="legend/NA_30_60_18_Bosque1.png" /></td><td>Bosque</td></tr><tr><td style="text-align: center;"><img src="legend/NA_30_60_18_Medio2.png" /></td><td>Medio</td></tr></table>':
+          layer_NA_30_60_18,
+        'Fosforo 30 a 60<br /><table><tr><td style="text-align: center;"><img src="legend/P_30_60_17_Bajo0.png" /></td><td>Bajo</td></tr><tr><td style="text-align: center;"><img src="legend/P_30_60_17_Bosque1.png" /></td><td>Bosque</td></tr></table>':
+          layer_P_30_60_17,
+        'Calcio 60 a 90<br /><table><tr><td style="text-align: center;"><img src="legend/CA_60_90_16_Bajo0.png" /></td><td>Bajo</td></tr><tr><td style="text-align: center;"><img src="legend/CA_60_90_16_Bosque1.png" /></td><td>Bosque</td></tr></table>':
+          layer_CA_60_90_16,
+        'Potasio 60 a 90<br /><table><tr><td style="text-align: center;"><img src="legend/K_60_90_15_Bajo0.png" /></td><td>Bajo</td></tr><tr><td style="text-align: center;"><img src="legend/K_60_90_15_Bosque1.png" /></td><td>Bosque</td></tr></table>':
+          layer_K_60_90_15,
+        'Magnesio 60 a 90<br /><table><tr><td style="text-align: center;"><img src="legend/MG_60_90_14_Bajo0.png" /></td><td>Bajo</td></tr><tr><td style="text-align: center;"><img src="legend/MG_60_90_14_Bosque1.png" /></td><td>Bosque</td></tr><tr><td style="text-align: center;"><img src="legend/MG_60_90_14_Medio2.png" /></td><td>Medio</td></tr></table>':
+          layer_MG_60_90_14,
+        'Sodio 60 a 90<br /><table><tr><td style="text-align: center;"><img src="legend/NA_60_90_13_Alto0.png" /></td><td>Alto</td></tr><tr><td style="text-align: center;"><img src="legend/NA_60_90_13_Bosque1.png" /></td><td>Bosque</td></tr><tr><td style="text-align: center;"><img src="legend/NA_60_90_13_Medio2.png" /></td><td>Medio</td></tr></table>':
+          layer_NA_60_90_13,
+        'Fosforo 60 a 90<br /><table><tr><td style="text-align: center;"><img src="legend/P_60_90_12_Bajo0.png" /></td><td>Bajo</td></tr><tr><td style="text-align: center;"><img src="legend/P_60_90_12_Bosque1.png" /></td><td>Bosque</td></tr></table>':
+          layer_P_60_90_12,
+        'Calcio 0 a 30<br /><table><tr><td style="text-align: center;"><img src="legend/calcio0_30_11_Bajo0.png" /></td><td>Bajo</td></tr><tr><td style="text-align: center;"><img src="legend/calcio0_30_11_Bosque1.png" /></td><td>Bosque</td></tr></table>':
+          layer_calcio0_30_11,
+        'Magnesio 0 a 30<br /><table><tr><td style="text-align: center;"><img src="legend/magnesio0_30_10_Bajo0.png" /></td><td>Bajo</td></tr><tr><td style="text-align: center;"><img src="legend/magnesio0_30_10_Bosque1.png" /></td><td>Bosque</td></tr></table>':
+          layer_magnesio0_30_10,
+        'Potasio 0 a 30<br /><table><tr><td style="text-align: center;"><img src="legend/potasio0_30_9_Bajo0.png" /></td><td>Bajo</td></tr><tr><td style="text-align: center;"><img src="legend/potasio0_30_9_Bosque1.png" /></td><td>Bosque</td></tr></table>':
+          layer_potasio0_30_9,
+      };
+
+      var baseMaps = {};
+
+      var macroLcontrol = L.control
+        .layers(baseMaps, macrontrientesLayers, {
+          collapsed: true,
+          position: "topright",
+        })
+        .addTo(map);
+
+      /* Titulo Macronutrientes */
+
+      var macronutrientesLegend = L.control({ position: "topleft" });
+
+      macronutrientesLegend.onAdd = function () {
+        var div = L.DomUtil.create("div");
+        // here is Your part:
+        div.innerHTML =
+          '<p class="titulo-leyenda hidden-mobile">Macronutrientes por produndidad</p>';
+        return div;
+      };
+      macronutrientesLegend.addTo(map);
+
+      var macroCtrlDiv = macroLcontrol.getContainer();
+      macroCtrlDiv.insertBefore(
+        macronutrientesLegend.getContainer(),
+        macroCtrlDiv.firstChild
+      );
+
+      /* MICRONUTRIENTES */
+
+      var microSA = {
+        'Sodio 0 a 30<br /><table><tr><td style="text-align: center;"><img src="legend/sodio0_30_8_Alto0.png" /></td><td>Alto</td></tr><tr><td style="text-align: center;"><img src="legend/sodio0_30_8_Bosque1.png" /></td><td>Bosque</td></tr><tr><td style="text-align: center;"><img src="legend/sodio0_30_8_Medio2.png" /></td><td>Medio</td></tr></table>':
+          layer_sodio0_30_8,
+        'Asufre 0 a 30<br /><table><tr><td style="text-align: center;"><img src="legend/asufre0_30_7_Bajo0.png" /></td><td>Bajo</td></tr><tr><td style="text-align: center;"><img src="legend/asufre0_30_7_Bosque1.png" /></td><td>Bosque</td></tr><tr><td style="text-align: center;"><img src="legend/asufre0_30_7_Medio2.png" /></td><td>Medio</td></tr></table>':
+          layer_asufre0_30_7,
+        'Fosforo 0 a 30<br /><table><tr><td style="text-align: center;"><img src="legend/fosforo0_30_6_Bajo0.png" /></td><td>Bajo</td></tr><tr><td style="text-align: center;"><img src="legend/fosforo0_30_6_Bosque1.png" /></td><td>Bosque</td></tr></table>':
+          layer_fosforo0_30_6,
+        'Manganeso 0 a 30<br /><table><tr><td style="text-align: center;"><img src="legend/manganeso0_30_5_Alto0.png" /></td><td>Alto</td></tr><tr><td style="text-align: center;"><img src="legend/manganeso0_30_5_Bosque1.png" /></td><td>Bosque</td></tr></table>':
+          layer_manganeso0_30_5,
+        'Hierro 0 a 30<br /><table><tr><td style="text-align: center;"><img src="legend/hierro0_30_4_Alto0.png" /></td><td>Alto</td></tr><tr><td style="text-align: center;"><img src="legend/hierro0_30_4_Bosque1.png" /></td><td>Bosque</td></tr></table>':
+          layer_hierro0_30_4,
+        'Cobre 0 a 30<br /><table><tr><td style="text-align: center;"><img src="legend/cobre0_30_3_Alto0.png" /></td><td>Alto</td></tr><tr><td style="text-align: center;"><img src="legend/cobre0_30_3_Bosque1.png" /></td><td>Bosque</td></tr></table>':
+          layer_cobre0_30_3,
+        'Zinc 0 a 30<br /><table><tr><td style="text-align: center;"><img src="legend/zinc0_30_2_Alto0.png" /></td><td>Alto</td></tr><tr><td style="text-align: center;"><img src="legend/zinc0_30_2_Bosque1.png" /></td><td>Bosque</td></tr><tr><td style="text-align: center;"><img src="legend/zinc0_30_2_Medio2.png" /></td><td>Medio</td></tr></table>':
+          layer_zinc0_30_2,
+        'Boro 0 a 30<br /><table><tr><td style="text-align: center;"><img src="legend/boro0_30_1_Bosque0.png" /></td><td>Bosque</td></tr><tr><td style="text-align: center;"><img src="legend/boro0_30_1_Medio1.png" /></td><td>Medio</td></tr></table>':
+          layer_boro0_30_1,
+      };
+
+      var baseMaps = {};
+
+      var microLcontrol = L.control
+        .layers(baseMaps, microSA, {
+          collapsed: true,
+          position: "topright",
+        })
+        .addTo(map);
+
+      /* Titulo Calicatas */
+
+      var microLegend = L.control({ position: "topleft" });
+
+      microLegend.onAdd = function () {
+        var div = L.DomUtil.create("div");
+        // here is Your part:
+        div.innerHTML =
+          '<p class="titulo-leyenda hidden-mobile">Micronutrientes por profundidad</p>';
+        return div;
+      };
+      microLegend.addTo(map);
+
+      var microCtrlDiv = microLcontrol.getContainer();
+      microCtrlDiv.insertBefore(
+        microLegend.getContainer(),
+        microCtrlDiv.firstChild
+      );
+
+      /* DOM PARA GRAFICOS */
+
+      /*Graficos*/
+
+      var graficoCa30_60 = document.getElementById("graficoCa30_60");
+      var graficoCUT = document.getElementById("graficoCUT");
+      var graficoNa6090 = document.getElementById("graficoS60-90");
+      var graficoNa3060 = document.getElementById("graficoS30-60");
+
+      /*Map Names*/
+
+      var nameCUT =
+        'CUT<br /><table><tr><td style="text-align: center;"><img src="legend/BOSQUE_22_CoberturaArborea0.png" /></td><td>Cobertura Arborea</td></tr><tr><td style="text-align: center;"><img src="legend/BOSQUE_22_IIISsSprofIISperSwd1.png" /></td><td>IIISs,Sprof/IISper,Swd</td></tr><tr><td style="text-align: center;"><img src="legend/BOSQUE_22_IIISsIISprofSperSwd2.png" /></td><td>IIISs/IISprof, Sper,Swd</td></tr><tr><td style="text-align: center;"><img src="legend/BOSQUE_22_IVSprofIIISsSperSwd3.png" /></td><td>IVSprof/IIISs,Sper,Swd</td></tr><tr><td style="text-align: center;"><img src="legend/BOSQUE_22_VSsIIISprofSperSwd4.png" /></td><td>VSs/IIISprof,Sper,Swd</td></tr><tr><td style="text-align: center;"><img src="legend/BOSQUE_22_VSsIVSprofIIISperSwd5.png" /></td><td>VSs/IVSprof/IIISper,Swd</td></tr><tr><td style="text-align: center;"><img src="legend/BOSQUE_22_6.png" /><td>VSs,Sprof,Sper,Swd</td></td><td></td></tr></table>';
+      var nameGraficoCa30_60 =
+        'Calcio 30 a 60<br /><table><tr><td style="text-align: center;"><img src="legend/CA_30_60_21_Bajo0.png" /></td><td>Bajo</td></tr><tr><td style="text-align: center;"><img src="legend/CA_30_60_21_Bosque1.png" /></td><td>Bosque</td></tr></table>';
+      var nPotasio3060 =
+        'Potasio 30 a 60<br /><table><tr><td style="text-align: center;"><img src="legend/K_30_60_20_Bajo0.png" /></td><td>Bajo</td></tr><tr><td style="text-align: center;"><img src="legend/K_30_60_20_Bosque1.png" /></td><td>Bosque</td></tr></table>';
+      var nMagnesio3060 =
+        'Magnesio 30 a 60<br /><table><tr><td style="text-align: center;"><img src="legend/MG_30_60_19_Bajo0.png" /></td><td>Bajo</td></tr><tr><td style="text-align: center;"><img src="legend/MG_30_60_19_Bosque1.png" /></td><td>Bosque</td></tr></table>';
+      var nFosforo3060 =
+        'Fosforo 30 a 60<br /><table><tr><td style="text-align: center;"><img src="legend/P_30_60_17_Bajo0.png" /></td><td>Bajo</td></tr><tr><td style="text-align: center;"><img src="legend/P_30_60_17_Bosque1.png" /></td><td>Bosque</td></tr></table>';
+      var nCalcio6090 =
+        'Calcio 60 a 90<br /><table><tr><td style="text-align: center;"><img src="legend/CA_60_90_16_Bajo0.png" /></td><td>Bajo</td></tr><tr><td style="text-align: center;"><img src="legend/CA_60_90_16_Bosque1.png" /></td><td>Bosque</td></tr></table>';
+      var nPotasio6090 =
+        'Potasio 60 a 90<br /><table><tr><td style="text-align: center;"><img src="legend/K_60_90_15_Bajo0.png" /></td><td>Bajo</td></tr><tr><td style="text-align: center;"><img src="legend/K_60_90_15_Bosque1.png" /></td><td>Bosque</td></tr></table>';
+      var nMAgnesio6090 =
+        'Magnesio 60 a 90<br /><table><tr><td style="text-align: center;"><img src="legend/MG_60_90_14_Bajo0.png" /></td><td>Bajo</td></tr><tr><td style="text-align: center;"><img src="legend/MG_60_90_14_Bosque1.png" /></td><td>Bosque</td></tr><tr><td style="text-align: center;"><img src="legend/MG_60_90_14_Medio2.png" /></td><td>Medio</td></tr></table>';
+      var nFosforo6090 =
+        'Fosforo 60 a 90<br /><table><tr><td style="text-align: center;"><img src="legend/P_60_90_12_Bajo0.png" /></td><td>Bajo</td></tr><tr><td style="text-align: center;"><img src="legend/P_60_90_12_Bosque1.png" /></td><td>Bosque</td></tr></table>';
+      var nCalcio030 =
+        'Calcio 0 a 30<br /><table><tr><td style="text-align: center;"><img src="legend/calcio0_30_11_Bajo0.png" /></td><td>Bajo</td></tr><tr><td style="text-align: center;"><img src="legend/calcio0_30_11_Bosque1.png" /></td><td>Bosque</td></tr></table>';
+      var nMagnesio030 =
+        'Magnesio 0 a 30<br /><table><tr><td style="text-align: center;"><img src="legend/magnesio0_30_10_Bajo0.png" /></td><td>Bajo</td></tr><tr><td style="text-align: center;"><img src="legend/magnesio0_30_10_Bosque1.png" /></td><td>Bosque</td></tr></table>';
+      var nPotasio030 =
+        'Potasio 0 a 30<br /><table><tr><td style="text-align: center;"><img src="legend/potasio0_30_9_Bajo0.png" /></td><td>Bajo</td></tr><tr><td style="text-align: center;"><img src="legend/potasio0_30_9_Bosque1.png" /></td><td>Bosque</td></tr></table>';
+      var nSodio6090 =
+        'Sodio 30 a 60<br /><table><tr><td style="text-align: center;"><img src="legend/NA_30_60_18_Alto0.png" /></td><td>Alto</td></tr><tr><td style="text-align: center;"><img src="legend/NA_30_60_18_Bosque1.png" /></td><td>Bosque</td></tr><tr><td style="text-align: center;"><img src="legend/NA_30_60_18_Medio2.png" /></td><td>Medio</td></tr></table>';
+      var nSodio3060 =
+        'Sodio 60 a 90<br /><table><tr><td style="text-align: center;"><img src="legend/NA_60_90_13_Alto0.png" /></td><td>Alto</td></tr><tr><td style="text-align: center;"><img src="legend/NA_60_90_13_Bosque1.png" /></td><td>Bosque</td></tr><tr><td style="text-align: center;"><img src="legend/NA_60_90_13_Medio2.png" /></td><td>Medio</td></tr></table>';
+      /* FUNCIONES */
+
+      map.on("overlayadd", function (e0) {
+        if (e0.name === nameCUT) {
+          graficoCUT.style.display = "block";
+          console.log(e0);
+        } else if (
+          e0.name === nameGraficoCa30_60 ||
+          e0.name === nPotasio030 ||
+          e0.name === nPotasio3060 ||
+          e0.name === nPotasio6090 ||
+          e0.name === nMagnesio3060 ||
+          e0.name === nMAgnesio6090 ||
+          e0.name === nMagnesio030 ||
+          e0.name === nCalcio030 ||
+          e0.name === nCalcio6090 ||
+          e0.name === nFosforo3060 ||
+          e0.name === nFosforo6090
+        ) {
+          graficoCa30_60.style.display = "block";
+          console.log(e0);
+        } else if (e0.name === nSodio6090) {
+          graficoNa6090.style.display = "block";
+        } else if (e0.name === nSodio3060) {
+          graficoNa3060.style.display = "block";
+        }
+      });
+
+      map.on("overlayremove", function (e1) {
+        if (e1.name === nameCUT) {
+          graficoCUT.style.display = "none";
+        } else if (
+          e1.name === nameGraficoCa30_60 ||
+          e1.name === nPotasio030 ||
+          e1.name === nPotasio3060 ||
+          e1.name === nPotasio6090 ||
+          e1.name === nMagnesio3060 ||
+          e1.name === nMAgnesio6090 ||
+          e1.name === nMagnesio030 ||
+          e1.name === nCalcio030 ||
+          e1.name === nCalcio6090 ||
+          e1.name === nFosforo3060 ||
+          e1.name === nFosforo6090
+        ) {
+          graficoCa30_60.style.display = "none";
+        } else if (e1.name === nSodio6090) {
+          graficoNa6090.style.display = "none";
+        } else if (e1.name === nSodio3060) {
+          graficoNa3060.style.display = "none";
+        }
+      });
+    </script>
+  </body>
+</html>
