@@ -88,6 +88,8 @@
     </nav>
     <!--LEAFLET JS-->
 
+    <!--MAP BASE LAYER-->
+
     <div id="map"></div>
     <script>
       var map = L.map("map", {
@@ -107,6 +109,9 @@
       });
       var bounds_group = new L.featureGroup([]);
       function setBounds() {}
+
+      /* ESRI LAYER */
+
       map.createPane("pane_ESRI_0");
       map.getPane("pane_ESRI_0").style.zIndex = 400;
       var layer_ESRI_0 = L.tileLayer(
@@ -123,6 +128,9 @@
       );
       layer_ESRI_0;
       map.addLayer(layer_ESRI_0);
+
+      /* NIVELES DE SODIO */
+
       function pop_Niveles_1(feature, layer) {
         var popupContent =
           '<table>\
@@ -234,7 +242,6 @@
         style: style_Niveles_1_0,
       });
       bounds_group.addLayer(layer_Niveles_1);
-      map.addLayer(layer_Niveles_1);
       function pop_CapacidaddeusodelaTierra_2(feature, layer) {
         var popupContent =
           '<table>\
@@ -311,6 +318,8 @@
                 </table>";
         layer.bindPopup(popupContent, { maxHeight: 400 });
       }
+
+      /* CAPACIDAD DE USO DE LA TIERRA */
 
       function style_CapacidaddeusodelaTierra_2_0(feature) {
         switch (String(feature.properties["CUT"])) {
@@ -473,6 +482,8 @@
         layer.bindPopup(popupContent, { maxHeight: 400 });
       }
 
+      /* CALCIO DE 60 A 90 */
+
       function style_Calcio60a90_3_0(feature) {
         switch (String(feature.properties["CA"])) {
           case "Cobertura arbórea":
@@ -535,7 +546,6 @@
         style: style_Calcio60a90_3_0,
       });
       bounds_group.addLayer(layer_Calcio60a90_3);
-      map.addLayer(layer_Calcio60a90_3);
       function pop_Calcio30a60_4(feature, layer) {
         var popupContent =
           '<table>\
@@ -584,6 +594,8 @@
                 </table>";
         layer.bindPopup(popupContent, { maxHeight: 400 });
       }
+
+      /* CALCIO DE 30 A 60 */
 
       function style_Calcio30a60_4_0(feature) {
         switch (String(feature.properties["CA"])) {
@@ -647,7 +659,6 @@
         style: style_Calcio30a60_4_0,
       });
       bounds_group.addLayer(layer_Calcio30a60_4);
-      map.addLayer(layer_Calcio30a60_4);
       function pop_Calcio0a30_5(feature, layer) {
         var popupContent =
           '<table>\
@@ -759,7 +770,6 @@
         style: style_Calcio0a30_5_0,
       });
       bounds_group.addLayer(layer_Calcio0a30_5);
-      map.addLayer(layer_Calcio0a30_5);
       function pop_Fosforo60a90_6(feature, layer) {
         var popupContent =
           '<table>\
@@ -871,7 +881,6 @@
         style: style_Fosforo60a90_6_0,
       });
       bounds_group.addLayer(layer_Fosforo60a90_6);
-      map.addLayer(layer_Fosforo60a90_6);
       function pop_Fosforo30a60_7(feature, layer) {
         var popupContent =
           '<table>\
@@ -983,7 +992,6 @@
         style: style_Fosforo30a60_7_0,
       });
       bounds_group.addLayer(layer_Fosforo30a60_7);
-      map.addLayer(layer_Fosforo30a60_7);
       function pop_Fosforo0a30_8(feature, layer) {
         var popupContent =
           '<table>\
@@ -1095,7 +1103,6 @@
         style: style_Fosforo0a30_8_0,
       });
       bounds_group.addLayer(layer_Fosforo0a30_8);
-      map.addLayer(layer_Fosforo0a30_8);
       function pop_Magnesio60a90_9(feature, layer) {
         var popupContent =
           '<table>\
@@ -1207,7 +1214,6 @@
         style: style_Magnesio60a90_9_0,
       });
       bounds_group.addLayer(layer_Magnesio60a90_9);
-      map.addLayer(layer_Magnesio60a90_9);
       function pop_Magnesio30a60_10(feature, layer) {
         var popupContent =
           '<table>\
@@ -1319,7 +1325,6 @@
         style: style_Magnesio30a60_10_0,
       });
       bounds_group.addLayer(layer_Magnesio30a60_10);
-      map.addLayer(layer_Magnesio30a60_10);
       function pop_Magnesio0a30_11(feature, layer) {
         var popupContent =
           '<table>\
@@ -1431,7 +1436,6 @@
         style: style_Magnesio0a30_11_0,
       });
       bounds_group.addLayer(layer_Magnesio0a30_11);
-      map.addLayer(layer_Magnesio0a30_11);
       function pop_Potasio60a90_12(feature, layer) {
         var popupContent =
           '<table>\
@@ -1543,7 +1547,6 @@
         style: style_Potasio60a90_12_0,
       });
       bounds_group.addLayer(layer_Potasio60a90_12);
-      map.addLayer(layer_Potasio60a90_12);
       function pop_Potasio30a60_13(feature, layer) {
         var popupContent =
           '<table>\
@@ -1655,7 +1658,6 @@
         style: style_Potasio30a60_13_0,
       });
       bounds_group.addLayer(layer_Potasio30a60_13);
-      map.addLayer(layer_Potasio30a60_13);
       function pop_Potasio0a30_14(feature, layer) {
         var popupContent =
           '<table>\
@@ -1782,7 +1784,6 @@
         style: style_Potasio0a30_14_0,
       });
       bounds_group.addLayer(layer_Potasio0a30_14);
-      map.addLayer(layer_Potasio0a30_14);
       function pop_Sodio60a90_15(feature, layer) {
         var popupContent =
           '<table>\
@@ -1909,7 +1910,6 @@
         style: style_Sodio60a90_15_0,
       });
       bounds_group.addLayer(layer_Sodio60a90_15);
-      map.addLayer(layer_Sodio60a90_15);
       function pop_Sodio30a60_16(feature, layer) {
         var popupContent =
           '<table>\
@@ -2036,7 +2036,7 @@
         style: style_Sodio30a60_16_0,
       });
       bounds_group.addLayer(layer_Sodio30a60_16);
-      map.addLayer(layer_Sodio30a60_16);
+
       function pop_Sodio0a30_17(feature, layer) {
         var popupContent =
           '<table>\
@@ -2163,7 +2163,7 @@
         style: style_Sodio0a30_17_0,
       });
       bounds_group.addLayer(layer_Sodio0a30_17);
-      map.addLayer(layer_Sodio0a30_17);
+
       function pop_Boro0a30_18(feature, layer) {
         var popupContent =
           '<table>\
@@ -2275,7 +2275,7 @@
         style: style_Boro0a30_18_0,
       });
       bounds_group.addLayer(layer_Boro0a30_18);
-      map.addLayer(layer_Boro0a30_18);
+
       function pop_Cobre0a30_19(feature, layer) {
         var popupContent =
           '<table>\
@@ -2402,7 +2402,7 @@
         style: style_Cobre0a30_19_0,
       });
       bounds_group.addLayer(layer_Cobre0a30_19);
-      map.addLayer(layer_Cobre0a30_19);
+
       function pop_Hierro0a30_20(feature, layer) {
         var popupContent =
           '<table>\
@@ -2514,7 +2514,7 @@
         style: style_Hierro0a30_20_0,
       });
       bounds_group.addLayer(layer_Hierro0a30_20);
-      map.addLayer(layer_Hierro0a30_20);
+
       function pop_Manganeso0a30_21(feature, layer) {
         var popupContent =
           '<table>\
@@ -2641,7 +2641,7 @@
         style: style_Manganeso0a30_21_0,
       });
       bounds_group.addLayer(layer_Manganeso0a30_21);
-      map.addLayer(layer_Manganeso0a30_21);
+
       function pop_Zinc0a30_22(feature, layer) {
         var popupContent =
           '<table>\
@@ -2753,7 +2753,7 @@
         style: style_Zinc0a30_22_0,
       });
       bounds_group.addLayer(layer_Zinc0a30_22);
-      map.addLayer(layer_Zinc0a30_22);
+
       function pop_Profundidadde60a90_23(feature, layer) {
         var popupContent =
           '<table>\
