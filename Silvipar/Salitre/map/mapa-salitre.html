@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="css/qgis2web.css" />
     <link rel="stylesheet" href="css/fontawesome-all.min.css" />
     <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/mapstyles.css" />
     <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="js/main.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-ajax/2.1.0/leaflet.ajax.min.js"></script>
@@ -59,6 +60,7 @@
         height: 100%;
         padding: 0;
         margin: 0;
+        z-index: 0;
       }
     </style>
     <title>Soiltech - Mapa Salitre</title>
@@ -66,7 +68,7 @@
   <body>
     <!--NAV BAR-->
 
-    <nav class="nav-hamb">
+    <nav class="nav-hamb hidden-mobile">
       <li>
         <a href="../Salitre.html" class="nav_a logo">
           <img src="../../img/ST_logo.png" alt="logo-soiltech" />
@@ -86,6 +88,1246 @@
         </a>
       </li>
     </nav>
+    <!--CHART JS JS-->
+
+    <!--Grafico CUT-->
+
+    <div class="grafico" id="graficoCUT">
+      <div class="hidden-mobile" id="chartwrapper">
+        <canvas id="myChart"></canvas>
+      </div>
+
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+      <script>
+        const ctx = document.getElementById("myChart");
+        let labels0 = [
+          "Cobertura arborea",
+          "Cuerpo de agua",
+          "VISs/IVSper,Swd/ IISprof",
+          "IVSs/IIISper,Swd/ IISprof",
+          "VSs/IIISper,Swd/ IISprof",
+          "VSs/IVSper,Swd/IISprof",
+        ];
+        let data = [4.413, 10.313, 18.648, 21.932, 16.375, 28.319];
+        let colors = [
+          "#238533",
+          "#08ace8",
+          "#f794fe",
+          "#6b0cc4",
+          "#e6c429",
+          "#44fed3",
+        ];
+
+        new Chart(ctx, {
+          type: "doughnut",
+          data: {
+            labels: labels0,
+            datasets: [
+              {
+                backgroundColor: colors,
+                label: "%",
+                data: data,
+              },
+            ],
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true,
+                grid: {
+                  display: false,
+                },
+                ticks: {
+                  display: false,
+                },
+                lines: {
+                  display: false,
+                },
+                display: false,
+              },
+            },
+            layout: {
+              padding: 10,
+            },
+            plugins: {
+              legend: {
+                display: true,
+                position: "right",
+                labels: {
+                  font: {
+                    size: 10,
+                  },
+                },
+              },
+              title: {
+                display: true,
+                text: "% Superficie ocupada según CUT",
+                position: "top",
+              },
+            },
+            responsive: true,
+          },
+        });
+      </script>
+    </div>
+
+    <!--Grafico %SODIO-->
+
+    <div class="grafico" id="graficoNA">
+      <div id="chartwrapper1">
+        <canvas id="myChart1"></canvas>
+      </div>
+
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+      <script>
+        const ctx1 = document.getElementById("myChart1");
+        let labels1 = ["Alto", "Cobertura arbórea", "Cuerpo de agua", "Medio"];
+        let data1 = ["63.342", "4.413", "10.313", "21.932"];
+        let colors1 = ["#d7191c", "#238533", "#08ace8", "#fdae61"];
+
+        new Chart(ctx1, {
+          type: "doughnut",
+          data: {
+            labels: labels1,
+            datasets: [
+              {
+                backgroundColor: colors1,
+                label: "%",
+                data: data1,
+              },
+            ],
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true,
+                grid: {
+                  display: false,
+                },
+                ticks: {
+                  display: false,
+                },
+                lines: {
+                  display: false,
+                },
+                display: false,
+              },
+            },
+            layout: {
+              padding: 10,
+            },
+            plugins: {
+              legend: {
+                display: true,
+                position: "right",
+                labels: {
+                  font: {
+                    size: 10,
+                  },
+                },
+              },
+              title: {
+                display: true,
+                text: "Superficie según % de Sodio",
+                position: "top",
+              },
+            },
+            responsive: true,
+          },
+        });
+      </script>
+    </div>
+
+    <!--Grafico SODIO 60 a 90-->
+
+    <div class="grafico" id="graficoS60-90">
+      <div id="chartwrapper2">
+        <canvas id="myChart2"></canvas>
+      </div>
+
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+      <script>
+        const ctx2 = document.getElementById("myChart2");
+        let labels2 = ["ALTO", "MEDIO", "BOSQUE"];
+        let data2 = [76.77, 16.53, 6.7];
+        let colors2 = ["#d7191c", "#fdae61", "#1d8641"];
+
+        new Chart(ctx2, {
+          type: "doughnut",
+          data: {
+            labels: labels2,
+            datasets: [
+              {
+                backgroundColor: colors2,
+                label: "%",
+                data: data2,
+              },
+            ],
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true,
+                grid: {
+                  display: false,
+                },
+                ticks: {
+                  display: false,
+                },
+                lines: {
+                  display: false,
+                },
+                display: false,
+              },
+            },
+            layout: {
+              padding: 10,
+            },
+            plugins: {
+              legend: {
+                display: true,
+                position: "right",
+                labels: {
+                  font: {
+                    size: 10,
+                  },
+                },
+              },
+              title: {
+                display: true,
+                text: "Superficie según presencia de Sodio de 60 a 90",
+                position: "top",
+              },
+            },
+            responsive: true,
+          },
+        });
+      </script>
+    </div>
+
+    <!--Grafico SODIO 30 a 60-->
+
+    <div class="grafico" id="graficoS30-60">
+      <div id="chartwrapper3">
+        <canvas id="myChart3"></canvas>
+      </div>
+
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+      <script>
+        const ctx3 = document.getElementById("myChart3");
+        let labels3 = ["ALTO", "MEDIO", "BOSQUE"];
+        let data3 = [76.77, 16.53, 6.7];
+        let colors3 = ["#d7191c", "#fdae61", "#1d8641"];
+
+        new Chart(ctx3, {
+          type: "doughnut",
+          data: {
+            labels: labels3,
+            datasets: [
+              {
+                backgroundColor: colors3,
+                label: "%",
+                data: data3,
+              },
+            ],
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true,
+                grid: {
+                  display: false,
+                },
+                ticks: {
+                  display: false,
+                },
+                lines: {
+                  display: false,
+                },
+                display: false,
+              },
+            },
+            layout: {
+              padding: 10,
+            },
+            plugins: {
+              legend: {
+                display: true,
+                position: "right",
+                labels: {
+                  font: {
+                    size: 10,
+                  },
+                },
+              },
+              title: {
+                display: true,
+                text: "Superficie según presencia de Sodio de 30 a 60",
+                position: "top",
+              },
+            },
+            responsive: true,
+          },
+        });
+      </script>
+    </div>
+
+    <!--Grafico SODIO 0 a 30-->
+
+    <div class="grafico" id="graficoS0-30">
+      <div id="chartwrapper4">
+        <canvas id="myChart4"></canvas>
+      </div>
+
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+      <script>
+        const ctx4 = document.getElementById("myChart4");
+        let labels4 = ["ALTO", "MEDIO", "BOSQUE"];
+        let data4 = [76.77, 16.53, 6.7];
+        let colors4 = ["#d7191c", "#fdae61", "#1d8641"];
+
+        new Chart(ctx4, {
+          type: "doughnut",
+          data: {
+            labels: labels4,
+            datasets: [
+              {
+                backgroundColor: colors4,
+                label: "%",
+                data: data4,
+              },
+            ],
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true,
+                grid: {
+                  display: false,
+                },
+                ticks: {
+                  display: false,
+                },
+                lines: {
+                  display: false,
+                },
+                display: false,
+              },
+            },
+            layout: {
+              padding: 10,
+            },
+            plugins: {
+              legend: {
+                display: true,
+                position: "right",
+                labels: {
+                  font: {
+                    size: 10,
+                  },
+                },
+              },
+              title: {
+                display: true,
+                text: "Superficie según presencia de Sodio de 0 a 30",
+                position: "top",
+              },
+            },
+            responsive: true,
+          },
+        });
+      </script>
+    </div>
+
+    <!--Grafico Potasio 0 a 30-->
+
+    <div class="grafico" id="graficoK60_90">
+      <div id="chartwrapper5">
+        <canvas id="myChart5"></canvas>
+      </div>
+
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+      <script>
+        const ctx5 = document.getElementById("myChart5");
+        let labels5 = ["BAJO", "Cobertura arb�rea", "Cuerpo de agua", "MEDIO"];
+        let data5 = [63.342, 4.413, 10.313, 21.932, 100];
+        let colors5 = ["#ffffbf", "#238533", "#08ace8", "#fdae61"];
+
+        new Chart(ctx5, {
+          type: "doughnut",
+          data: {
+            labels: labels5,
+            datasets: [
+              {
+                backgroundColor: colors5,
+                label: "%",
+                data: data5,
+              },
+            ],
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true,
+                grid: {
+                  display: false,
+                },
+                ticks: {
+                  display: false,
+                },
+                lines: {
+                  display: false,
+                },
+                display: false,
+              },
+            },
+            layout: {
+              padding: 10,
+            },
+            plugins: {
+              legend: {
+                display: true,
+                position: "right",
+                labels: {
+                  font: {
+                    size: 10,
+                  },
+                },
+              },
+              title: {
+                display: true,
+                text: "Superficie según presencia de Potasio de 60 a 90",
+                position: "top",
+              },
+            },
+            responsive: true,
+          },
+        });
+      </script>
+    </div>
+
+    <!--Grafico Bajos en GRAL-->
+
+    <div class="grafico" id="graficoMg60_90">
+      <div id="chartwrapper6">
+        <canvas id="myChart6"></canvas>
+      </div>
+
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+      <script>
+        const ctx6 = document.getElementById("myChart6");
+        let labels6 = ["BAJO", "Cobertura arbórea", "Cuerpo de agua"];
+        let data6 = [85.274, 4.413, 10.313];
+        let colors6 = ["#ffffbf", "#238533", "#08ace8"];
+
+        new Chart(ctx6, {
+          type: "doughnut",
+          data: {
+            labels: labels6,
+            datasets: [
+              {
+                backgroundColor: colors6,
+                label: "%",
+                data: data6,
+              },
+            ],
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true,
+                grid: {
+                  display: false,
+                },
+                ticks: {
+                  display: false,
+                },
+                lines: {
+                  display: false,
+                },
+                display: false,
+              },
+            },
+            layout: {
+              padding: 10,
+            },
+            plugins: {
+              legend: {
+                display: true,
+                position: "right",
+                labels: {
+                  font: {
+                    size: 10,
+                  },
+                },
+              },
+              title: {
+                display: true,
+                text: "Superficie según presencia de Magnesio de 60 a 90",
+                position: "top",
+              },
+            },
+            responsive: true,
+          },
+        });
+      </script>
+    </div>
+
+    <!--Grafico Mg 30 a 60-->
+
+    <div class="grafico" id="graficoMg30_60">
+      <div id="chartwrapper7">
+        <canvas id="myChart7"></canvas>
+      </div>
+
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+      <script>
+        const ctx7 = document.getElementById("myChart7");
+        let labels7 = ["MEDIO", "BAJO", "BOSQUE"];
+        let data7 = [5.45, 87.85, 6.7];
+        let colors7 = ["#fdae61", "#ffffbf", "#1d8641"];
+
+        new Chart(ctx7, {
+          type: "doughnut",
+          data: {
+            labels: labels7,
+            datasets: [
+              {
+                backgroundColor: colors7,
+                label: "%",
+                data: data7,
+              },
+            ],
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true,
+                grid: {
+                  display: false,
+                },
+                ticks: {
+                  display: false,
+                },
+                lines: {
+                  display: false,
+                },
+                display: false,
+              },
+            },
+            layout: {
+              padding: 10,
+            },
+            plugins: {
+              legend: {
+                display: true,
+                position: "right",
+                labels: {
+                  font: {
+                    size: 10,
+                  },
+                },
+              },
+              title: {
+                display: true,
+                text: "Superficie según presencia de Magnesio de 30 a 60",
+                position: "top",
+              },
+            },
+            responsive: true,
+          },
+        });
+      </script>
+    </div>
+
+    <!--Grafico Mg 0 a 30-->
+
+    <div class="grafico" id="graficoMg0_60">
+      <div id="chartwrapper8">
+        <canvas id="myChart8"></canvas>
+      </div>
+
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+      <script>
+        const ctx8 = document.getElementById("myChart8");
+        let labels8 = ["BAJO", "BOSQUE"];
+        let data8 = [93.3, 6.7];
+        let colors8 = ["#ffffbf", "#1d8641"];
+
+        new Chart(ctx8, {
+          type: "doughnut",
+          data: {
+            labels: labels8,
+            datasets: [
+              {
+                backgroundColor: colors8,
+                label: "%",
+                data: data8,
+              },
+            ],
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true,
+                grid: {
+                  display: false,
+                },
+                ticks: {
+                  display: false,
+                },
+                lines: {
+                  display: false,
+                },
+                display: false,
+              },
+            },
+            layout: {
+              padding: 10,
+            },
+            plugins: {
+              legend: {
+                display: true,
+                position: "right",
+                labels: {
+                  font: {
+                    size: 10,
+                  },
+                },
+              },
+              title: {
+                display: true,
+                text: "Superficie según presencia de Magnesio de 0 a 30",
+                position: "top",
+              },
+            },
+            responsive: true,
+          },
+        });
+      </script>
+    </div>
+
+    <!--Grafico P-->
+
+    <div class="grafico" id="graficoP">
+      <div id="chartwrapper9">
+        <canvas id="myChart9"></canvas>
+      </div>
+
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+      <script>
+        const ctx9 = document.getElementById("myChart9");
+        let labels9 = ["BAJO", "BOSQUE"];
+        let data9 = [93.3, 6.7];
+        let colors9 = ["#ffffbf", "#1d8641"];
+
+        new Chart(ctx9, {
+          type: "doughnut",
+          data: {
+            labels: labels9,
+            datasets: [
+              {
+                backgroundColor: colors9,
+                label: "%",
+                data: data9,
+              },
+            ],
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true,
+                grid: {
+                  display: false,
+                },
+                ticks: {
+                  display: false,
+                },
+                lines: {
+                  display: false,
+                },
+                display: false,
+              },
+            },
+            layout: {
+              padding: 10,
+            },
+            plugins: {
+              legend: {
+                display: true,
+                position: "right",
+                labels: {
+                  font: {
+                    size: 10,
+                  },
+                },
+              },
+              title: {
+                display: true,
+                text: "Superficie según presencia de Fósforo",
+                position: "top",
+              },
+            },
+            responsive: true,
+          },
+        });
+      </script>
+    </div>
+
+    <!--Grafico Ca 0 - 30-->
+
+    <div class="grafico" id="graficoCa0_30">
+      <div id="chartwrapper10">
+        <canvas id="myChart10"></canvas>
+      </div>
+
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+      <script>
+        const ctx10 = document.getElementById("myChart10");
+        let labels10 = ["BAJO", "BOSQUE"];
+        let data10 = [93.3, 6.7];
+        let colors10 = ["#ffffbf", "#1d8641"];
+
+        new Chart(ctx10, {
+          type: "doughnut",
+          data: {
+            labels: labels10,
+            datasets: [
+              {
+                backgroundColor: colors10,
+                label: "%",
+                data: data10,
+              },
+            ],
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true,
+                grid: {
+                  display: false,
+                },
+                ticks: {
+                  display: false,
+                },
+                lines: {
+                  display: false,
+                },
+                display: false,
+              },
+            },
+            layout: {
+              padding: 10,
+            },
+            plugins: {
+              legend: {
+                display: true,
+                position: "right",
+                labels: {
+                  font: {
+                    size: 10,
+                  },
+                },
+              },
+              title: {
+                display: true,
+                text: "Superficie según presencia de Sodio de 30 a 60",
+                position: "top",
+              },
+            },
+            responsive: true,
+          },
+        });
+      </script>
+    </div>
+
+    <!--Grafico Ca 30 a 60-->
+
+    <div class="grafico" id="graficoCa30_60">
+      <div id="chartwrapper11">
+        <canvas id="myChart11"></canvas>
+      </div>
+
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+      <script>
+        const ctx11 = document.getElementById("myChart11");
+        let labels11 = ["BAJO", "MEDIO", "BOSQUE"];
+        let data11 = [88.57, 4.73, 6.7];
+        let colors11 = ["#ffffbf", "#fdae61", "#1d8641"];
+
+        new Chart(ctx11, {
+          type: "doughnut",
+          data: {
+            labels: labels11,
+            datasets: [
+              {
+                backgroundColor: colors11,
+                label: "%",
+                data: data11,
+              },
+            ],
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true,
+                grid: {
+                  display: false,
+                },
+                ticks: {
+                  display: false,
+                },
+                lines: {
+                  display: false,
+                },
+                display: false,
+              },
+            },
+            layout: {
+              padding: 10,
+            },
+            plugins: {
+              legend: {
+                display: true,
+                position: "right",
+                labels: {
+                  font: {
+                    size: 10,
+                  },
+                },
+              },
+              title: {
+                display: true,
+                text: "Superficie según presencia de Calcio de 30 a 60",
+                position: "top",
+              },
+            },
+            responsive: true,
+          },
+        });
+      </script>
+    </div>
+
+    <!--Grafico Ca 60 a 90-->
+
+    <div class="grafico" id="graficoCa60_90">
+      <div id="chartwrapper12">
+        <canvas id="myChart12"></canvas>
+      </div>
+
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+      <script>
+        const ctx12 = document.getElementById("myChart12");
+        let labels12 = ["Cobertura arbórea", "Cuerpo de agua", "BAJO"];
+        let data12 = [85.274, 4.413, 10.313, 100];
+        let colors12 = ["", "#238533", "#08ace8", "#ffffbf"];
+
+        new Chart(ctx12, {
+          type: "doughnut",
+          data: {
+            labels: labels12,
+            datasets: [
+              {
+                backgroundColor: colors12,
+                label: "%",
+                data: data12,
+              },
+            ],
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true,
+                grid: {
+                  display: false,
+                },
+                ticks: {
+                  display: false,
+                },
+                lines: {
+                  display: false,
+                },
+                display: false,
+              },
+            },
+            layout: {
+              padding: 10,
+            },
+            plugins: {
+              legend: {
+                display: true,
+                position: "right",
+                labels: {
+                  font: {
+                    size: 10,
+                  },
+                },
+              },
+              title: {
+                display: true,
+                text: "Superficie según presencia de Calcio de 60 a 90",
+                position: "top",
+              },
+            },
+            responsive: true,
+          },
+        });
+      </script>
+    </div>
+
+    <!--Grafico Zinc-->
+
+    <div class="grafico" id="graficoZ">
+      <div id="chartwrapper13">
+        <canvas id="myChart13"></canvas>
+      </div>
+
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+      <script>
+        const ctx13 = document.getElementById("myChart13");
+        let labels13 = ["ALTO", "BAJO", "MEDIO", "BOSQUE"];
+        let data13 = [27.76, 4.73, 60.81, 6.7];
+        let colors13 = ["#d7191c", "#ffffbf", "#fdae61", "#1d8641"];
+
+        new Chart(ctx13, {
+          type: "doughnut",
+          data: {
+            labels: labels13,
+            datasets: [
+              {
+                backgroundColor: colors13,
+                label: "%",
+                data: data13,
+              },
+            ],
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true,
+                grid: {
+                  display: false,
+                },
+                ticks: {
+                  display: false,
+                },
+                lines: {
+                  display: false,
+                },
+                display: false,
+              },
+            },
+            layout: {
+              padding: 10,
+            },
+            plugins: {
+              legend: {
+                display: true,
+                position: "right",
+                labels: {
+                  font: {
+                    size: 10,
+                  },
+                },
+              },
+              title: {
+                display: true,
+                text: "Superficie según presencia de Zinc",
+                position: "top",
+              },
+            },
+            responsive: true,
+          },
+        });
+      </script>
+    </div>
+
+    <!--Grafico Manganeso-->
+
+    <div class="grafico" id="graficoMn">
+      <div id="chartwrapper14">
+        <canvas id="myChart14"></canvas>
+      </div>
+
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+      <script>
+        const ctx14 = document.getElementById("myChart14");
+        let labels14 = ["ALTO", "BAJO", "MEDIO", "BOSQUE"];
+        let data14 = [8.09, 66.29, 18.92, 6.7];
+        let colors14 = ["#d7191c", "#ffffbf", "#fdae61", "#1d8641"];
+
+        new Chart(ctx14, {
+          type: "doughnut",
+          data: {
+            labels: labels14,
+            datasets: [
+              {
+                backgroundColor: colors14,
+                label: "%",
+                data: data14,
+              },
+            ],
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true,
+                grid: {
+                  display: false,
+                },
+                ticks: {
+                  display: false,
+                },
+                lines: {
+                  display: false,
+                },
+                display: false,
+              },
+            },
+            layout: {
+              padding: 10,
+            },
+            plugins: {
+              legend: {
+                display: true,
+                position: "right",
+                labels: {
+                  font: {
+                    size: 10,
+                  },
+                },
+              },
+              title: {
+                display: true,
+                text: "Superficie según presencia de Manganeso",
+                position: "top",
+              },
+            },
+            responsive: true,
+          },
+        });
+      </script>
+    </div>
+
+    <!--Grafico Hierro-->
+
+    <div class="grafico" id="graficoF">
+      <div id="chartwrapper15">
+        <canvas id="myChart15"></canvas>
+      </div>
+
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+      <script>
+        const ctx15 = document.getElementById("myChart15");
+        let labels15 = ["ALTO", "BOSQUE"];
+        let data15 = [93.3, 6.7];
+        let colors15 = ["#d7191c", "#1d8641"];
+
+        new Chart(ctx15, {
+          type: "doughnut",
+          data: {
+            labels: labels15,
+            datasets: [
+              {
+                backgroundColor: colors15,
+                label: "%",
+                data: data15,
+              },
+            ],
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true,
+                grid: {
+                  display: false,
+                },
+                ticks: {
+                  display: false,
+                },
+                lines: {
+                  display: false,
+                },
+                display: false,
+              },
+            },
+            layout: {
+              padding: 10,
+            },
+            plugins: {
+              legend: {
+                display: true,
+                position: "right",
+                labels: {
+                  font: {
+                    size: 10,
+                  },
+                },
+              },
+              title: {
+                display: true,
+                text: "Superficie según presencia de Hierro",
+                position: "top",
+              },
+            },
+            responsive: true,
+          },
+        });
+      </script>
+    </div>
+
+    <!--Grafico Cobre-->
+
+    <div class="grafico" id="graficoCu">
+      <div id="chartwrapper16">
+        <canvas id="myChart16"></canvas>
+      </div>
+
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+      <script>
+        const ctx16 = document.getElementById("myChart16");
+        let labels16 = ["ALTO", "BAJO", "MEDIO", "BOSQUE"];
+        let data16 = [3.76, 71.02, 18.52, 6.7];
+        let colors16 = ["#d7191c", "#ffffbf", "#fdae61", "#1d8641"];
+
+        new Chart(ctx16, {
+          type: "doughnut",
+          data: {
+            labels: labels16,
+            datasets: [
+              {
+                backgroundColor: colors16,
+                label: "%",
+                data: data16,
+              },
+            ],
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true,
+                grid: {
+                  display: false,
+                },
+                ticks: {
+                  display: false,
+                },
+                lines: {
+                  display: false,
+                },
+                display: false,
+              },
+            },
+            layout: {
+              padding: 10,
+            },
+            plugins: {
+              legend: {
+                display: true,
+                position: "right",
+                labels: {
+                  font: {
+                    size: 10,
+                  },
+                },
+              },
+              title: {
+                display: true,
+                text: "Superficie según presencia de Cobre",
+                position: "top",
+              },
+            },
+            responsive: true,
+          },
+        });
+      </script>
+    </div>
+
+    <!--Grafico Boro-->
+
+    <div class="grafico" id="graficoBo">
+      <div id="chartwrapper17">
+        <canvas id="myChart17"></canvas>
+      </div>
+
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+      <script>
+        const ctx17 = document.getElementById("myChart17");
+        let labels17 = ["BAJO", "MEDIO", "BOSQUE"];
+        let data17 = [33.12, 60.18, 6.7];
+        let colors17 = ["#ffffbf", "#fdae61", "#1d8641"];
+
+        new Chart(ctx17, {
+          type: "doughnut",
+          data: {
+            labels: labels17,
+            datasets: [
+              {
+                backgroundColor: colors17,
+                label: "%",
+                data: data17,
+              },
+            ],
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true,
+                grid: {
+                  display: false,
+                },
+                ticks: {
+                  display: false,
+                },
+                lines: {
+                  display: false,
+                },
+                display: false,
+              },
+            },
+            layout: {
+              padding: 10,
+            },
+            plugins: {
+              legend: {
+                display: true,
+                position: "right",
+                labels: {
+                  font: {
+                    size: 10,
+                  },
+                },
+              },
+              title: {
+                display: true,
+                text: "Superficie según presencia de Boro",
+                position: "top",
+              },
+            },
+            responsive: true,
+          },
+        });
+      </script>
+    </div>
+
     <!--LEAFLET JS-->
 
     <!--MAP BASE LAYER-->
@@ -134,49 +1376,49 @@
       function pop_Niveles_1(feature, layer) {
         var popupContent =
           '<table>\
-                    <tr>\
-                        <td colspan="2">' +
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["fid"] !== null
             ? autolinker.link(feature.properties["fid"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["Name"] !== null
             ? autolinker.link(feature.properties["Name"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["CUT"] !== null
             ? autolinker.link(feature.properties["CUT"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["area_ha"] !== null
             ? autolinker.link(feature.properties["area_ha"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["area_%"] !== null
             ? autolinker.link(feature.properties["area_%"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["SAT-SODIO"] !== null
             ? autolinker.link(feature.properties["SAT-SODIO"].toLocaleString())
             : "") +
           "</td>\
-                    </tr>\
-                </table>";
+                          </tr>\
+                      </table>";
         layer.bindPopup(popupContent, { maxHeight: 400 });
       }
 
@@ -245,77 +1487,77 @@
       function pop_CapacidaddeusodelaTierra_2(feature, layer) {
         var popupContent =
           '<table>\
-                    <tr>\
-                        <td colspan="2">' +
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["fid"] !== null
             ? autolinker.link(feature.properties["fid"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["Name"] !== null
             ? autolinker.link(feature.properties["Name"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["CUT"] !== null
             ? autolinker.link(feature.properties["CUT"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["area_ha"] !== null
             ? autolinker.link(feature.properties["area_ha"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["area_%"] !== null
             ? autolinker.link(feature.properties["area_%"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["SAT-SODIO"] !== null
             ? autolinker.link(feature.properties["SAT-SODIO"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["PROF_EFECT"] !== null
             ? autolinker.link(feature.properties["PROF_EFECT"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["PERMEABILI"] !== null
             ? autolinker.link(feature.properties["PERMEABILI"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["DRENAJE"] !== null
             ? autolinker.link(feature.properties["DRENAJE"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["%SODIO"] !== null
             ? autolinker.link(feature.properties["%SODIO"].toLocaleString())
             : "") +
           "</td>\
-                    </tr>\
-                </table>";
+                          </tr>\
+                      </table>";
         layer.bindPopup(popupContent, { maxHeight: 400 });
       }
 
@@ -436,49 +1678,49 @@
       function pop_Calcio60a90_3(feature, layer) {
         var popupContent =
           '<table>\
-                    <tr>\
-                        <td colspan="2">' +
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["fid"] !== null
             ? autolinker.link(feature.properties["fid"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["Name"] !== null
             ? autolinker.link(feature.properties["Name"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["CUT"] !== null
             ? autolinker.link(feature.properties["CUT"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["area_ha"] !== null
             ? autolinker.link(feature.properties["area_ha"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["area_%"] !== null
             ? autolinker.link(feature.properties["area_%"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["CA"] !== null
             ? autolinker.link(feature.properties["CA"].toLocaleString())
             : "") +
           "</td>\
-                    </tr>\
-                </table>";
+                          </tr>\
+                      </table>";
         layer.bindPopup(popupContent, { maxHeight: 400 });
       }
 
@@ -549,49 +1791,49 @@
       function pop_Calcio30a60_4(feature, layer) {
         var popupContent =
           '<table>\
-                    <tr>\
-                        <td colspan="2">' +
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["fid"] !== null
             ? autolinker.link(feature.properties["fid"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["Name"] !== null
             ? autolinker.link(feature.properties["Name"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["CUT"] !== null
             ? autolinker.link(feature.properties["CUT"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["area_ha"] !== null
             ? autolinker.link(feature.properties["area_ha"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["area_%"] !== null
             ? autolinker.link(feature.properties["area_%"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["CA"] !== null
             ? autolinker.link(feature.properties["CA"].toLocaleString())
             : "") +
           "</td>\
-                    </tr>\
-                </table>";
+                          </tr>\
+                      </table>";
         layer.bindPopup(popupContent, { maxHeight: 400 });
       }
 
@@ -662,49 +1904,49 @@
       function pop_Calcio0a30_5(feature, layer) {
         var popupContent =
           '<table>\
-                    <tr>\
-                        <td colspan="2">' +
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["fid"] !== null
             ? autolinker.link(feature.properties["fid"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["Name"] !== null
             ? autolinker.link(feature.properties["Name"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["CUT"] !== null
             ? autolinker.link(feature.properties["CUT"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["area_ha"] !== null
             ? autolinker.link(feature.properties["area_ha"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["area_%"] !== null
             ? autolinker.link(feature.properties["area_%"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["CA_0_30"] !== null
             ? autolinker.link(feature.properties["CA_0_30"].toLocaleString())
             : "") +
           "</td>\
-                    </tr>\
-                </table>";
+                          </tr>\
+                      </table>";
         layer.bindPopup(popupContent, { maxHeight: 400 });
       }
 
@@ -773,49 +2015,49 @@
       function pop_Fosforo60a90_6(feature, layer) {
         var popupContent =
           '<table>\
-                    <tr>\
-                        <td colspan="2">' +
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["fid"] !== null
             ? autolinker.link(feature.properties["fid"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["Name"] !== null
             ? autolinker.link(feature.properties["Name"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["CUT"] !== null
             ? autolinker.link(feature.properties["CUT"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["area_ha"] !== null
             ? autolinker.link(feature.properties["area_ha"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["area_%"] !== null
             ? autolinker.link(feature.properties["area_%"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["P"] !== null
             ? autolinker.link(feature.properties["P"].toLocaleString())
             : "") +
           "</td>\
-                    </tr>\
-                </table>";
+                          </tr>\
+                      </table>";
         layer.bindPopup(popupContent, { maxHeight: 400 });
       }
 
@@ -884,49 +2126,49 @@
       function pop_Fosforo30a60_7(feature, layer) {
         var popupContent =
           '<table>\
-                    <tr>\
-                        <td colspan="2">' +
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["fid"] !== null
             ? autolinker.link(feature.properties["fid"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["Name"] !== null
             ? autolinker.link(feature.properties["Name"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["CUT"] !== null
             ? autolinker.link(feature.properties["CUT"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["area_ha"] !== null
             ? autolinker.link(feature.properties["area_ha"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["area_%"] !== null
             ? autolinker.link(feature.properties["area_%"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["P"] !== null
             ? autolinker.link(feature.properties["P"].toLocaleString())
             : "") +
           "</td>\
-                    </tr>\
-                </table>";
+                          </tr>\
+                      </table>";
         layer.bindPopup(popupContent, { maxHeight: 400 });
       }
 
@@ -995,49 +2237,49 @@
       function pop_Fosforo0a30_8(feature, layer) {
         var popupContent =
           '<table>\
-                    <tr>\
-                        <td colspan="2">' +
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["fid"] !== null
             ? autolinker.link(feature.properties["fid"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["Name"] !== null
             ? autolinker.link(feature.properties["Name"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["CUT"] !== null
             ? autolinker.link(feature.properties["CUT"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["area_ha"] !== null
             ? autolinker.link(feature.properties["area_ha"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["area_%"] !== null
             ? autolinker.link(feature.properties["area_%"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["P"] !== null
             ? autolinker.link(feature.properties["P"].toLocaleString())
             : "") +
           "</td>\
-                    </tr>\
-                </table>";
+                          </tr>\
+                      </table>";
         layer.bindPopup(popupContent, { maxHeight: 400 });
       }
 
@@ -1106,49 +2348,49 @@
       function pop_Magnesio60a90_9(feature, layer) {
         var popupContent =
           '<table>\
-                    <tr>\
-                        <td colspan="2">' +
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["fid"] !== null
             ? autolinker.link(feature.properties["fid"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["Name"] !== null
             ? autolinker.link(feature.properties["Name"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["CUT"] !== null
             ? autolinker.link(feature.properties["CUT"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["area_ha"] !== null
             ? autolinker.link(feature.properties["area_ha"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["area_%"] !== null
             ? autolinker.link(feature.properties["area_%"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["MG"] !== null
             ? autolinker.link(feature.properties["MG"].toLocaleString())
             : "") +
           "</td>\
-                    </tr>\
-                </table>";
+                          </tr>\
+                      </table>";
         layer.bindPopup(popupContent, { maxHeight: 400 });
       }
 
@@ -1217,49 +2459,49 @@
       function pop_Magnesio30a60_10(feature, layer) {
         var popupContent =
           '<table>\
-                    <tr>\
-                        <td colspan="2">' +
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["fid"] !== null
             ? autolinker.link(feature.properties["fid"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["Name"] !== null
             ? autolinker.link(feature.properties["Name"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["CUT"] !== null
             ? autolinker.link(feature.properties["CUT"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["area_ha"] !== null
             ? autolinker.link(feature.properties["area_ha"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["area_%"] !== null
             ? autolinker.link(feature.properties["area_%"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["MG"] !== null
             ? autolinker.link(feature.properties["MG"].toLocaleString())
             : "") +
           "</td>\
-                    </tr>\
-                </table>";
+                          </tr>\
+                      </table>";
         layer.bindPopup(popupContent, { maxHeight: 400 });
       }
 
@@ -1328,49 +2570,49 @@
       function pop_Magnesio0a30_11(feature, layer) {
         var popupContent =
           '<table>\
-                    <tr>\
-                        <td colspan="2">' +
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["fid"] !== null
             ? autolinker.link(feature.properties["fid"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["Name"] !== null
             ? autolinker.link(feature.properties["Name"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["CUT"] !== null
             ? autolinker.link(feature.properties["CUT"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["area_ha"] !== null
             ? autolinker.link(feature.properties["area_ha"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["area_%"] !== null
             ? autolinker.link(feature.properties["area_%"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["MG_0_30"] !== null
             ? autolinker.link(feature.properties["MG_0_30"].toLocaleString())
             : "") +
           "</td>\
-                    </tr>\
-                </table>";
+                          </tr>\
+                      </table>";
         layer.bindPopup(popupContent, { maxHeight: 400 });
       }
 
@@ -1439,49 +2681,49 @@
       function pop_Potasio60a90_12(feature, layer) {
         var popupContent =
           '<table>\
-                    <tr>\
-                        <td colspan="2">' +
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["fid"] !== null
             ? autolinker.link(feature.properties["fid"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["Name"] !== null
             ? autolinker.link(feature.properties["Name"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["CUT"] !== null
             ? autolinker.link(feature.properties["CUT"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["area_ha"] !== null
             ? autolinker.link(feature.properties["area_ha"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["area_%"] !== null
             ? autolinker.link(feature.properties["area_%"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["K"] !== null
             ? autolinker.link(feature.properties["K"].toLocaleString())
             : "") +
           "</td>\
-                    </tr>\
-                </table>";
+                          </tr>\
+                      </table>";
         layer.bindPopup(popupContent, { maxHeight: 400 });
       }
 
@@ -1550,49 +2792,49 @@
       function pop_Potasio30a60_13(feature, layer) {
         var popupContent =
           '<table>\
-                    <tr>\
-                        <td colspan="2">' +
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["fid"] !== null
             ? autolinker.link(feature.properties["fid"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["Name"] !== null
             ? autolinker.link(feature.properties["Name"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["CUT"] !== null
             ? autolinker.link(feature.properties["CUT"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["area_ha"] !== null
             ? autolinker.link(feature.properties["area_ha"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["area_%"] !== null
             ? autolinker.link(feature.properties["area_%"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["K"] !== null
             ? autolinker.link(feature.properties["K"].toLocaleString())
             : "") +
           "</td>\
-                    </tr>\
-                </table>";
+                          </tr>\
+                      </table>";
         layer.bindPopup(popupContent, { maxHeight: 400 });
       }
 
@@ -1661,49 +2903,49 @@
       function pop_Potasio0a30_14(feature, layer) {
         var popupContent =
           '<table>\
-                    <tr>\
-                        <td colspan="2">' +
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["fid"] !== null
             ? autolinker.link(feature.properties["fid"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["Name"] !== null
             ? autolinker.link(feature.properties["Name"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["CUT"] !== null
             ? autolinker.link(feature.properties["CUT"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["area_ha"] !== null
             ? autolinker.link(feature.properties["area_ha"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["area_%"] !== null
             ? autolinker.link(feature.properties["area_%"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["K"] !== null
             ? autolinker.link(feature.properties["K"].toLocaleString())
             : "") +
           "</td>\
-                    </tr>\
-                </table>";
+                          </tr>\
+                      </table>";
         layer.bindPopup(popupContent, { maxHeight: 400 });
       }
 
@@ -1787,49 +3029,49 @@
       function pop_Sodio60a90_15(feature, layer) {
         var popupContent =
           '<table>\
-                    <tr>\
-                        <td colspan="2">' +
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["fid"] !== null
             ? autolinker.link(feature.properties["fid"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["Name"] !== null
             ? autolinker.link(feature.properties["Name"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["CUT"] !== null
             ? autolinker.link(feature.properties["CUT"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["area_ha"] !== null
             ? autolinker.link(feature.properties["area_ha"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["area_%"] !== null
             ? autolinker.link(feature.properties["area_%"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["NA"] !== null
             ? autolinker.link(feature.properties["NA"].toLocaleString())
             : "") +
           "</td>\
-                    </tr>\
-                </table>";
+                          </tr>\
+                      </table>";
         layer.bindPopup(popupContent, { maxHeight: 400 });
       }
 
@@ -1913,49 +3155,49 @@
       function pop_Sodio30a60_16(feature, layer) {
         var popupContent =
           '<table>\
-                    <tr>\
-                        <td colspan="2">' +
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["fid"] !== null
             ? autolinker.link(feature.properties["fid"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["Name"] !== null
             ? autolinker.link(feature.properties["Name"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["CUT"] !== null
             ? autolinker.link(feature.properties["CUT"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["area_ha"] !== null
             ? autolinker.link(feature.properties["area_ha"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["area_%"] !== null
             ? autolinker.link(feature.properties["area_%"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["NA"] !== null
             ? autolinker.link(feature.properties["NA"].toLocaleString())
             : "") +
           "</td>\
-                    </tr>\
-                </table>";
+                          </tr>\
+                      </table>";
         layer.bindPopup(popupContent, { maxHeight: 400 });
       }
 
@@ -2040,49 +3282,49 @@
       function pop_Sodio0a30_17(feature, layer) {
         var popupContent =
           '<table>\
-                    <tr>\
-                        <td colspan="2">' +
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["fid"] !== null
             ? autolinker.link(feature.properties["fid"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["Name"] !== null
             ? autolinker.link(feature.properties["Name"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["CUT"] !== null
             ? autolinker.link(feature.properties["CUT"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["area_ha"] !== null
             ? autolinker.link(feature.properties["area_ha"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["area_%"] !== null
             ? autolinker.link(feature.properties["area_%"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["NA"] !== null
             ? autolinker.link(feature.properties["NA"].toLocaleString())
             : "") +
           "</td>\
-                    </tr>\
-                </table>";
+                          </tr>\
+                      </table>";
         layer.bindPopup(popupContent, { maxHeight: 400 });
       }
 
@@ -2167,49 +3409,49 @@
       function pop_Boro0a30_18(feature, layer) {
         var popupContent =
           '<table>\
-                    <tr>\
-                        <td colspan="2">' +
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["fid"] !== null
             ? autolinker.link(feature.properties["fid"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["Name"] !== null
             ? autolinker.link(feature.properties["Name"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["CUT"] !== null
             ? autolinker.link(feature.properties["CUT"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["area_ha"] !== null
             ? autolinker.link(feature.properties["area_ha"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["area_%"] !== null
             ? autolinker.link(feature.properties["area_%"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["B"] !== null
             ? autolinker.link(feature.properties["B"].toLocaleString())
             : "") +
           "</td>\
-                    </tr>\
-                </table>";
+                          </tr>\
+                      </table>";
         layer.bindPopup(popupContent, { maxHeight: 400 });
       }
 
@@ -2279,49 +3521,49 @@
       function pop_Cobre0a30_19(feature, layer) {
         var popupContent =
           '<table>\
-                    <tr>\
-                        <td colspan="2">' +
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["fid"] !== null
             ? autolinker.link(feature.properties["fid"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["Name"] !== null
             ? autolinker.link(feature.properties["Name"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["CUT"] !== null
             ? autolinker.link(feature.properties["CUT"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["area_ha"] !== null
             ? autolinker.link(feature.properties["area_ha"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["area_%"] !== null
             ? autolinker.link(feature.properties["area_%"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["CU"] !== null
             ? autolinker.link(feature.properties["CU"].toLocaleString())
             : "") +
           "</td>\
-                    </tr>\
-                </table>";
+                          </tr>\
+                      </table>";
         layer.bindPopup(popupContent, { maxHeight: 400 });
       }
 
@@ -2406,49 +3648,49 @@
       function pop_Hierro0a30_20(feature, layer) {
         var popupContent =
           '<table>\
-                    <tr>\
-                        <td colspan="2">' +
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["fid"] !== null
             ? autolinker.link(feature.properties["fid"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["Name"] !== null
             ? autolinker.link(feature.properties["Name"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["CUT"] !== null
             ? autolinker.link(feature.properties["CUT"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["area_ha"] !== null
             ? autolinker.link(feature.properties["area_ha"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["area_%"] !== null
             ? autolinker.link(feature.properties["area_%"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["Fe"] !== null
             ? autolinker.link(feature.properties["Fe"].toLocaleString())
             : "") +
           "</td>\
-                    </tr>\
-                </table>";
+                          </tr>\
+                      </table>";
         layer.bindPopup(popupContent, { maxHeight: 400 });
       }
 
@@ -2518,49 +3760,49 @@
       function pop_Manganeso0a30_21(feature, layer) {
         var popupContent =
           '<table>\
-                    <tr>\
-                        <td colspan="2">' +
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["fid"] !== null
             ? autolinker.link(feature.properties["fid"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["Name"] !== null
             ? autolinker.link(feature.properties["Name"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["CUT"] !== null
             ? autolinker.link(feature.properties["CUT"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["area_ha"] !== null
             ? autolinker.link(feature.properties["area_ha"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["area_%"] !== null
             ? autolinker.link(feature.properties["area_%"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["Mn"] !== null
             ? autolinker.link(feature.properties["Mn"].toLocaleString())
             : "") +
           "</td>\
-                    </tr>\
-                </table>";
+                          </tr>\
+                      </table>";
         layer.bindPopup(popupContent, { maxHeight: 400 });
       }
 
@@ -2645,49 +3887,49 @@
       function pop_Zinc0a30_22(feature, layer) {
         var popupContent =
           '<table>\
-                    <tr>\
-                        <td colspan="2">' +
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["fid"] !== null
             ? autolinker.link(feature.properties["fid"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["Name"] !== null
             ? autolinker.link(feature.properties["Name"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["CUT"] !== null
             ? autolinker.link(feature.properties["CUT"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["area_ha"] !== null
             ? autolinker.link(feature.properties["area_ha"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["area_%"] !== null
             ? autolinker.link(feature.properties["area_%"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["Zn"] !== null
             ? autolinker.link(feature.properties["Zn"].toLocaleString())
             : "") +
           "</td>\
-                    </tr>\
-                </table>";
+                          </tr>\
+                      </table>";
         layer.bindPopup(popupContent, { maxHeight: 400 });
       }
 
@@ -2757,294 +3999,294 @@
       function pop_Profundidadde60a90_23(feature, layer) {
         var popupContent =
           '<table>\
-                    <tr>\
-                        <td colspan="2">' +
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["X"] !== null
             ? autolinker.link(feature.properties["X"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["Y"] !== null
             ? autolinker.link(feature.properties["Y"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["Calicata"] !== null
             ? autolinker.link(feature.properties["Calicata"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["calcareo"] !== null
             ? autolinker.link(feature.properties["calcareo"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["kcl"] !== null
             ? autolinker.link(feature.properties["kcl"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["spt"] !== null
             ? autolinker.link(feature.properties["spt"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["AreiaTotal"] !== null
             ? autolinker.link(feature.properties["AreiaTotal"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["Silte"] !== null
             ? autolinker.link(feature.properties["Silte"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["Argila"] !== null
             ? autolinker.link(feature.properties["Argila"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["ClasseText"] !== null
             ? autolinker.link(feature.properties["ClasseText"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["TipoDeSolo"] !== null
             ? autolinker.link(feature.properties["TipoDeSolo"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["ca"] !== null
             ? autolinker.link(feature.properties["ca"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["mg"] !== null
             ? autolinker.link(feature.properties["mg"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["k"] !== null
             ? autolinker.link(feature.properties["k"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["na"] !== null
             ? autolinker.link(feature.properties["na"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["mos"] !== null
             ? autolinker.link(feature.properties["mos"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["ctcdet"] !== null
             ? autolinker.link(feature.properties["ctcdet"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["s"] !== null
             ? autolinker.link(feature.properties["s"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["p"] !== null
             ? autolinker.link(feature.properties["p"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["prem"] !== null
             ? autolinker.link(feature.properties["prem"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["ctcph"] !== null
             ? autolinker.link(feature.properties["ctcph"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["ctcefe"] !== null
             ? autolinker.link(feature.properties["ctcefe"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["v"] !== null
             ? autolinker.link(feature.properties["v"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["mn"] !== null
             ? autolinker.link(feature.properties["mn"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["fe"] !== null
             ? autolinker.link(feature.properties["fe"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["cu"] !== null
             ? autolinker.link(feature.properties["cu"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["zn"] !== null
             ? autolinker.link(feature.properties["zn"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["b"] !== null
             ? autolinker.link(feature.properties["b"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["pH"] !== null
             ? autolinker.link(feature.properties["pH"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["phsmp"] !== null
             ? autolinker.link(feature.properties["phsmp"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["phh20"] !== null
             ? autolinker.link(feature.properties["phh20"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["TEORAL"] !== null
             ? autolinker.link(feature.properties["TEORAL"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["TEORHAL"] !== null
             ? autolinker.link(feature.properties["TEORHAL"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["TEORH"] !== null
             ? autolinker.link(feature.properties["TEORH"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["SATURCA"] !== null
             ? autolinker.link(feature.properties["SATURCA"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["SATURMG"] !== null
             ? autolinker.link(feature.properties["SATURMG"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["SATURK"] !== null
             ? autolinker.link(feature.properties["SATURK"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["SATURNA"] !== null
             ? autolinker.link(feature.properties["SATURNA"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["SATURH"] !== null
             ? autolinker.link(feature.properties["SATURH"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["SATURAL"] !== null
             ? autolinker.link(feature.properties["SATURAL"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["img"] !== null
             ? autolinker.link(feature.properties["img"].toLocaleString())
             : "") +
           "</td>\
-                    </tr>\
-                </table>";
+                          </tr>\
+                      </table>";
         layer.bindPopup(popupContent, { maxHeight: 400 });
       }
 
@@ -3095,294 +4337,294 @@
       function pop_Profundidadde30a60_24(feature, layer) {
         var popupContent =
           '<table>\
-                    <tr>\
-                        <td colspan="2">' +
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["X"] !== null
             ? autolinker.link(feature.properties["X"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["Y"] !== null
             ? autolinker.link(feature.properties["Y"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["Calicata"] !== null
             ? autolinker.link(feature.properties["Calicata"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["calcareo"] !== null
             ? autolinker.link(feature.properties["calcareo"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["kcl"] !== null
             ? autolinker.link(feature.properties["kcl"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["spt"] !== null
             ? autolinker.link(feature.properties["spt"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["AreiaTotal"] !== null
             ? autolinker.link(feature.properties["AreiaTotal"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["Silte"] !== null
             ? autolinker.link(feature.properties["Silte"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["Argila"] !== null
             ? autolinker.link(feature.properties["Argila"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["ClasseText"] !== null
             ? autolinker.link(feature.properties["ClasseText"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["TipoDeSolo"] !== null
             ? autolinker.link(feature.properties["TipoDeSolo"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["ca"] !== null
             ? autolinker.link(feature.properties["ca"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["mg"] !== null
             ? autolinker.link(feature.properties["mg"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["k"] !== null
             ? autolinker.link(feature.properties["k"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["na"] !== null
             ? autolinker.link(feature.properties["na"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["mos"] !== null
             ? autolinker.link(feature.properties["mos"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["ctcdet"] !== null
             ? autolinker.link(feature.properties["ctcdet"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["s"] !== null
             ? autolinker.link(feature.properties["s"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["p"] !== null
             ? autolinker.link(feature.properties["p"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["prem"] !== null
             ? autolinker.link(feature.properties["prem"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["ctcph"] !== null
             ? autolinker.link(feature.properties["ctcph"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["ctcefe"] !== null
             ? autolinker.link(feature.properties["ctcefe"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["v"] !== null
             ? autolinker.link(feature.properties["v"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["mn"] !== null
             ? autolinker.link(feature.properties["mn"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["fe"] !== null
             ? autolinker.link(feature.properties["fe"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["cu"] !== null
             ? autolinker.link(feature.properties["cu"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["zn"] !== null
             ? autolinker.link(feature.properties["zn"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["b"] !== null
             ? autolinker.link(feature.properties["b"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["pH"] !== null
             ? autolinker.link(feature.properties["pH"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["phsmp"] !== null
             ? autolinker.link(feature.properties["phsmp"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["phh20"] !== null
             ? autolinker.link(feature.properties["phh20"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["TEORAL"] !== null
             ? autolinker.link(feature.properties["TEORAL"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["TEORHAL"] !== null
             ? autolinker.link(feature.properties["TEORHAL"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["TEORH"] !== null
             ? autolinker.link(feature.properties["TEORH"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["SATURCA"] !== null
             ? autolinker.link(feature.properties["SATURCA"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["SATURMG"] !== null
             ? autolinker.link(feature.properties["SATURMG"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["SATURK"] !== null
             ? autolinker.link(feature.properties["SATURK"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["SATURNA"] !== null
             ? autolinker.link(feature.properties["SATURNA"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["SATURH"] !== null
             ? autolinker.link(feature.properties["SATURH"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["SATURAL"] !== null
             ? autolinker.link(feature.properties["SATURAL"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["img"] !== null
             ? autolinker.link(feature.properties["img"].toLocaleString())
             : "") +
           "</td>\
-                    </tr>\
-                </table>";
+                          </tr>\
+                      </table>";
         layer.bindPopup(popupContent, { maxHeight: 400 });
       }
 
@@ -3432,295 +4674,235 @@
       map.addLayer(layer_Profundidadde30a60_24);
       function pop_Profundidadde0a30_25(feature, layer) {
         var popupContent =
-          '<table>\
-                    <tr>\
-                        <td colspan="2">' +
-          (feature.properties["X"] !== null
-            ? autolinker.link(feature.properties["X"].toLocaleString())
-            : "") +
-          '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
-          (feature.properties["Y"] !== null
-            ? autolinker.link(feature.properties["Y"].toLocaleString())
-            : "") +
-          '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+          '<table>\                    <thead>\
+                        <tr>\
+                        <th class="popupTitle">Parámetro</th>\
+                        <th class="popupTitle">Cantidad</td>\
+                        </tr>\
+                    </thead>\
+                          <tr>\
+                    <th scope="row">Calicata</th>\
+                              <td colspan="2">' +
           (feature.properties["Calicata"] !== null
             ? autolinker.link(feature.properties["Calicata"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                    <th scope="row">Calcio</th>\
+                              <td colspan="2">' +
           (feature.properties["calcareo"] !== null
             ? autolinker.link(feature.properties["calcareo"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                    <th scope="row">KCL</th>\
+                              <td colspan="2">' +
           (feature.properties["kcl"] !== null
             ? autolinker.link(feature.properties["kcl"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                    <th scope="row">SPT</th>\
+                              <td colspan="2">' +
           (feature.properties["spt"] !== null
             ? autolinker.link(feature.properties["spt"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                    <th scope="row">Arena</th>\
+                              <td colspan="2">' +
           (feature.properties["AreiaTotal"] !== null
             ? autolinker.link(feature.properties["AreiaTotal"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                    <th scope="row">Silte</th>\
+                              <td colspan="2">' +
           (feature.properties["Silte"] !== null
             ? autolinker.link(feature.properties["Silte"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                    <th scope="row">Arcilla</th>\
+                              <td colspan="2">' +
           (feature.properties["Argila"] !== null
             ? autolinker.link(feature.properties["Argila"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                    <th scope="row">Textura</th>\
+                              <td colspan="2">' +
           (feature.properties["ClasseText"] !== null
             ? autolinker.link(feature.properties["ClasseText"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                    <th scope="row">Tipo de Suelo</th>\
+                              <td colspan="2">' +
           (feature.properties["TipoDeSolo"] !== null
             ? autolinker.link(feature.properties["TipoDeSolo"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                    <th scope="row">Calcio</th>\
+                              <td colspan="2">' +
           (feature.properties["ca"] !== null
             ? autolinker.link(feature.properties["ca"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                    <th scope="row">Magnesio</th>\
+                              <td colspan="2">' +
           (feature.properties["mg"] !== null
             ? autolinker.link(feature.properties["mg"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                    <th scope="row">Potasio</th>\
+                              <td colspan="2">' +
           (feature.properties["k"] !== null
             ? autolinker.link(feature.properties["k"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                    <th scope="row">Sodio</th>\
+                              <td colspan="2">' +
           (feature.properties["na"] !== null
             ? autolinker.link(feature.properties["na"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                    <th scope="row">MOS</th>\
+                              <td colspan="2">' +
           (feature.properties["mos"] !== null
             ? autolinker.link(feature.properties["mos"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                    <th scope="row">CTC</th>\
+                              <td colspan="2">' +
           (feature.properties["ctcdet"] !== null
             ? autolinker.link(feature.properties["ctcdet"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                    <th scope="row">Azufre</th>\
+                              <td colspan="2">' +
           (feature.properties["s"] !== null
             ? autolinker.link(feature.properties["s"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                    <th scope="row">Fosforo</th>\
+                              <td colspan="2">' +
           (feature.properties["p"] !== null
             ? autolinker.link(feature.properties["p"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
-          (feature.properties["prem"] !== null
-            ? autolinker.link(feature.properties["prem"].toLocaleString())
-            : "") +
-          '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
-          (feature.properties["ctcph"] !== null
-            ? autolinker.link(feature.properties["ctcph"].toLocaleString())
-            : "") +
-          '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                    <th scope="row">CTC Efectivo</th>\
+                              <td colspan="2">' +
           (feature.properties["ctcefe"] !== null
             ? autolinker.link(feature.properties["ctcefe"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
-          (feature.properties["v"] !== null
-            ? autolinker.link(feature.properties["v"].toLocaleString())
-            : "") +
-          '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                    <th scope="row">Manganeso</th>\
+                              <td colspan="2">' +
           (feature.properties["mn"] !== null
             ? autolinker.link(feature.properties["mn"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                    <th scope="row">Hierro</th>\
+                              <td colspan="2">' +
           (feature.properties["fe"] !== null
             ? autolinker.link(feature.properties["fe"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                    <th scope="row">Cobre</th>\
+                              <td colspan="2">' +
           (feature.properties["cu"] !== null
             ? autolinker.link(feature.properties["cu"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                    <th scope="row">Zinc</th>\
+                              <td colspan="2">' +
           (feature.properties["zn"] !== null
             ? autolinker.link(feature.properties["zn"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                    <th scope="row">Boro</th>\
+                              <td colspan="2">' +
           (feature.properties["b"] !== null
             ? autolinker.link(feature.properties["b"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                    <th scope="row">pH</th>\
+                              <td colspan="2">' +
           (feature.properties["pH"] !== null
             ? autolinker.link(feature.properties["pH"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                              <td colspan="2">' +
           (feature.properties["phsmp"] !== null
             ? autolinker.link(feature.properties["phsmp"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
-          (feature.properties["phh20"] !== null
-            ? autolinker.link(feature.properties["phh20"].toLocaleString())
-            : "") +
-          '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                    <th scope="row">% Aluminio</th>\
+                              <td colspan="2">' +
           (feature.properties["TEORAL"] !== null
             ? autolinker.link(feature.properties["TEORAL"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
-          (feature.properties["TEORHAL"] !== null
-            ? autolinker.link(feature.properties["TEORHAL"].toLocaleString())
-            : "") +
-          '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
-          (feature.properties["TEORH"] !== null
-            ? autolinker.link(feature.properties["TEORH"].toLocaleString())
-            : "") +
-          '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          </tr>\
+                          <tr>\
+                    <th scope="row">% Calcio</th>\
+                              <td colspan="2">' +
           (feature.properties["SATURCA"] !== null
             ? autolinker.link(feature.properties["SATURCA"].toLocaleString())
             : "") +
           '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
-          (feature.properties["SATURMG"] !== null
-            ? autolinker.link(feature.properties["SATURMG"].toLocaleString())
-            : "") +
-          '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
-          (feature.properties["SATURK"] !== null
-            ? autolinker.link(feature.properties["SATURK"].toLocaleString())
-            : "") +
-          '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
-          (feature.properties["SATURNA"] !== null
-            ? autolinker.link(feature.properties["SATURNA"].toLocaleString())
-            : "") +
-          '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
-          (feature.properties["SATURH"] !== null
-            ? autolinker.link(feature.properties["SATURH"].toLocaleString())
-            : "") +
-          '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
-          (feature.properties["SATURAL"] !== null
-            ? autolinker.link(feature.properties["SATURAL"].toLocaleString())
-            : "") +
-          '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' +
+                          <tr>\
+                          <tr>\
+                              <img src="../' +
           (feature.properties["img"] !== null
             ? autolinker.link(feature.properties["img"].toLocaleString())
             : "") +
-          "</td>\
-                    </tr>\
-                </table>";
+          '">\
+                          </tr>\
+                      </table>';
         layer.bindPopup(popupContent, { maxHeight: 400 });
       }
 
@@ -3766,62 +4948,349 @@
       bounds_group.addLayer(layer_Profundidadde0a30_25);
       map.addLayer(layer_Profundidadde0a30_25);
       var baseMaps = {};
-      L.control
-        .layers(baseMaps, {
-          '<img src="legend/Profundidadde0a30_25.png" /> Profundidad de 0 a 30':
-            layer_Profundidadde0a30_25,
-          '<img src="legend/Profundidadde30a60_24.png" /> Profundidad de 30 a 60':
-            layer_Profundidadde30a60_24,
-          '<img src="legend/Profundidadde60a90_23.png" /> Profundidad de 60 a 90':
-            layer_Profundidadde60a90_23,
-          'Zinc 0 a 30<br /><table><tr><td style="text-align: center;"><img src="legend/Zinc0a30_22_Coberturaarbrea0.png" /></td><td>Cobertura arb�rea</td></tr><tr><td style="text-align: center;"><img src="legend/Zinc0a30_22_Cuerpodeagua1.png" /></td><td>Cuerpo de agua</td></tr><tr><td style="text-align: center;"><img src="legend/Zinc0a30_22_MEDIO2.png" /></td><td>MEDIO</td></tr></table>':
-            layer_Zinc0a30_22,
-          'Manganeso 0 a 30<br /><table><tr><td style="text-align: center;"><img src="legend/Manganeso0a30_21_ALTO0.png" /></td><td>ALTO</td></tr><tr><td style="text-align: center;"><img src="legend/Manganeso0a30_21_Coberturaarbrea1.png" /></td><td>Cobertura arb�rea</td></tr><tr><td style="text-align: center;"><img src="legend/Manganeso0a30_21_BAJO2.png" /></td><td>BAJO</td></tr><tr><td style="text-align: center;"><img src="legend/Manganeso0a30_21_Cuerpodeagua3.png" /></td><td>Cuerpo de agua</td></tr></table>':
-            layer_Manganeso0a30_21,
-          'Hierro 0 a 30<br /><table><tr><td style="text-align: center;"><img src="legend/Hierro0a30_20_ALTO0.png" /></td><td>ALTO</td></tr><tr><td style="text-align: center;"><img src="legend/Hierro0a30_20_Coberturaarbrea1.png" /></td><td>Cobertura arb�rea</td></tr><tr><td style="text-align: center;"><img src="legend/Hierro0a30_20_Cuerpodeagua2.png" /></td><td>Cuerpo de agua</td></tr></table>':
-            layer_Hierro0a30_20,
-          'Cobre 0 a 30<br /><table><tr><td style="text-align: center;"><img src="legend/Cobre0a30_19_ALTO0.png" /></td><td>ALTO</td></tr><tr><td style="text-align: center;"><img src="legend/Cobre0a30_19_Coberturaarbrea1.png" /></td><td>Cobertura arb�rea</td></tr><tr><td style="text-align: center;"><img src="legend/Cobre0a30_19_MEDIO2.png" /></td><td>MEDIO</td></tr><tr><td style="text-align: center;"><img src="legend/Cobre0a30_19_Cuerpodeagua3.png" /></td><td>Cuerpo de agua</td></tr></table>':
-            layer_Cobre0a30_19,
-          'Boro 0 a 30<br /><table><tr><td style="text-align: center;"><img src="legend/Boro0a30_18_Coberturaarbrea0.png" /></td><td>Cobertura arb�rea</td></tr><tr><td style="text-align: center;"><img src="legend/Boro0a30_18_MEDIO1.png" /></td><td>MEDIO</td></tr><tr><td style="text-align: center;"><img src="legend/Boro0a30_18_Cuerpodeagua2.png" /></td><td>Cuerpo de agua</td></tr></table>':
-            layer_Boro0a30_18,
-          'Sodio 0 a 30<br /><table><tr><td style="text-align: center;"><img src="legend/Sodio0a30_17_ALTO0.png" /></td><td>ALTO</td></tr><tr><td style="text-align: center;"><img src="legend/Sodio0a30_17_MEDIO1.png" /></td><td>MEDIO</td></tr><tr><td style="text-align: center;"><img src="legend/Sodio0a30_17_Cuerpodeagua2.png" /></td><td>Cuerpo de agua</td></tr><tr><td style="text-align: center;"><img src="legend/Sodio0a30_17_Coberturaarbrea3.png" /></td><td>Cobertura arb�rea</td></tr></table>':
-            layer_Sodio0a30_17,
-          'Sodio 30 a 60<br /><table><tr><td style="text-align: center;"><img src="legend/Sodio30a60_16_ALTO0.png" /></td><td>ALTO</td></tr><tr><td style="text-align: center;"><img src="legend/Sodio30a60_16_MEDIO1.png" /></td><td>MEDIO</td></tr><tr><td style="text-align: center;"><img src="legend/Sodio30a60_16_Coberturaarbórea2.png" /></td><td>Cobertura arbórea</td></tr><tr><td style="text-align: center;"><img src="legend/Sodio30a60_16_Cuerpodeagua3.png" /></td><td>Cuerpo de agua</td></tr></table>':
-            layer_Sodio30a60_16,
-          'Sodio 60 a 90<br /><table><tr><td style="text-align: center;"><img src="legend/Sodio60a90_15_ALTO0.png" /></td><td>ALTO</td></tr><tr><td style="text-align: center;"><img src="legend/Sodio60a90_15_MEDIO1.png" /></td><td>MEDIO</td></tr><tr><td style="text-align: center;"><img src="legend/Sodio60a90_15_Coberturaarbórea2.png" /></td><td>Cobertura arbórea</td></tr><tr><td style="text-align: center;"><img src="legend/Sodio60a90_15_Cuerpodeagua3.png" /></td><td>Cuerpo de agua</td></tr></table>':
-            layer_Sodio60a90_15,
-          'Potasio 0 a 30<br /><table><tr><td style="text-align: center;"><img src="legend/Potasio0a30_14_Coberturaarbrea0.png" /></td><td>Cobertura arb�rea</td></tr><tr><td style="text-align: center;"><img src="legend/Potasio0a30_14_MEDIO1.png" /></td><td>MEDIO</td></tr><tr><td style="text-align: center;"><img src="legend/Potasio0a30_14_BAJO2.png" /></td><td>BAJO</td></tr><tr><td style="text-align: center;"><img src="legend/Potasio0a30_14_Cuerpodeagua3.png" /></td><td>Cuerpo de agua</td></tr></table>':
-            layer_Potasio0a30_14,
-          'Potasio 30 a 60<br /><table><tr><td style="text-align: center;"><img src="legend/Potasio30a60_13_Coberturaarbórea0.png" /></td><td>Cobertura arbórea</td></tr><tr><td style="text-align: center;"><img src="legend/Potasio30a60_13_Cuerpodeagua1.png" /></td><td>Cuerpo de agua</td></tr><tr><td style="text-align: center;"><img src="legend/Potasio30a60_13_BAJO2.png" /></td><td>BAJO</td></tr></table>':
-            layer_Potasio30a60_13,
-          'Potasio 60 a 90<br /><table><tr><td style="text-align: center;"><img src="legend/Potasio60a90_12_Coberturaarbórea0.png" /></td><td>Cobertura arbórea</td></tr><tr><td style="text-align: center;"><img src="legend/Potasio60a90_12_Cuerpodeagua1.png" /></td><td>Cuerpo de agua</td></tr><tr><td style="text-align: center;"><img src="legend/Potasio60a90_12_BAJO2.png" /></td><td>BAJO</td></tr></table>':
-            layer_Potasio60a90_12,
-          'Magnesio 0 a 30<br /><table><tr><td style="text-align: center;"><img src="legend/Magnesio0a30_11_Coberturaarbrea0.png" /></td><td>Cobertura arb�rea</td></tr><tr><td style="text-align: center;"><img src="legend/Magnesio0a30_11_Cuerpodeagua1.png" /></td><td>Cuerpo de agua</td></tr><tr><td style="text-align: center;"><img src="legend/Magnesio0a30_11_BAJO2.png" /></td><td>BAJO</td></tr></table>':
-            layer_Magnesio0a30_11,
-          'Magnesio 30 a 60<br /><table><tr><td style="text-align: center;"><img src="legend/Magnesio30a60_10_Coberturaarbórea0.png" /></td><td>Cobertura arbórea</td></tr><tr><td style="text-align: center;"><img src="legend/Magnesio30a60_10_Cuerpodeagua1.png" /></td><td>Cuerpo de agua</td></tr><tr><td style="text-align: center;"><img src="legend/Magnesio30a60_10_BAJO2.png" /></td><td>BAJO</td></tr></table>':
-            layer_Magnesio30a60_10,
-          'Magnesio 60 a 90<br /><table><tr><td style="text-align: center;"><img src="legend/Magnesio60a90_9_Coberturaarbórea0.png" /></td><td>Cobertura arbórea</td></tr><tr><td style="text-align: center;"><img src="legend/Magnesio60a90_9_Cuerpodeagua1.png" /></td><td>Cuerpo de agua</td></tr><tr><td style="text-align: center;"><img src="legend/Magnesio60a90_9_BAJO2.png" /></td><td>BAJO</td></tr></table>':
-            layer_Magnesio60a90_9,
-          'Fosforo 0 a 30<br /><table><tr><td style="text-align: center;"><img src="legend/Fosforo0a30_8_Coberturaarbrea0.png" /></td><td>Cobertura arb�rea</td></tr><tr><td style="text-align: center;"><img src="legend/Fosforo0a30_8_Cuerpodeagua1.png" /></td><td>Cuerpo de agua</td></tr><tr><td style="text-align: center;"><img src="legend/Fosforo0a30_8_BAJO2.png" /></td><td>BAJO</td></tr></table>':
-            layer_Fosforo0a30_8,
-          'Fosforo 30 a 60<br /><table><tr><td style="text-align: center;"><img src="legend/Fosforo30a60_7_Coberturaarbórea0.png" /></td><td>Cobertura arbórea</td></tr><tr><td style="text-align: center;"><img src="legend/Fosforo30a60_7_Cuerpodeagua1.png" /></td><td>Cuerpo de agua</td></tr><tr><td style="text-align: center;"><img src="legend/Fosforo30a60_7_BAJO2.png" /></td><td>BAJO</td></tr></table>':
-            layer_Fosforo30a60_7,
-          'Fosforo 60 a 90<br /><table><tr><td style="text-align: center;"><img src="legend/Fosforo60a90_6_Coberturaarbórea0.png" /></td><td>Cobertura arbórea</td></tr><tr><td style="text-align: center;"><img src="legend/Fosforo60a90_6_Cuerpodeagua1.png" /></td><td>Cuerpo de agua</td></tr><tr><td style="text-align: center;"><img src="legend/Fosforo60a90_6_BAJO2.png" /></td><td>BAJO</td></tr></table>':
-            layer_Fosforo60a90_6,
-          'Calcio 0 a 30<br /><table><tr><td style="text-align: center;"><img src="legend/Calcio0a30_5_Coberturaarbrea0.png" /></td><td>Cobertura arb�rea</td></tr><tr><td style="text-align: center;"><img src="legend/Calcio0a30_5_Cuerpodeagua1.png" /></td><td>Cuerpo de agua</td></tr><tr><td style="text-align: center;"><img src="legend/Calcio0a30_5_BAJO2.png" /></td><td>BAJO</td></tr></table>':
-            layer_Calcio0a30_5,
-          'Calcio 30 a 60<br /><table><tr><td style="text-align: center;"><img src="legend/Calcio30a60_4_Coberturaarbórea0.png" /></td><td>Cobertura arbórea</td></tr><tr><td style="text-align: center;"><img src="legend/Calcio30a60_4_Cuerpodeagua1.png" /></td><td>Cuerpo de agua</td></tr><tr><td style="text-align: center;"><img src="legend/Calcio30a60_4_BAJO2.png" /></td><td>BAJO</td></tr></table>':
-            layer_Calcio30a60_4,
-          'Calcio 60 a 90<br /><table><tr><td style="text-align: center;"><img src="legend/Calcio60a90_3_Coberturaarbórea0.png" /></td><td>Cobertura arbórea</td></tr><tr><td style="text-align: center;"><img src="legend/Calcio60a90_3_Cuerpodeagua1.png" /></td><td>Cuerpo de agua</td></tr><tr><td style="text-align: center;"><img src="legend/Calcio60a90_3_BAJO2.png" /></td><td>BAJO</td></tr></table>':
-            layer_Calcio60a90_3,
-          'Capacidad de uso de la Tierra<br /><table><tr><td style="text-align: center;"><img src="legend/CapacidaddeusodelaTierra_2_Coberturaarborea0.png" /></td><td>Cobertura arborea</td></tr><tr><td style="text-align: center;"><img src="legend/CapacidaddeusodelaTierra_2_Cuerpodeagua1.png" /></td><td>Cuerpo de agua</td></tr><tr><td style="text-align: center;"><img src="legend/CapacidaddeusodelaTierra_2_IVSsIIISperSwdIISprof2.png" /></td><td>IVSs/IIISper,Swd/ IISprof</td></tr><tr><td style="text-align: center;"><img src="legend/CapacidaddeusodelaTierra_2_VISsIVSperSwdIISprof3.png" /></td><td>VISs/IVSper,Swd/ IISprof</td></tr><tr><td style="text-align: center;"><img src="legend/CapacidaddeusodelaTierra_2_VSsIIISperSwdIISprof4.png" /></td><td>VSs/IIISper,Swd/ IISprof</td></tr><tr><td style="text-align: center;"><img src="legend/CapacidaddeusodelaTierra_2_VSsIVSperSwdIISprof5.png" /></td><td>VSs/IVSper,Swd/IISprof</td></tr></table>':
-            layer_CapacidaddeusodelaTierra_2,
-          'Niveles<br /><table><tr><td style="text-align: center;"><img src="legend/Niveles_1_Bosque0.png" /></td><td>Bosque</td></tr><tr><td style="text-align: center;"><img src="legend/Niveles_1_Cuerpodeagua1.png" /></td><td>Cuerpo de agua</td></tr><tr><td style="text-align: center;"><img src="legend/Niveles_1_MuyAlta2.png" /></td><td>Muy Alta</td></tr></table>':
-            layer_Niveles_1,
-          ESRI: layer_ESRI_0,
+      L.control.layers(baseMaps, {
+        'Niveles<br /><table><tr><td style="text-align: center;"><img src="legend/Niveles_1_Bosque0.png" /></td><td>Bosque</td></tr><tr><td style="text-align: center;"><img src="legend/Niveles_1_Cuerpodeagua1.png" /></td><td>Cuerpo de agua</td></tr><tr><td style="text-align: center;"><img src="legend/Niveles_1_MuyAlta2.png" /></td><td>Muy Alta</td></tr></table>':
+          layer_Niveles_1,
+        ESRI: layer_ESRI_0,
+      });
+
+      /* Leyenda para CUT */
+
+      var leyndaCUT = {
+        'Capacidad de uso de la Tierra<br /><table><tr><td style="text-align: center;"><img src="legend/CapacidaddeusodelaTierra_2_Coberturaarborea0.png" /></td><td>Cobertura arborea</td></tr><tr><td style="text-align: center;"><img src="legend/CapacidaddeusodelaTierra_2_Cuerpodeagua1.png" /></td><td>Cuerpo de agua</td></tr><tr><td style="text-align: center;"><img src="legend/CapacidaddeusodelaTierra_2_IVSsIIISperSwdIISprof2.png" /></td><td>IVSs/IIISper,Swd/ IISprof</td></tr><tr><td style="text-align: center;"><img src="legend/CapacidaddeusodelaTierra_2_VISsIVSperSwdIISprof3.png" /></td><td>VISs/IVSper,Swd/ IISprof</td></tr><tr><td style="text-align: center;"><img src="legend/CapacidaddeusodelaTierra_2_VSsIIISperSwdIISprof4.png" /></td><td>VSs/IIISper,Swd/ IISprof</td></tr><tr><td style="text-align: center;"><img src="legend/CapacidaddeusodelaTierra_2_VSsIVSperSwdIISprof5.png" /></td><td>VSs/IVSper,Swd/IISprof</td></tr></table>':
+          layer_CapacidaddeusodelaTierra_2,
+      };
+      var CUTLayersCtrl = L.control
+        .layers(baseMaps, leyndaCUT, { collapsed: true })
+        .addTo(map);
+      setBounds();
+
+      /* Titulo CUT */
+
+      var CUTLegend = L.control({ position: "topleft" });
+
+      CUTLegend.onAdd = function () {
+        var div = L.DomUtil.create("div");
+        // here is Your part:
+        div.innerHTML =
+          '<p class="titulo-leyenda hidden-mobile">Clasificación según capacidad</p>';
+        return div;
+      };
+      CUTLegend.addTo(map);
+
+      var CUTCtrlDiv = CUTLayersCtrl.getContainer();
+      CUTCtrlDiv.insertBefore(CUTLegend.getContainer(), CUTCtrlDiv.firstChild);
+
+      /* CALICATAS POR PROFUNDIDAD */
+
+      var calicatasSilvipar = {
+        '<img src="legend/Profundidadde0a30_25.png" /> Profundidad de 0 a 30':
+          layer_Profundidadde0a30_25,
+        '<img src="legend/Profundidadde30a60_24.png" /> Profundidad de 30 a 60':
+          layer_Profundidadde30a60_24,
+        '<img src="legend/Profundidadde60a90_23.png" /> Profundidad de 60 a 90':
+          layer_Profundidadde60a90_23,
+      };
+
+      var calicataslayerCtrl = L.control
+        .layers(baseMaps, calicatasSilvipar, {
+          collapsed: true,
+          position: "topright",
         })
         .addTo(map);
       setBounds();
+
+      /* Titulo Calicatas */
+
+      var calicataLegend = L.control({ position: "topleft" });
+
+      calicataLegend.onAdd = function () {
+        var div = L.DomUtil.create("div");
+        // here is Your part:
+        div.innerHTML =
+          '<p class="titulo-leyenda hidden-mobile">Calicatas según profundidad</p>';
+        return div;
+      };
+      calicataLegend.addTo(map);
+
+      var calicataCtrlDiv = calicataslayerCtrl.getContainer();
+      calicataCtrlDiv.insertBefore(
+        calicataLegend.getContainer(),
+        calicataCtrlDiv.firstChild
+      );
+
+      /* CONTROL MACRONUTRINTES */
+
+      /* Capas de Macronutrientes */
+
+      var macroLayers = {
+        'Calcio 60 a 90<br /><table><tr><td style="text-align: center;"><img src="legend/Calcio60a90_3_Coberturaarbórea0.png" /></td><td>Cobertura arbórea</td></tr><tr><td style="text-align: center;"><img src="legend/Calcio60a90_3_Cuerpodeagua1.png" /></td><td>Cuerpo de agua</td></tr><tr><td style="text-align: center;"><img src="legend/Calcio60a90_3_BAJO2.png" /></td><td>BAJO</td></tr></table>':
+          layer_Calcio60a90_3,
+        'Calcio 30 a 60<br /><table><tr><td style="text-align: center;"><img src="legend/Calcio30a60_4_Coberturaarbórea0.png" /></td><td>Cobertura arbórea</td></tr><tr><td style="text-align: center;"><img src="legend/Calcio30a60_4_Cuerpodeagua1.png" /></td><td>Cuerpo de agua</td></tr><tr><td style="text-align: center;"><img src="legend/Calcio30a60_4_BAJO2.png" /></td><td>BAJO</td></tr></table>':
+          layer_Calcio30a60_4,
+        'Calcio 0 a 30<br /><table><tr><td style="text-align: center;"><img src="legend/Calcio0a30_5_Coberturaarbrea0.png" /></td><td>Cobertura arborea</td></tr><tr><td style="text-align: center;"><img src="legend/Calcio0a30_5_Cuerpodeagua1.png" /></td><td>Cuerpo de agua</td></tr><tr><td style="text-align: center;"><img src="legend/Calcio0a30_5_BAJO2.png" /></td><td>BAJO</td></tr></table>':
+          layer_Calcio0a30_5,
+        'Fosforo 60 a 90<br /><table><tr><td style="text-align: center;"><img src="legend/Fosforo60a90_6_Coberturaarbórea0.png" /></td><td>Cobertura arbórea</td></tr><tr><td style="text-align: center;"><img src="legend/Fosforo60a90_6_Cuerpodeagua1.png" /></td><td>Cuerpo de agua</td></tr><tr><td style="text-align: center;"><img src="legend/Fosforo60a90_6_BAJO2.png" /></td><td>BAJO</td></tr></table>':
+          layer_Fosforo60a90_6,
+        'Fosforo 30 a 60<br /><table><tr><td style="text-align: center;"><img src="legend/Fosforo30a60_7_Coberturaarbórea0.png" /></td><td>Cobertura arbórea</td></tr><tr><td style="text-align: center;"><img src="legend/Fosforo30a60_7_Cuerpodeagua1.png" /></td><td>Cuerpo de agua</td></tr><tr><td style="text-align: center;"><img src="legend/Fosforo30a60_7_BAJO2.png" /></td><td>BAJO</td></tr></table>':
+          layer_Fosforo30a60_7,
+        'Fosforo 0 a 30<br /><table><tr><td style="text-align: center;"><img src="legend/Fosforo0a30_8_Coberturaarbrea0.png" /></td><td>Cobertura arborea</td></tr><tr><td style="text-align: center;"><img src="legend/Fosforo0a30_8_Cuerpodeagua1.png" /></td><td>Cuerpo de agua</td></tr><tr><td style="text-align: center;"><img src="legend/Fosforo0a30_8_BAJO2.png" /></td><td>BAJO</td></tr></table>':
+          layer_Fosforo0a30_8,
+        'Magnesio 60 a 90<br /><table><tr><td style="text-align: center;"><img src="legend/Magnesio60a90_9_Coberturaarbórea0.png" /></td><td>Cobertura arbórea</td></tr><tr><td style="text-align: center;"><img src="legend/Magnesio60a90_9_Cuerpodeagua1.png" /></td><td>Cuerpo de agua</td></tr><tr><td style="text-align: center;"><img src="legend/Magnesio60a90_9_BAJO2.png" /></td><td>BAJO</td></tr></table>':
+          layer_Magnesio60a90_9,
+        'Magnesio 30 a 60<br /><table><tr><td style="text-align: center;"><img src="legend/Magnesio30a60_10_Coberturaarbórea0.png" /></td><td>Cobertura arbórea</td></tr><tr><td style="text-align: center;"><img src="legend/Magnesio30a60_10_Cuerpodeagua1.png" /></td><td>Cuerpo de agua</td></tr><tr><td style="text-align: center;"><img src="legend/Magnesio30a60_10_BAJO2.png" /></td><td>BAJO</td></tr></table>':
+          layer_Magnesio30a60_10,
+        'Magnesio 0 a 30<br /><table><tr><td style="text-align: center;"><img src="legend/Magnesio0a30_11_Coberturaarbrea0.png" /></td><td>Cobertura arborea</td></tr><tr><td style="text-align: center;"><img src="legend/Magnesio0a30_11_Cuerpodeagua1.png" /></td><td>Cuerpo de agua</td></tr><tr><td style="text-align: center;"><img src="legend/Magnesio0a30_11_BAJO2.png" /></td><td>BAJO</td></tr></table>':
+          layer_Magnesio0a30_11,
+        'Potasio 60 a 90<br /><table><tr><td style="text-align: center;"><img src="legend/Potasio60a90_12_Coberturaarbórea0.png" /></td><td>Cobertura arbórea</td></tr><tr><td style="text-align: center;"><img src="legend/Potasio60a90_12_Cuerpodeagua1.png" /></td><td>Cuerpo de agua</td></tr><tr><td style="text-align: center;"><img src="legend/Potasio60a90_12_BAJO2.png" /></td><td>BAJO</td></tr></table>':
+          layer_Potasio60a90_12,
+        'Potasio 30 a 60<br /><table><tr><td style="text-align: center;"><img src="legend/Potasio30a60_13_Coberturaarbórea0.png" /></td><td>Cobertura arbórea</td></tr><tr><td style="text-align: center;"><img src="legend/Potasio30a60_13_Cuerpodeagua1.png" /></td><td>Cuerpo de agua</td></tr><tr><td style="text-align: center;"><img src="legend/Potasio30a60_13_BAJO2.png" /></td><td>BAJO</td></tr></table>':
+          layer_Potasio30a60_13,
+        'Potasio 0 a 30<br /><table><tr><td style="text-align: center;"><img src="legend/Potasio0a30_14_Coberturaarbrea0.png" /></td><td>Cobertura arborea</td></tr><tr><td style="text-align: center;"><img src="legend/Potasio0a30_14_MEDIO1.png" /></td><td>MEDIO</td></tr><tr><td style="text-align: center;"><img src="legend/Potasio0a30_14_BAJO2.png" /></td><td>BAJO</td></tr><tr><td style="text-align: center;"><img src="legend/Potasio0a30_14_Cuerpodeagua3.png" /></td><td>Cuerpo de agua</td></tr></table>':
+          layer_Potasio0a30_14,
+        'Sodio 60 a 90<br /><table><tr><td style="text-align: center;"><img src="legend/Sodio60a90_15_ALTO0.png" /></td><td>ALTO</td></tr><tr><td style="text-align: center;"><img src="legend/Sodio60a90_15_MEDIO1.png" /></td><td>MEDIO</td></tr><tr><td style="text-align: center;"><img src="legend/Sodio60a90_15_Coberturaarbórea2.png" /></td><td>Cobertura arbórea</td></tr><tr><td style="text-align: center;"><img src="legend/Sodio60a90_15_Cuerpodeagua3.png" /></td><td>Cuerpo de agua</td></tr></table>':
+          layer_Sodio60a90_15,
+        'Sodio 30 a 60<br /><table><tr><td style="text-align: center;"><img src="legend/Sodio30a60_16_ALTO0.png" /></td><td>ALTO</td></tr><tr><td style="text-align: center;"><img src="legend/Sodio30a60_16_MEDIO1.png" /></td><td>MEDIO</td></tr><tr><td style="text-align: center;"><img src="legend/Sodio30a60_16_Coberturaarbórea2.png" /></td><td>Cobertura arbórea</td></tr><tr><td style="text-align: center;"><img src="legend/Sodio30a60_16_Cuerpodeagua3.png" /></td><td>Cuerpo de agua</td></tr></table>':
+          layer_Sodio30a60_16,
+        'Sodio 0 a 30<br /><table><tr><td style="text-align: center;"><img src="legend/Sodio0a30_17_ALTO0.png" /></td><td>ALTO</td></tr><tr><td style="text-align: center;"><img src="legend/Sodio0a30_17_MEDIO1.png" /></td><td>MEDIO</td></tr><tr><td style="text-align: center;"><img src="legend/Sodio0a30_17_Cuerpodeagua2.png" /></td><td>Cuerpo de agua</td></tr><tr><td style="text-align: center;"><img src="legend/Sodio0a30_17_Coberturaarbrea3.png" /></td><td>Cobertura arborea</td></tr></table>':
+          layer_Sodio0a30_17,
+      };
+
+      var macroLayerCtrl = L.control.layers(baseMaps, macroLayers).addTo(map);
+      setBounds();
+
+      var macroLegend = L.control({ position: "topleft" });
+
+      /* Titulo Macronutrientes */
+
+      var macroLegend = L.control({ position: "topleft" });
+
+      macroLegend.onAdd = function () {
+        var div = L.DomUtil.create("div");
+        // here is Your part:
+        div.innerHTML =
+          '<p class="titulo-leyenda hidden-mobile">Macronutrientes por profundidad</p>';
+        return div;
+      };
+      macroLegend.addTo(map);
+
+      var macroCtrlDiv = macroLayerCtrl.getContainer();
+      macroCtrlDiv.insertBefore(
+        macroLegend.getContainer(),
+        macroCtrlDiv.firstChild
+      );
+
+      /* Leyenda para capas de micronutrientes */
+
+      var microLayers = {
+        'Boro 0 a 30<br /><table><tr><td style="text-align: center;"><img src="legend/Boro0a30_18_Coberturaarbrea0.png" /></td><td>Cobertura arborea</td></tr><tr><td style="text-align: center;"><img src="legend/Boro0a30_18_MEDIO1.png" /></td><td>MEDIO</td></tr><tr><td style="text-align: center;"><img src="legend/Boro0a30_18_Cuerpodeagua2.png" /></td><td>Cuerpo de agua</td></tr></table>':
+          layer_Boro0a30_18,
+        'Cobre 0 a 30<br /><table><tr><td style="text-align: center;"><img src="legend/Cobre0a30_19_ALTO0.png" /></td><td>ALTO</td></tr><tr><td style="text-align: center;"><img src="legend/Cobre0a30_19_Coberturaarbrea1.png" /></td><td>Cobertura arborea</td></tr><tr><td style="text-align: center;"><img src="legend/Cobre0a30_19_MEDIO2.png" /></td><td>MEDIO</td></tr><tr><td style="text-align: center;"><img src="legend/Cobre0a30_19_Cuerpodeagua3.png" /></td><td>Cuerpo de agua</td></tr></table>':
+          layer_Cobre0a30_19,
+        'Hierro 0 a 30<br /><table><tr><td style="text-align: center;"><img src="legend/Hierro0a30_20_ALTO0.png" /></td><td>ALTO</td></tr><tr><td style="text-align: center;"><img src="legend/Hierro0a30_20_Coberturaarbrea1.png" /></td><td>Cobertura arborea</td></tr><tr><td style="text-align: center;"><img src="legend/Hierro0a30_20_Cuerpodeagua2.png" /></td><td>Cuerpo de agua</td></tr></table>':
+          layer_Hierro0a30_20,
+        'Manganeso 0 a 30<br /><table><tr><td style="text-align: center;"><img src="legend/Manganeso0a30_21_ALTO0.png" /></td><td>ALTO</td></tr><tr><td style="text-align: center;"><img src="legend/Manganeso0a30_21_Coberturaarbrea1.png" /></td><td>Cobertura arborea</td></tr><tr><td style="text-align: center;"><img src="legend/Manganeso0a30_21_BAJO2.png" /></td><td>BAJO</td></tr><tr><td style="text-align: center;"><img src="legend/Manganeso0a30_21_Cuerpodeagua3.png" /></td><td>Cuerpo de agua</td></tr></table>':
+          layer_Manganeso0a30_21,
+        'Zinc 0 a 30<br /><table><tr><td style="text-align: center;"><img src="legend/Zinc0a30_22_Coberturaarbrea0.png" /></td><td>Cobertura arborea</td></tr><tr><td style="text-align: center;"><img src="legend/Zinc0a30_22_Cuerpodeagua1.png" /></td><td>Cuerpo de agua</td></tr><tr><td style="text-align: center;"><img src="legend/Zinc0a30_22_MEDIO2.png" /></td><td>MEDIO</td></tr></table>':
+          layer_Zinc0a30_22,
+      };
+
+      var microLayerCtrl = L.control.layers(baseMaps, microLayers).addTo(map);
+      setBounds();
+
+      var microLegend = L.control({ position: "topleft" });
+
+      microLegend.onAdd = function () {
+        var div = L.DomUtil.create("div");
+        // here is Your part:
+        div.innerHTML =
+          '<p class="titulo-leyenda hidden-mobile">Micronutrientes por profundidad</p>';
+        return div;
+      };
+      microLegend.addTo(map);
+
+      var microCtrlDiv = microLayerCtrl.getContainer();
+      microCtrlDiv.insertBefore(
+        microLegend.getContainer(),
+        microCtrlDiv.firstChild
+      );
+
+      /* CHART DOM */
+
+      /* Graph Call backs */
+
+      var graficoCUT = document.getElementById("graficoCUT");
+      var graficoNA = document.getElementById("graficoNA");
+      var graficoS60_90 = document.getElementById("graficoS60-90");
+      var graficoS30_60 = document.getElementById("graficoS30-60");
+      var graficoS0_30 = document.getElementById("graficoS0-30");
+      var graficoK = document.getElementById("graficoK60_90");
+      var graficoMg60_90 = document.getElementById("graficoMg60_90");
+      var graficoMg30_60 = document.getElementById("graficoMg30_60");
+      var graficoMg0_30 = document.getElementById("graficoMg0_60");
+      var graficoP = document.getElementById("graficoP");
+      var graficoCa0_30 = document.getElementById("graficoCa0_30");
+      var graficoCa30_60 = document.getElementById("graficoCa30_60");
+      var graficoCa60_90 = document.getElementById("graficoCa60_90");
+      var graficoZ = document.getElementById("graficoZ");
+      var graficoMn = document.getElementById("graficoMn");
+      var graficoF = document.getElementById("graficoF");
+      var graficoCu = document.getElementById("graficoCu");
+      var graficoBo = document.getElementById("graficoBo");
+
+      /* Layer Call backs */
+
+      var cutName =
+        'Capacidad de uso de la Tierra<br /><table><tr><td style="text-align: center;"><img src="legend/CapacidaddeusodelaTierra_2_Coberturaarborea0.png" /></td><td>Cobertura arborea</td></tr><tr><td style="text-align: center;"><img src="legend/CapacidaddeusodelaTierra_2_Cuerpodeagua1.png" /></td><td>Cuerpo de agua</td></tr><tr><td style="text-align: center;"><img src="legend/CapacidaddeusodelaTierra_2_IVSsIIISperSwdIISprof2.png" /></td><td>IVSs/IIISper,Swd/ IISprof</td></tr><tr><td style="text-align: center;"><img src="legend/CapacidaddeusodelaTierra_2_VISsIVSperSwdIISprof3.png" /></td><td>VISs/IVSper,Swd/ IISprof</td></tr><tr><td style="text-align: center;"><img src="legend/CapacidaddeusodelaTierra_2_VSsIIISperSwdIISprof4.png" /></td><td>VSs/IIISper,Swd/ IISprof</td></tr><tr><td style="text-align: center;"><img src="legend/CapacidaddeusodelaTierra_2_VSsIVSperSwdIISprof5.png" /></td><td>VSs/IVSper,Swd/IISprof</td></tr></table>';
+      var na0_30 =
+        'Sodio 0 a 30<br /><table><tr><td style="text-align: center;"><img src="legend/Sodio0a30_17_ALTO0.png" /></td><td>ALTO</td></tr><tr><td style="text-align: center;"><img src="legend/Sodio0a30_17_MEDIO1.png" /></td><td>MEDIO</td></tr><tr><td style="text-align: center;"><img src="legend/Sodio0a30_17_Cuerpodeagua2.png" /></td><td>Cuerpo de agua</td></tr><tr><td style="text-align: center;"><img src="legend/Sodio0a30_17_Coberturaarbrea3.png" /></td><td>Cobertura arborea</td></tr></table>';
+      var na30_60 =
+        'Sodio 30 a 60<br /><table><tr><td style="text-align: center;"><img src="legend/Sodio30a60_16_ALTO0.png" /></td><td>ALTO</td></tr><tr><td style="text-align: center;"><img src="legend/Sodio30a60_16_MEDIO1.png" /></td><td>MEDIO</td></tr><tr><td style="text-align: center;"><img src="legend/Sodio30a60_16_Coberturaarbórea2.png" /></td><td>Cobertura arbórea</td></tr><tr><td style="text-align: center;"><img src="legend/Sodio30a60_16_Cuerpodeagua3.png" /></td><td>Cuerpo de agua</td></tr></table>';
+      var na60_90 =
+        'Sodio 60 a 90<br /><table><tr><td style="text-align: center;"><img src="legend/Sodio60a90_15_ALTO0.png" /></td><td>ALTO</td></tr><tr><td style="text-align: center;"><img src="legend/Sodio60a90_15_MEDIO1.png" /></td><td>MEDIO</td></tr><tr><td style="text-align: center;"><img src="legend/Sodio60a90_15_Coberturaarbórea2.png" /></td><td>Cobertura arbórea</td></tr><tr><td style="text-align: center;"><img src="legend/Sodio60a90_15_Cuerpodeagua3.png" /></td><td>Cuerpo de agua</td></tr></table>';
+      var k0_30 =
+        'Potasio 0 a 30<br /><table><tr><td style="text-align: center;"><img src="legend/Potasio0a30_14_Coberturaarbrea0.png" /></td><td>Cobertura arborea</td></tr><tr><td style="text-align: center;"><img src="legend/Potasio0a30_14_MEDIO1.png" /></td><td>MEDIO</td></tr><tr><td style="text-align: center;"><img src="legend/Potasio0a30_14_BAJO2.png" /></td><td>BAJO</td></tr><tr><td style="text-align: center;"><img src="legend/Potasio0a30_14_Cuerpodeagua3.png" /></td><td>Cuerpo de agua</td></tr></table>';
+      var ca_60_90 =
+        'Calcio 60 a 90<br /><table><tr><td style="text-align: center;"><img src="legend/Calcio60a90_3_Coberturaarbórea0.png" /></td><td>Cobertura arbórea</td></tr><tr><td style="text-align: center;"><img src="legend/Calcio60a90_3_Cuerpodeagua1.png" /></td><td>Cuerpo de agua</td></tr><tr><td style="text-align: center;"><img src="legend/Calcio60a90_3_BAJO2.png" /></td><td>BAJO</td></tr></table>';
+      var ca_30_60 =
+        'Calcio 30 a 60<br /><table><tr><td style="text-align: center;"><img src="legend/Calcio30a60_4_Coberturaarbórea0.png" /></td><td>Cobertura arbórea</td></tr><tr><td style="text-align: center;"><img src="legend/Calcio30a60_4_Cuerpodeagua1.png" /></td><td>Cuerpo de agua</td></tr><tr><td style="text-align: center;"><img src="legend/Calcio30a60_4_BAJO2.png" /></td><td>BAJO</td></tr></table>';
+      var p0_30 =
+        'Fosforo 0 a 30<br /><table><tr><td style="text-align: center;"><img src="legend/Fosforo0a30_8_Coberturaarbrea0.png" /></td><td>Cobertura arborea</td></tr><tr><td style="text-align: center;"><img src="legend/Fosforo0a30_8_Cuerpodeagua1.png" /></td><td>Cuerpo de agua</td></tr><tr><td style="text-align: center;"><img src="legend/Fosforo0a30_8_BAJO2.png" /></td><td>BAJO</td></tr></table>';
+      var p30_60 =
+        'Fosforo 30 a 60<br /><table><tr><td style="text-align: center;"><img src="legend/Fosforo30a60_7_Coberturaarbórea0.png" /></td><td>Cobertura arbórea</td></tr><tr><td style="text-align: center;"><img src="legend/Fosforo30a60_7_Cuerpodeagua1.png" /></td><td>Cuerpo de agua</td></tr><tr><td style="text-align: center;"><img src="legend/Fosforo30a60_7_BAJO2.png" /></td><td>BAJO</td></tr></table>';
+      var p60_90 =
+        'Fosforo 60 a 90<br /><table><tr><td style="text-align: center;"><img src="legend/Fosforo60a90_6_Coberturaarbórea0.png" /></td><td>Cobertura arbórea</td></tr><tr><td style="text-align: center;"><img src="legend/Fosforo60a90_6_Cuerpodeagua1.png" /></td><td>Cuerpo de agua</td></tr><tr><td style="text-align: center;"><img src="legend/Fosforo60a90_6_BAJO2.png" /></td><td>BAJO</td></tr></table>';
+      var mg60_90 =
+        'Magnesio 60 a 90<br /><table><tr><td style="text-align: center;"><img src="legend/Magnesio60a90_9_Coberturaarbórea0.png" /></td><td>Cobertura arbórea</td></tr><tr><td style="text-align: center;"><img src="legend/Magnesio60a90_9_Cuerpodeagua1.png" /></td><td>Cuerpo de agua</td></tr><tr><td style="text-align: center;"><img src="legend/Magnesio60a90_9_BAJO2.png" /></td><td>BAJO</td></tr></table>';
+      var mg30_60 =
+        'Magnesio 30 a 60<br /><table><tr><td style="text-align: center;"><img src="legend/Magnesio30a60_10_Coberturaarbórea0.png" /></td><td>Cobertura arbórea</td></tr><tr><td style="text-align: center;"><img src="legend/Magnesio30a60_10_Cuerpodeagua1.png" /></td><td>Cuerpo de agua</td></tr><tr><td style="text-align: center;"><img src="legend/Magnesio30a60_10_BAJO2.png" /></td><td>BAJO</td></tr></table>';
+      var mg0_30 =
+        'Magnesio 0 a 30<br /><table><tr><td style="text-align: center;"><img src="legend/Magnesio0a30_11_Coberturaarbrea0.png" /></td><td>Cobertura arborea</td></tr><tr><td style="text-align: center;"><img src="legend/Magnesio0a30_11_Cuerpodeagua1.png" /></td><td>Cuerpo de agua</td></tr><tr><td style="text-align: center;"><img src="legend/Magnesio0a30_11_BAJO2.png" /></td><td>BAJO</td></tr></table>';
+      var k_60_90 =
+        'Potasio 60 a 90<br /><table><tr><td style="text-align: center;"><img src="legend/Potasio60a90_12_Coberturaarbórea0.png" /></td><td>Cobertura arbórea</td></tr><tr><td style="text-align: center;"><img src="legend/Potasio60a90_12_Cuerpodeagua1.png" /></td><td>Cuerpo de agua</td></tr><tr><td style="text-align: center;"><img src="legend/Potasio60a90_12_BAJO2.png" /></td><td>BAJO</td></tr></table>';
+      var z_0_30 =
+        'Zinc 0 a 30<br /><table><tr><td style="text-align: center;"><img src="legend/Zinc0a30_22_Coberturaarbrea0.png" /></td><td>Cobertura arborea</td></tr><tr><td style="text-align: center;"><img src="legend/Zinc0a30_22_Cuerpodeagua1.png" /></td><td>Cuerpo de agua</td></tr><tr><td style="text-align: center;"><img src="legend/Zinc0a30_22_MEDIO2.png" /></td><td>MEDIO</td></tr></table>';
+      var ca_0_30 =
+        'Calcio 0 a 30<br /><table><tr><td style="text-align: center;"><img src="legend/Calcio0a30_5_Coberturaarbrea0.png" /></td><td>Cobertura arborea</td></tr><tr><td style="text-align: center;"><img src="legend/Calcio0a30_5_Cuerpodeagua1.png" /></td><td>Cuerpo de agua</td></tr><tr><td style="text-align: center;"><img src="legend/Calcio0a30_5_BAJO2.png" /></td><td>BAJO</td></tr></table>';
+
+      /*      var macroLayers = {
+                layer_Calcio60a90_3,
+              :
+                layer_Calcio30a60_4,
+              :
+                layer_Calcio0a30_5,
+              :
+                layer_Fosforo60a90_6,
+              :
+                layer_Fosforo30a60_7,
+              :
+                layer_Fosforo0a30_8,
+              :
+                layer_Magnesio60a90_9,
+              :
+                layer_Magnesio30a60_10,
+              :
+                layer_Magnesio0a30_11,
+              :
+                layer_Potasio60a90_12,
+              'Potasio 30 a 60<br /><table><tr><td style="text-align: center;"><img src="legend/Potasio30a60_13_Coberturaarbórea0.png" /></td><td>Cobertura arbórea</td></tr><tr><td style="text-align: center;"><img src="legend/Potasio30a60_13_Cuerpodeagua1.png" /></td><td>Cuerpo de agua</td></tr><tr><td style="text-align: center;"><img src="legend/Potasio30a60_13_BAJO2.png" /></td><td>BAJO</td></tr></table>':
+                layer_Potasio30a60_13,
+              'Potasio 0 a 30<br /><table><tr><td style="text-align: center;"><img src="legend/Potasio0a30_14_Coberturaarbrea0.png" /></td><td>Cobertura arborea</td></tr><tr><td style="text-align: center;"><img src="legend/Potasio0a30_14_MEDIO1.png" /></td><td>MEDIO</td></tr><tr><td style="text-align: center;"><img src="legend/Potasio0a30_14_BAJO2.png" /></td><td>BAJO</td></tr><tr><td style="text-align: center;"><img src="legend/Potasio0a30_14_Cuerpodeagua3.png" /></td><td>Cuerpo de agua</td></tr></table>':
+                layer_Potasio0a30_14,
+
+              'Sodio 30 a 60<br /><table><tr><td style="text-align: center;"><img src="legend/Sodio30a60_16_ALTO0.png" /></td><td>ALTO</td></tr><tr><td style="text-align: center;"><img src="legend/Sodio30a60_16_MEDIO1.png" /></td><td>MEDIO</td></tr><tr><td style="text-align: center;"><img src="legend/Sodio30a60_16_Coberturaarbórea2.png" /></td><td>Cobertura arbórea</td></tr><tr><td style="text-align: center;"><img src="legend/Sodio30a60_16_Cuerpodeagua3.png" /></td><td>Cuerpo de agua</td></tr></table>':
+                layer_Sodio30a60_16,
+              'Sodio 0 a 30<br /><table><tr><td style="text-align: center;"><img src="legend/Sodio0a30_17_ALTO0.png" /></td><td>ALTO</td></tr><tr><td style="text-align: center;"><img src="legend/Sodio0a30_17_MEDIO1.png" /></td><td>MEDIO</td></tr><tr><td style="text-align: center;"><img src="legend/Sodio0a30_17_Cuerpodeagua2.png" /></td><td>Cuerpo de agua</td></tr><tr><td style="text-align: center;"><img src="legend/Sodio0a30_17_Coberturaarbrea3.png" /></td><td>Cobertura arborea</td></tr></table>':
+                layer_Sodio0a30_17,
+            };*/
+
+      /* map.Over */
+
+      map.on("overlayadd", function (e0) {
+        if (e0.name === cutName) {
+          graficoCUT.style.display = "block";
+        } else if (e0.name === na60_90) {
+          graficoS60_90.style.display = "block";
+        } else if (e0.name === na30_60) {
+          graficoS30_60.style.display = "block";
+        } else if (e0.name === na0_30) {
+          graficoS0_30.style.display = "block";
+        } else if (e0.name === k0_30) {
+          console.log("El layer es " + e0);
+          graficoK.style.display = "block";
+        } else if (
+          e0.name === mg60_90 ||
+          e0.name === p0_30 ||
+          e0.name === p30_60 ||
+          e0.name === p60_90 ||
+          e0.name === mg30_60 ||
+          e0.name === mg0_30 ||
+          e0.name === ca_0_30 ||
+          e0.name === ca_30_60 ||
+          e0.name === ca_60_90
+        ) {
+          graficoMg60_90.style.display = "block";
+        } else if (e0.name === z_0_30) {
+          graficoZ.style.display = "block";
+        } else if (e0.name === mn_0_30) {
+          graficoMn.style.display = "block";
+        } else if (e0.name === f_0_30) {
+          graficoF.style.display = "block";
+        } else if (e0.name === cu_0_30) {
+          graficoCu.style.display = "block";
+        } else if (e0.name === bo_0_30) {
+          graficoBo.style.display = "block";
+        }
+      });
+
+      map.on("overlayremove", function (e1) {
+        if (e1.name === cutName) {
+          graficoCUT.style.display = "none";
+        } else if (e1.name === na60_90) {
+          graficoS60_90.style.display = "none";
+        } else if (e1.name === na30_60) {
+          graficoS30_60.style.display = "none";
+          console.log("The layer is " + e1);
+        } else if (e1.name === na0_30) {
+          graficoS0_30.style.display = "none";
+        } else if (e1.name === k0_30) {
+          graficoK.style.display = "none";
+        } else if (e1.name === mg60_90) {
+          graficoMg60_90.style.display = "none";
+        } else if (e1.name === mg30_60) {
+          graficoMg30_60.style.display = "none";
+        } else if (e1.name === mg0_30) {
+          graficoMg0_30.style.display = "none";
+        } else if (
+          e1.name === mg60_90 ||
+          e1.name === p0_30 ||
+          e1.name === p30_60 ||
+          e1.name === p60_90 ||
+          e1.name === mg30_60 ||
+          e1.name === mg0_30 ||
+          e1.name === ca_0_30 ||
+          e1.name === ca_30_60 ||
+          e1.name === ca_60_90
+        ) {
+          graficoMg60_90.style.display = "none";
+        } else if (e1.name === ca_0_30) {
+          graficoCa0_30.style.display = "none";
+        } else if (e1.name === ca_30_60) {
+          graficoCa30_60.style.display = "none";
+        } else if (e1.name === ca_60_90) {
+          graficoCa60_90.style.display = "none";
+        } else if (e1.name === z_0_30) {
+          graficoZ.style.display = "none";
+        } else if (e1.name === mn_0_30) {
+          graficoMn.style.display = "none";
+        } else if (e1.name === f_0_30) {
+          graficoF.style.display = "none";
+        } else if (e1.name === cu_0_30) {
+          graficoCu.style.display = "none";
+        } else if (e1.name === bo_0_30) {
+          graficoBo.style.display = "none";
+        }
+      });
     </script>
   </body>
 </html>

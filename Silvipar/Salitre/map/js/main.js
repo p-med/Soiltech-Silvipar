@@ -2,6 +2,24 @@
 $(document).ready(function () {
   $("nav").hover(function () {
     $("nav").toggleClass("expand");
+    $("#graficoCUT").toggleClass("graficoExpand");
+    $("#graficoNA").toggleClass("graficoExpand");
+    $("#graficoS60-90").toggleClass("graficoExpand");
+    $("#graficoS30-60").toggleClass("graficoExpand");
+    $("#graficoS0-30").toggleClass("graficoExpand");
+    $("#graficoMg60_90").toggleClass("graficoExpand");
+    $("#graficoMg30_60").toggleClass("graficoExpand");
+    $("#graficoMg0_60").toggleClass("graficoExpand");
+    $("#graficoP").toggleClass("graficoExpand");
+    $("#graficoCa0_30").toggleClass("graficoExpand");
+    $("#graficoZ").toggleClass("graficoExpand");
+    $("#graficoMn").toggleClass("graficoExpand");
+    $("#graficoF").toggleClass("graficoExpand");
+    $("#graficoCu").toggleClass("graficoExpand");
+    $("#graficoBo").toggleClass("graficoExpand");
+    $("#graficoCa30_60").toggleClass("graficoExpand");
+    $("#graficoCa60_90").toggleClass("graficoExpand");
+    $("#graficoK60_90").toggleClass("graficoExpand");
   });
 });
 
