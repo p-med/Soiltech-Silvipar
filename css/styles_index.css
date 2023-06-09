@@ -32,7 +32,7 @@ li {
   align-items: center;
   height: 50px;
   padding: 5rem;
-  z-index: 2;
+  z-index: 3;
 }
 
 .navbar a {
