@@ -1,6 +1,22 @@
 body {
-  background-image: url("images/pexels-jan-kroon-1000057.jpg");
+  position: relative;
+  background-image: url('https://images.pexels.com/photos/15188097/pexels-photo-15188097/free-photo-of-aerial-view-of-a-truck-on-a-road-between-croplands.jpeg');
+  background-repeat: no-repeat;
   background-size: cover;
+}
+
+.overlay {
+  position: absolute;
+  top: 20px; /* Adjust the top padding as needed */
+  left: 20px;  /*Adjust the left padding as needed */
+  right: 20px; /* Adjust the right padding as needed */
+  bottom: 70px; /* Adjust the bottom padding as needed */
+  width: 100%;
+  background-color: rgba(255, 252, 252, 0.3);
+  z-index: 1;
+  pointer-events: none;
+  border-radius: 30px;
+  backdrop-filter: blur(2px);
 }
 
 li {
@@ -18,8 +34,8 @@ li {
   box-sizing: border-box;
   align-items: center;
   height: 50px;
-  padding: 6rem;
-  z-index: 1;
+  padding: 5rem;
+  z-index: 2;
 }
 
 .navbar a {
@@ -64,6 +80,19 @@ a:hover {
   font-weight: bold;
 }
 
+/*NAV BAR GPT SUGGESTIONS*/
+
+/* New CSS for responsive navigation */
+
+#menu-toggle {
+  font-size: 24px;
+  cursor: pointer;
+}
+
+#nav-links {
+  display: none;
+}
+
 /*HEADER*/
 
 .header {
@@ -74,7 +103,8 @@ a:hover {
 /*HEADER SECTION*/
 
 .content {
-  padding: 10rem 5rem 2rem 5rem;
+  padding: 6rem 5rem 2rem 5rem;
+  text-align: center;
 }
 
 .content a {
@@ -84,123 +114,40 @@ a:hover {
 
 /*Cards*/
 
-.card-title {
-  text-align: center;
-  font-weight: bold;
-  margin: auto;
-  padding: 12px;
-}
-
-.card-text {
-  text-align: left;
-  color: rgb(165, 164, 164);
-}
-
-.card h5 {
-  position: relative;
-  font-size: 1.8rem;
-  line-height: 0.9;
-  text-align: center;
-}
-
-.card p {
-  line-height: 0.9;
-  position: relative;
-  text-align: left;
-  color: white;
-  font-weight: bolder;
-  font-size: 1rem;
-  opacity: 1;
-}
-
 .card {
-  position: relative;
   border-radius: 20px;
-  max-height: 75px;
   overflow: hidden;
-  padding: 0rem;
-  width: 100%;
+  margin-bottom: 20px;
+  background-color: #f1f1f1;
+  transition: background-color 0.3s;
+  cursor: pointer;
 }
 
-.card i {
-  padding: 0;
-  text-align: center;
-  font-size: 25px;
+.card:hover {
+  background-color: #d4d4d4;
 }
 
 .card-body {
-  background-color: #126d21;
+  padding: 20px;
+}
+
+.card-title {
   text-align: center;
-  align-items: center;
+  font-weight: bold;
+  color: #126d21;
 }
 
-.card-body-unavailable {
-  background-color: #6b6c6b;
+.card p {
   text-align: center;
-  align-items: center;
 }
 
-.card-body-unavailable:hover {
-  background-color: #979797;
-  color: white;
-}
-
-.card-body:hover {
-  background-color: #59260b;
-  color: white;
-}
-
-@media (max-width: 767px) {
-  .hidden-mobile {
-    display: none;
-  }
-  .card {
-    max-height: 70px;
-  }
-  .card-body {
-    max-height: 70px;
-  }
-  .card-body-unavailable {
-    height: 70px;
-  }
-  .card-body h5 {
-    font-size: medium;
-  }
-  .card-body-unavailable h5 {
-    font-size: medium;
-  }
-
-  .navbar {
-    text-align: center;
-  }
-  .logo {
-    width: 100%;
-    text-align: center;
-    padding: 20px;
-  }
-  .nav-links {
-    width: 100%;
-    text-align: center;
-  }
-  .nav-links ul {
-    padding-left: 0;
-    list-style-type: none;
-  }
-  .footer {
-    height: 100vh;
-    opacity: 100%;
-  }
-  .footer ul {
-    padding-left: 20%;
-    padding-top: 2%;
-  }
-  .row {
-    height: 100%;
-  }
-}
 
 .col-6 {
   padding-top: 10rem;
+}
+
+.row {
+  padding-top: 3rem;
 }
 
 /*Footer*/
@@ -209,11 +156,6 @@ a:hover {
   padding: 10px 0;
   background-color: #eee;
   width: 100%;
-  opacity: 90%;
-}
-
-.footer ul {
-  margin: auto;
 }
 
 .footer img {
@@ -246,3 +188,63 @@ a:hover {
   text-align: center;
   font-weight: bold;
 }
+
+@media (max-width: 767px) {
+  .card {
+    width: 100%;
+    overflow-x: auto; /* Add this line to enable horizontal scrolling */
+  }
+  .navbar {
+    text-align: center;
+    z-index: 3;
+  }
+  .logo {
+    width: 100%;
+    text-align: center;
+    padding: 20px;
+  }
+  .content {
+    background-color: rgba(255, 252, 252, 0.5);
+    border-radius: 10%;
+    height: 60vh;
+    margin-bottom: 100px;
+  }
+  .footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100px;
+  }
+  .footer ul {
+    padding-left: 20%;
+    padding-top: 2%;
+  }
+  .overlay {
+    display: none;
+  }
+  .nav-links {
+    display: none;
+  }
+  .nav-links ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .nav-links ul li {
+    margin: 10px 0;
+  }
+
+  #nav-links.show {
+    overflow: hidden;
+  }
+}
+
+
+.content,
+.footer {
+  position: relative;
+  z-index: 2;
+}
+

@@ -1,44 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Soil Tech - Silvipar</title>
-    <meta name="description" content="" />
-    <link rel="stylesheet" href="css/styles_index.css" />
-    <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script
-      src="https://kit.fontawesome.com/1f0a08e168.js"
-      crossorigin="anonymous"
-    ></script>
-    <script src="js/main.js" async defer></script>
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
-      integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
-      crossorigin="anonymous"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
-      integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-    <link rel="stylesheet" href="path/to/bootstrap/css/bootstrap.min.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css"
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@500&display=swap"
-      rel="stylesheet"
-    />
-  </head>
-  <body>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Soil Tech - Silvipar</title>
+  <meta name="description" content="" />
+  <link rel="stylesheet" href="css/styles_index.css" />
+  <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="https://kit.fontawesome.com/1f0a08e168.js" crossorigin="anonymous"></script>
+  <script src="js/main.js" async defer></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+    integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+    integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="path/to/bootstrap/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+
+  <style>
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    .swiper-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+
+    .swiper-slide {
+      background-position: center;
+      background-size: cover;
+      width: 100%;
+      height: 100%;
+      transition: filter 10s ease-in-out;
+      /* Add transition for smoother effect */
+      filter: blur(10px);
+      /* Initial blur effect */
+    }
+
+    .swiper-slide-active {
+      filter: blur(0px);
+      /* Remove blur effect for active slide */
+    }
+
+    .content {
+      position: relative;
+      z-index: 1;
+      /* Add other necessary styles for the content section */
+    }
+  </style>
+
+</head>
+
+<body>
+  <div class="container overlay"></div>
+  <div class="container">
+
+    <div class="swiper-container">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide"
+          style="background-image: url('https://images.pexels.com/photos/2933243/pexels-photo-2933243.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')">
+        </div>
+        <div class="swiper-slide"
+          style="background-image: url('https://images.pexels.com/photos/7656731/pexels-photo-7656731.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')">
+        </div>
+        <div class="swiper-slide"
+          style="background-image: url('https://images.pexels.com/photos/15188097/pexels-photo-15188097/free-photo-of-aerial-view-of-a-truck-on-a-road-between-croplands.jpeg')">
+        </div>
+        <div class="swiper-slide"
+          style="background-image: url('https://images.pexels.com/photos/5717996/pexels-photo-5717996.jpeg')"></div>
+        <div class="swiper-slide"
+          style="background-image: url('https://images.pexels.com/photos/5047452/pexels-photo-5047452.jpeg')"></div>
+      </div>
+    </div>
+
     <nav class="navbar">
       <div class="logo">
         <a href=""><img src="Silvipar/img/_300PPIisotipo.png" alt="Logo" /></a>
@@ -52,56 +99,61 @@
       <i class="bi bi-list"></i>
     </nav>
     <section class="content header">
-      <div class="row">
-        <div class="col">Acceder a Reportes</div>
-      </div>
-      <div class="col">
-        <p>
-          Para acceder al reporte por favor seleccione su nombre de cliente.
-        </p>
-      </div>
-      <div class="row">
-        <div class="col-12">
-          <a href="Silvipar/menu.html">
-            <div class="card" id="card2">
-              <div class="card-body">
-                <h5 class="card-title">Silvipar</h5>
+      <div class="header">
+        <h1>Acceder a Reportes</h1>
+        <p>Para acceder al reporte por favor seleccione su nombre de cliente.</p>
+        <div class="row">
+          <div class="col-12">
+            <a href="Silvipar/menu.html">
+              <div class="card" id="card2">
+                <div class="card-body">
+                  <h5 class="card-title">Silvipar</h5>
+                </div>
               </div>
-            </div>
-          </a>
+            </a>
+          </div>
         </div>
       </div>
-    </section>
-    <footer class="container p-1 rounded footer">
-      <div class="d-sm-flex justify-content-between">
-        <div class="fo-elem">
-          <img src="Silvipar/img/300PPI_logotipo.png" alt="" />
-        </div>
-        <div>
-          <ul class="d-flex gap-3 list-unstyled" style="margin: auto">
-            <li>
-              <a href="mailto:admin@soiltechpy.com"
-                ><i class="bi bi-envelope"></i
-              ></a>
-            </li>
-            <li>
-              <a href="https://wa.me/595961516638"
-                ><i class="bi bi-whatsapp"></i
-              ></a>
-            </li>
-            <li>
-              <a href="https://www.instagram.com/py.soiltech/"
-                ><i class="bi bi-instagram"></i
-              ></a>
-            </li>
-          </ul>
-        </div>
+  </div>
+  </section>
+  </section>
+  <footer class="container p-1 rounded footer">
+    <div class="d-sm-flex justify-content-between">
+      <div class="fo-elem">
+        <img src="Silvipar/img/300PPI_logotipo.png" alt="" />
       </div>
-    </footer>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
-      integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
-      crossorigin="anonymous"
-    ></script>
-  </body>
+      <div>
+        <ul class="d-flex gap-3 list-unstyled" style="margin: auto">
+          <li>
+            <a href="mailto:admin@soiltechpy.com"><i class="bi bi-envelope"></i></a>
+          </li>
+          <li>
+            <a href="https://wa.me/595961516638"><i class="bi bi-whatsapp"></i></a>
+          </li>
+          <li>
+            <a href="https://www.instagram.com/py.soiltech/"><i class="bi bi-instagram"></i></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+  <script>
+    var swiper = new Swiper('.swiper-container', {
+      loop: true,
+      autoplay: {
+        delay: 20000, // Adjust the delay between transitions (in milliseconds)
+      },
+      speed: 5000, // Adjust the speed of the transition (in milliseconds)
+    });
+
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
+    integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
+    crossorigin="anonymous"></script>
+
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+</body>
+
 </html>

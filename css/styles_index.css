@@ -1,6 +1,19 @@
 body {
-  background-image: url("images/pexels-jan-kroon-1000057.jpg");
-  background-size: cover;
+  position: relative;
+}
+
+.overlay {
+  position: absolute;
+  top: 20px; /* Adjust the top padding as needed */
+  left: 20px;  /*Adjust the left padding as needed */
+  right: 20px; /* Adjust the right padding as needed */
+  bottom: 70px; /* Adjust the bottom padding as needed */
+  width: 100%;
+  background-color: rgba(255, 252, 252, 0.3);
+  z-index: 1;
+  pointer-events: none;
+  border-radius: 30px;
+  backdrop-filter: blur(2px);
 }
 
 li {
@@ -18,8 +31,8 @@ li {
   box-sizing: border-box;
   align-items: center;
   height: 50px;
-  padding: 6rem;
-  z-index: 1;
+  padding: 5rem;
+  z-index: 2;
 }
 
 .navbar a {
@@ -64,6 +77,19 @@ a:hover {
   font-weight: bold;
 }
 
+/*NAV BAR GPT SUGGESTIONS*/
+
+/* New CSS for responsive navigation */
+
+#menu-toggle {
+  font-size: 24px;
+  cursor: pointer;
+}
+
+#nav-links {
+  display: none;
+}
+
 /*HEADER*/
 
 .header {
@@ -85,48 +111,33 @@ a:hover {
 
 /*Cards*/
 
-.card-title {
-  text-align: center;
-  font-weight: bold;
-  margin: auto;
-  padding: 12px;
-}
-
-.card h5 {
-  position: relative;
-  font-size: 1.8rem;
-  line-height: 0.9;
-  text-align: center;
-}
-
-.card p {
-  line-height: 0.9;
-  position: relative;
-  text-align: left;
-  color: white;
-  font-weight: bolder;
-  font-size: 1rem;
-  opacity: 1;
-}
-
 .card {
-  position: relative;
   border-radius: 20px;
-  max-height: 75px;
   overflow: hidden;
-  padding-top: 0rem;
-  width: 30%;
-  margin: auto;
+  margin-bottom: 20px;
+  background-color: #f1f1f1;
+  transition: background-color 0.3s;
+  cursor: pointer;
+}
+
+.card:hover {
+  background-color: #d4d4d4;
 }
 
 .card-body {
-  background-color: #126d21;
+  padding: 20px;
 }
 
-.card-body:hover {
-  background-color: #59260b;
-  color: white;
+.card-title {
+  text-align: center;
+  font-weight: bold;
+  color: #126d21;
 }
+
+.card p {
+  text-align: center;
+}
+
 
 .col-6 {
   padding-top: 10rem;
@@ -178,6 +189,7 @@ a:hover {
 @media (max-width: 767px) {
   .card {
     width: 100%;
+    overflow-x: auto; /* Add this line to enable horizontal scrolling */
   }
   .navbar {
     text-align: center;
@@ -187,20 +199,48 @@ a:hover {
     text-align: center;
     padding: 20px;
   }
-  .nav-links {
-    width: 100%;
-    text-align: center;
-  }
-  .nav-links ul {
-    text-align: center;
-    width: 100%;
-    padding-left: 20%;
+  .content {
+    background-color: rgba(255, 252, 252, 0.5);
+    border-radius: 10%;
+    height: 60vh;
+    margin-bottom: 100px;
   }
   .footer {
-    height: 100vh;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100px;
   }
   .footer ul {
     padding-left: 20%;
     padding-top: 2%;
   }
+  .overlay {
+    display: none;
+  }
+  .nav-links {
+    display: none;
+  }
+  .nav-links ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .nav-links ul li {
+    margin: 10px 0;
+  }
+
+  #nav-links.show {
+    overflow: hidden;
+  }
 }
+
+
+.content,
+.footer {
+  position: relative;
+  z-index: 2;
+}
+
