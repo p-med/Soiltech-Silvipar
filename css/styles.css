@@ -31,7 +31,7 @@ li {
   overflow: hidden;
   transform: width 0.2s linear;
   box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
-  z-index: 1;
+  z-index: 20000;
 }
 
 .logo {

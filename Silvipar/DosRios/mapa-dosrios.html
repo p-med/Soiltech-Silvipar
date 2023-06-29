@@ -1,0 +1,742 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link rel="stylesheet" href="../css/leaflet.css">
+    <link rel="stylesheet" href="../css/mapstyles.css">
+    <link rel="stylesheet" href="../css/qgis2web.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/fontawesome-all.min.css">
+    <script src="../js/main.js"></script>
+    <script src="js/qgis2web_expressions.js"></script>
+    <script src="js/leaflet.js"></script>
+    <script src="js/leaflet.rotatedMarker.js"></script>
+    <script src="js/leaflet.pattern.js"></script>
+    <script src="js/leaflet-hash.js"></script>
+    <script src="js/Autolinker.min.js"></script>
+    <script src="js/rbush.min.js"></script>
+    <script src="js/labelgun.min.js"></script>
+    <script src="js/labels.js"></script>
+    <script src="data/Resultados60a90_3.js"></script>
+    <script src="data/Resultados30a60_4.js"></script>
+    <script src="data/Resultados0a30_5.js"></script>
+    <script src="data/CALICATAS_6.js"></script>
+    <style>
+        html,
+        body,
+        #map {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+            z-index: 0;
+        }
+    </style>
+    <title></title>
+</head>
+
+<body>
+    <nav class="nav-hamb">
+        <li>
+            <a href="../DosRios.html" class="nav_a logo">
+                <img src="../img/ST_logo.png" alt="logo-soiltech" />
+                <span class="nav__title"></span>
+            </a>
+        </li>
+        <li>
+            <a class="nav_a hover__a" href="mapa-dosrios.html">
+                <i class="fas fa-map"></i>
+                <snap class="nav-item">Mapa</snap>
+            </a>
+        </li>
+        <li>
+            <a class="nav_a hover__a" href="../datos-dosrios.html">
+                <i class="fas fa-bars"></i>
+                <spam class="nav-item">Datos</spam>
+            </a>
+        </li>
+    </nav>
+    <div id="map"></div>
+
+    <script>
+        var highlightLayer;
+        function highlightFeature(e) {
+            highlightLayer.openPopup();
+        }
+        var map = L.map('map', {
+            zoomControl: true, maxZoom: 28, minZoom: 1
+        }).fitBounds([[-26.690961732399458, -56.776698956589534], [-26.443833132798293, -56.34114381118362]]);
+        var hash = new L.Hash(map);
+        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
+        var autolinker = new Autolinker({ truncate: { length: 30, location: 'smart' } });
+        var bounds_group = new L.featureGroup([]);
+        function setBounds() {
+        }
+        map.createPane('pane_ESRISATLITE_0');
+        map.getPane('pane_ESRISATLITE_0').style.zIndex = 400;
+        var layer_ESRISATLITE_0 = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+            pane: 'pane_ESRISATLITE_0',
+            opacity: 1.0,
+            attribution: '',
+            minZoom: 1,
+            maxZoom: 28,
+            minNativeZoom: 0,
+            maxNativeZoom: 18
+        });
+        layer_ESRISATLITE_0;
+        map.addLayer(layer_ESRISATLITE_0);
+        map.createPane('pane_RecomendaciondeFosforo_1');
+        map.getPane('pane_RecomendaciondeFosforo_1').style.zIndex = 401;
+        var img_RecomendaciondeFosforo_1 = 'data/RecomendaciondeFosforo_1.png';
+        var img_bounds_RecomendaciondeFosforo_1 = [[-26.677158245568457, -56.64156857210392], [-26.47488913347226, -56.6067572800652]];
+        var layer_RecomendaciondeFosforo_1 = new L.imageOverlay(img_RecomendaciondeFosforo_1,
+            img_bounds_RecomendaciondeFosforo_1,
+            { pane: 'pane_RecomendaciondeFosforo_1' });
+        bounds_group.addLayer(layer_RecomendaciondeFosforo_1);
+        map.addLayer(layer_RecomendaciondeFosforo_1);
+        map.createPane('pane_RecomendaciondeKCL_2');
+        map.getPane('pane_RecomendaciondeKCL_2').style.zIndex = 402;
+        var img_RecomendaciondeKCL_2 = 'data/RecomendaciondeKCL_2.png';
+        var img_bounds_RecomendaciondeKCL_2 = [[-26.677158245568457, -56.64156857210392], [-26.47488913347226, -56.6067572800652]];
+        var layer_RecomendaciondeKCL_2 = new L.imageOverlay(img_RecomendaciondeKCL_2,
+            img_bounds_RecomendaciondeKCL_2,
+            { pane: 'pane_RecomendaciondeKCL_2' });
+        bounds_group.addLayer(layer_RecomendaciondeKCL_2);
+        map.addLayer(layer_RecomendaciondeKCL_2);
+        function pop_Resultados60a90_3(feature, layer) {
+            layer.on({
+                mouseout: function (e) {
+                    if (typeof layer.closePopup == 'function') {
+                        layer.closePopup();
+                    } else {
+                        layer.eachLayer(function (feature) {
+                            feature.closePopup()
+                        });
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+            var popupContent = '<table>\
+<tr>\
+    <td colspan="2">' + (feature.properties['Name'] !== null ? autolinker.link(feature.properties['Name'].toLocaleString()) : '') + '</td>\
+</tr>\
+<tr>\
+    <td colspan="2">' + (feature.properties['PROF'] !== null ? autolinker.link(feature.properties['PROF'].toLocaleString()) : '') + '</td>\
+</tr>\
+<tr>\
+    <td colspan="2">' + (feature.properties['CODLAB'] !== null ? autolinker.link(feature.properties['CODLAB'].toLocaleString()) : '') + '</td>\
+</tr>\
+<tr>\
+    <td colspan="2">' + (feature.properties['CODINTERES'] !== null ? autolinker.link(feature.properties['CODINTERES'].toLocaleString()) : '') + '</td>\
+</tr>\
+<tr>\
+    <td colspan="2">' + (feature.properties['ca'] !== null ? autolinker.link(feature.properties['ca'].toLocaleString()) : '') + '</td>\
+</tr>\
+<tr>\
+    <td colspan="2">' + (feature.properties['mg'] !== null ? autolinker.link(feature.properties['mg'].toLocaleString()) : '') + '</td>\
+</tr>\
+<tr>\
+    <td colspan="2">' + (feature.properties['k'] !== null ? autolinker.link(feature.properties['k'].toLocaleString()) : '') + '</td>\
+</tr>\
+<tr>\
+    <td colspan="2">' + (feature.properties['na'] !== null ? autolinker.link(feature.properties['na'].toLocaleString()) : '') + '</td>\
+</tr>\
+<tr>\
+    <td colspan="2">' + (feature.properties['mos'] !== null ? autolinker.link(feature.properties['mos'].toLocaleString()) : '') + '</td>\
+</tr>\
+<tr>\
+    <td colspan="2">' + (feature.properties['p'] !== null ? autolinker.link(feature.properties['p'].toLocaleString()) : '') + '</td>\
+</tr>\
+<tr>\
+    <td colspan="2">' + (feature.properties['prem'] !== null ? autolinker.link(feature.properties['prem'].toLocaleString()) : '') + '</td>\
+</tr>\
+<tr>\
+    <td colspan="2">' + (feature.properties['ctcph'] !== null ? autolinker.link(feature.properties['ctcph'].toLocaleString()) : '') + '</td>\
+</tr>\
+<tr>\
+    <td colspan="2">' + (feature.properties['ctcefe'] !== null ? autolinker.link(feature.properties['ctcefe'].toLocaleString()) : '') + '</td>\
+</tr>\
+<tr>\
+    <td colspan="2">' + (feature.properties['v'] !== null ? autolinker.link(feature.properties['v'].toLocaleString()) : '') + '</td>\
+</tr>\
+<tr>\
+    <td colspan="2">' + (feature.properties['pH'] !== null ? autolinker.link(feature.properties['pH'].toLocaleString()) : '') + '</td>\
+</tr>\
+<tr>\
+    <td colspan="2">' + (feature.properties['phsmp'] !== null ? autolinker.link(feature.properties['phsmp'].toLocaleString()) : '') + '</td>\
+</tr>\
+<tr>\
+    <td colspan="2">' + (feature.properties['phh20'] !== null ? autolinker.link(feature.properties['phh20'].toLocaleString()) : '') + '</td>\
+</tr>\
+<tr>\
+    <td colspan="2">' + (feature.properties['TEORAL'] !== null ? autolinker.link(feature.properties['TEORAL'].toLocaleString()) : '') + '</td>\
+</tr>\
+<tr>\
+    <td colspan="2">' + (feature.properties['TEORHAL'] !== null ? autolinker.link(feature.properties['TEORHAL'].toLocaleString()) : '') + '</td>\
+</tr>\
+<tr>\
+    <td colspan="2">' + (feature.properties['TEORH'] !== null ? autolinker.link(feature.properties['TEORH'].toLocaleString()) : '') + '</td>\
+</tr>\
+<tr>\
+    <td colspan="2">' + (feature.properties['SATURCA'] !== null ? autolinker.link(feature.properties['SATURCA'].toLocaleString()) : '') + '</td>\
+</tr>\
+<tr>\
+    <td colspan="2">' + (feature.properties['SATURMG'] !== null ? autolinker.link(feature.properties['SATURMG'].toLocaleString()) : '') + '</td>\
+</tr>\
+<tr>\
+    <td colspan="2">' + (feature.properties['SATURK'] !== null ? autolinker.link(feature.properties['SATURK'].toLocaleString()) : '') + '</td>\
+</tr>\
+<tr>\
+    <td colspan="2">' + (feature.properties['SATURNA'] !== null ? autolinker.link(feature.properties['SATURNA'].toLocaleString()) : '') + '</td>\
+</tr>\
+<tr>\
+    <td colspan="2">' + (feature.properties['SATURH'] !== null ? autolinker.link(feature.properties['SATURH'].toLocaleString()) : '') + '</td>\
+</tr>\
+<tr>\
+    <td colspan="2">' + (feature.properties['SATURAL'] !== null ? autolinker.link(feature.properties['SATURAL'].toLocaleString()) : '') + '</td>\
+</tr>\
+<tr>\
+    <td colspan="2">' + (feature.properties['DOSEKMIN'] !== null ? autolinker.link(feature.properties['DOSEKMIN'].toLocaleString()) : '') + '</td>\
+</tr>\
+<tr>\
+    <td colspan="2">' + (feature.properties['DOSEKMAX'] !== null ? autolinker.link(feature.properties['DOSEKMAX'].toLocaleString()) : '') + '</td>\
+</tr>\
+<tr>\
+    <td colspan="2">' + (feature.properties['DOSECAMIN'] !== null ? autolinker.link(feature.properties['DOSECAMIN'].toLocaleString()) : '') + '</td>\
+</tr>\
+<tr>\
+    <td colspan="2">' + (feature.properties['DOSECAMAX'] !== null ? autolinker.link(feature.properties['DOSECAMAX'].toLocaleString()) : '') + '</td>\
+</tr>\
+<tr>\
+    <td colspan="2">' + (feature.properties['DOSEMGMIN'] !== null ? autolinker.link(feature.properties['DOSEMGMIN'].toLocaleString()) : '') + '</td>\
+</tr>\
+<tr>\
+    <td colspan="2">' + (feature.properties['DOSEMGMAX'] !== null ? autolinker.link(feature.properties['DOSEMGMAX'].toLocaleString()) : '') + '</td>\
+</tr>\
+<tr>\
+    <td colspan="2">' + (feature.properties['NICRIP'] !== null ? autolinker.link(feature.properties['NICRIP'].toLocaleString()) : '') + '</td>\
+</tr>\
+<tr>\
+    <td colspan="2">' + (feature.properties['VALRELP'] !== null ? autolinker.link(feature.properties['VALRELP'].toLocaleString()) : '') + '</td>\
+</tr>\
+<tr>\
+    <td colspan="2">' + (feature.properties['NICRISO4'] !== null ? autolinker.link(feature.properties['NICRISO4'].toLocaleString()) : '') + '</td>\
+</tr>\
+<tr>\
+    <td colspan="2">' + (feature.properties['VALRELSO4'] !== null ? autolinker.link(feature.properties['VALRELSO4'].toLocaleString()) : '') + '</td>\
+</tr>\
+<tr>\
+    <td colspan="2">' + (feature.properties['NICRIZN'] !== null ? autolinker.link(feature.properties['NICRIZN'].toLocaleString()) : '') + '</td>\
+</tr>\
+<tr>\
+    <td colspan="2">' + (feature.properties['VALRELZN'] !== null ? autolinker.link(feature.properties['VALRELZN'].toLocaleString()) : '') + '</td>\
+</tr>\
+<tr>\
+    <td colspan="2">' + (feature.properties['Corg'] !== null ? autolinker.link(feature.properties['Corg'].toLocaleString()) : '') + '</td>\
+</tr>\
+</table>';
+            layer.bindPopup(popupContent, { maxHeight: 400 });
+        }
+
+        function style_Resultados60a90_3_0() {
+            return {
+                pane: 'pane_Resultados60a90_3',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(231,113,72,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_Resultados60a90_3');
+        map.getPane('pane_Resultados60a90_3').style.zIndex = 403;
+        map.getPane('pane_Resultados60a90_3').style['mix-blend-mode'] = 'normal';
+        var layer_Resultados60a90_3 = new L.geoJson(json_Resultados60a90_3, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Resultados60a90_3',
+            layerName: 'layer_Resultados60a90_3',
+            pane: 'pane_Resultados60a90_3',
+            onEachFeature: pop_Resultados60a90_3,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_Resultados60a90_3_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_Resultados60a90_3);
+        map.addLayer(layer_Resultados60a90_3);
+        function pop_Resultados30a60_4(feature, layer) {
+            layer.on({
+                mouseout: function (e) {
+                    if (typeof layer.closePopup == 'function') {
+                        layer.closePopup();
+                    } else {
+                        layer.eachLayer(function (feature) {
+                            feature.closePopup()
+                        });
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+            var popupContent = '<table>\
+<tr>\
+    <td colspan="2">' + (feature.properties['Name'] !== null ? autolinker.link(feature.properties['Name'].toLocaleString()) : '') + '</td>\
+</tr>\
+<tr>\
+    <td colspan="2">' + (feature.properties['PROF'] !== null ? autolinker.link(feature.properties['PROF'].toLocaleString()) : '') + '</td>\
+</tr>\
+<tr>\
+    <td colspan="2">' + (feature.properties['Calicata'] !== null ? autolinker.link(feature.properties['Calicata'].toLocaleString()) : '') + '</td>\
+</tr>\
+<tr>\
+    <td colspan="2">' + (feature.properties['CODINTERES'] !== null ? autolinker.link(feature.properties['CODINTERES'].toLocaleString()) : '') + '</td>\
+</tr>\
+<tr>\
+    <td colspan="2">' + (feature.properties['ca'] !== null ? autolinker.link(feature.properties['ca'].toLocaleString()) : '') + '</td>\
+</tr>\
+<tr>\
+    <td colspan="2">' + (feature.properties['mg'] !== null ? autolinker.link(feature.properties['mg'].toLocaleString()) : '') + '</td>\
+</tr>\
+<tr>\
+    <td colspan="2">' + (feature.properties['k'] !== null ? autolinker.link(feature.properties['k'].toLocaleString()) : '') + '</td>\
+</tr>\
+<tr>\
+    <td colspan="2">' + (feature.properties['na'] !== null ? autolinker.link(feature.properties['na'].toLocaleString()) : '') + '</td>\
+</tr>\
+<tr>\
+    <td colspan="2">' + (feature.properties['mos'] !== null ? autolinker.link(feature.properties['mos'].toLocaleString()) : '') + '</td>\
+</tr>\
+<tr>\
+    <td colspan="2">' + (feature.properties['p'] !== null ? autolinker.link(feature.properties['p'].toLocaleString()) : '') + '</td>\
+</tr>\
+<tr>\
+    <td colspan="2">' + (feature.properties['prem'] !== null ? autolinker.link(feature.properties['prem'].toLocaleString()) : '') + '</td>\
+</tr>\
+<tr>\
+    <td colspan="2">' + (feature.properties['ctcph'] !== null ? autolinker.link(feature.properties['ctcph'].toLocaleString()) : '') + '</td>\
+</tr>\
+<tr>\
+    <td colspan="2">' + (feature.properties['ctcefe'] !== null ? autolinker.link(feature.properties['ctcefe'].toLocaleString()) : '') + '</td>\
+</tr>\
+<tr>\
+    <td colspan="2">' + (feature.properties['v'] !== null ? autolinker.link(feature.properties['v'].toLocaleString()) : '') + '</td>\
+</tr>\
+<tr>\
+    <td colspan="2">' + (feature.properties['pH'] !== null ? autolinker.link(feature.properties['pH'].toLocaleString()) : '') + '</td>\
+</tr>\
+<tr>\
+    <td colspan="2">' + (feature.properties['phsmp'] !== null ? autolinker.link(feature.properties['phsmp'].toLocaleString()) : '') + '</td>\
+</tr>\
+<tr>\
+    <td colspan="2">' + (feature.properties['phh20'] !== null ? autolinker.link(feature.properties['phh20'].toLocaleString()) : '') + '</td>\
+</tr>\
+<tr>\
+    <td colspan="2">' + (feature.properties['TEORAL'] !== null ? autolinker.link(feature.properties['TEORAL'].toLocaleString()) : '') + '</td>\
+</tr>\
+<tr>\
+    <td colspan="2">' + (feature.properties['TEORHAL'] !== null ? autolinker.link(feature.properties['TEORHAL'].toLocaleString()) : '') + '</td>\
+</tr>\
+<tr>\
+    <td colspan="2">' + (feature.properties['TEORH'] !== null ? autolinker.link(feature.properties['TEORH'].toLocaleString()) : '') + '</td>\
+</tr>\
+<tr>\
+    <td colspan="2">' + (feature.properties['SATURCA'] !== null ? autolinker.link(feature.properties['SATURCA'].toLocaleString()) : '') + '</td>\
+</tr>\
+<tr>\
+    <td colspan="2">' + (feature.properties['SATURMG'] !== null ? autolinker.link(feature.properties['SATURMG'].toLocaleString()) : '') + '</td>\
+</tr>\
+<tr>\
+    <td colspan="2">' + (feature.properties['SATURK'] !== null ? autolinker.link(feature.properties['SATURK'].toLocaleString()) : '') + '</td>\
+</tr>\
+<tr>\
+    <td colspan="2">' + (feature.properties['SATURNA'] !== null ? autolinker.link(feature.properties['SATURNA'].toLocaleString()) : '') + '</td>\
+</tr>\
+<tr>\
+    <td colspan="2">' + (feature.properties['SATURH'] !== null ? autolinker.link(feature.properties['SATURH'].toLocaleString()) : '') + '</td>\
+</tr>\
+<tr>\
+    <td colspan="2">' + (feature.properties['SATURAL'] !== null ? autolinker.link(feature.properties['SATURAL'].toLocaleString()) : '') + '</td>\
+</tr>\
+<tr>\
+    <td colspan="2">' + (feature.properties['DOSEKMIN'] !== null ? autolinker.link(feature.properties['DOSEKMIN'].toLocaleString()) : '') + '</td>\
+</tr>\
+<tr>\
+    <td colspan="2">' + (feature.properties['DOSEKMAX'] !== null ? autolinker.link(feature.properties['DOSEKMAX'].toLocaleString()) : '') + '</td>\
+</tr>\
+<tr>\
+    <td colspan="2">' + (feature.properties['DOSECAMIN'] !== null ? autolinker.link(feature.properties['DOSECAMIN'].toLocaleString()) : '') + '</td>\
+</tr>\
+<tr>\
+    <td colspan="2">' + (feature.properties['DOSECAMAX'] !== null ? autolinker.link(feature.properties['DOSECAMAX'].toLocaleString()) : '') + '</td>\
+</tr>\
+<tr>\
+    <td colspan="2">' + (feature.properties['DOSEMGMIN'] !== null ? autolinker.link(feature.properties['DOSEMGMIN'].toLocaleString()) : '') + '</td>\
+</tr>\
+<tr>\
+    <td colspan="2">' + (feature.properties['DOSEMGMAX'] !== null ? autolinker.link(feature.properties['DOSEMGMAX'].toLocaleString()) : '') + '</td>\
+</tr>\
+<tr>\
+    <td colspan="2">' + (feature.properties['NICRIP'] !== null ? autolinker.link(feature.properties['NICRIP'].toLocaleString()) : '') + '</td>\
+</tr>\
+<tr>\
+    <td colspan="2">' + (feature.properties['VALRELP'] !== null ? autolinker.link(feature.properties['VALRELP'].toLocaleString()) : '') + '</td>\
+</tr>\
+<tr>\
+    <td colspan="2">' + (feature.properties['NICRISO4'] !== null ? autolinker.link(feature.properties['NICRISO4'].toLocaleString()) : '') + '</td>\
+</tr>\
+<tr>\
+    <td colspan="2">' + (feature.properties['VALRELSO4'] !== null ? autolinker.link(feature.properties['VALRELSO4'].toLocaleString()) : '') + '</td>\
+</tr>\
+<tr>\
+    <td colspan="2">' + (feature.properties['NICRIZN'] !== null ? autolinker.link(feature.properties['NICRIZN'].toLocaleString()) : '') + '</td>\
+</tr>\
+<tr>\
+    <td colspan="2">' + (feature.properties['VALRELZN'] !== null ? autolinker.link(feature.properties['VALRELZN'].toLocaleString()) : '') + '</td>\
+</tr>\
+<tr>\
+    <td colspan="2">' + (feature.properties['Corg'] !== null ? autolinker.link(feature.properties['Corg'].toLocaleString()) : '') + '</td>\
+</tr>\
+</table>';
+            layer.bindPopup(popupContent, { maxHeight: 400 });
+        }
+
+        function style_Resultados30a60_4_0() {
+            return {
+                pane: 'pane_Resultados30a60_4',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(152,125,183,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_Resultados30a60_4');
+        map.getPane('pane_Resultados30a60_4').style.zIndex = 404;
+        map.getPane('pane_Resultados30a60_4').style['mix-blend-mode'] = 'normal';
+        var layer_Resultados30a60_4 = new L.geoJson(json_Resultados30a60_4, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Resultados30a60_4',
+            layerName: 'layer_Resultados30a60_4',
+            pane: 'pane_Resultados30a60_4',
+            onEachFeature: pop_Resultados30a60_4,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_Resultados30a60_4_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_Resultados30a60_4);
+        map.addLayer(layer_Resultados30a60_4);
+        function pop_Resultados0a30_5(feature, layer) {
+            layer.on({
+                mouseout: function (e) {
+                    if (typeof layer.closePopup == 'function') {
+                        layer.closePopup();
+                    } else {
+                        layer.eachLayer(function (feature) {
+                            feature.closePopup()
+                        });
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+            var popupContent = '<table>\
+<tr>\
+    <td colspan="2">' + (feature.properties['Name'] !== null ? autolinker.link(feature.properties['Name'].toLocaleString()) : '') + '</td>\
+</tr>\
+<tr>\
+    <td colspan="2">' + (feature.properties['X'] !== null ? autolinker.link(feature.properties['X'].toLocaleString()) : '') + '</td>\
+</tr>\
+<tr>\
+    <td colspan="2">' + (feature.properties['Y'] !== null ? autolinker.link(feature.properties['Y'].toLocaleString()) : '') + '</td>\
+</tr>\
+<tr>\
+    <td colspan="2">' + (feature.properties['Prof'] !== null ? autolinker.link(feature.properties['Prof'].toLocaleString()) : '') + '</td>\
+</tr>\
+<tr>\
+    <td colspan="2">' + (feature.properties['CODLAB'] !== null ? autolinker.link(feature.properties['CODLAB'].toLocaleString()) : '') + '</td>\
+</tr>\
+<tr>\
+    <td colspan="2">' + (feature.properties['Calicata'] !== null ? autolinker.link(feature.properties['Calicata'].toLocaleString()) : '') + '</td>\
+</tr>\
+<tr>\
+    <td colspan="2">' + (feature.properties['NAME_1'] !== null ? autolinker.link(feature.properties['NAME_1'].toLocaleString()) : '') + '</td>\
+</tr>\
+<tr>\
+    <td colspan="2">' + (feature.properties['CA'] !== null ? autolinker.link(feature.properties['CA'].toLocaleString()) : '') + '</td>\
+</tr>\
+<tr>\
+    <td colspan="2">' + (feature.properties['MG'] !== null ? autolinker.link(feature.properties['MG'].toLocaleString()) : '') + '</td>\
+</tr>\
+<tr>\
+    <td colspan="2">' + (feature.properties['K'] !== null ? autolinker.link(feature.properties['K'].toLocaleString()) : '') + '</td>\
+</tr>\
+<tr>\
+    <td colspan="2">' + (feature.properties['NA'] !== null ? autolinker.link(feature.properties['NA'].toLocaleString()) : '') + '</td>\
+</tr>\
+<tr>\
+    <td colspan="2">' + (feature.properties['MO'] !== null ? autolinker.link(feature.properties['MO'].toLocaleString()) : '') + '</td>\
+</tr>\
+<tr>\
+    <td colspan="2">' + (feature.properties['P'] !== null ? autolinker.link(feature.properties['P'].toLocaleString()) : '') + '</td>\
+</tr>\
+<tr>\
+    <td colspan="2">' + (feature.properties['PREM'] !== null ? autolinker.link(feature.properties['PREM'].toLocaleString()) : '') + '</td>\
+</tr>\
+<tr>\
+    <td colspan="2">' + (feature.properties['CTCPH'] !== null ? autolinker.link(feature.properties['CTCPH'].toLocaleString()) : '') + '</td>\
+</tr>\
+<tr>\
+    <td colspan="2">' + (feature.properties['CTCEFE'] !== null ? autolinker.link(feature.properties['CTCEFE'].toLocaleString()) : '') + '</td>\
+</tr>\
+<tr>\
+    <td colspan="2">' + (feature.properties['V'] !== null ? autolinker.link(feature.properties['V'].toLocaleString()) : '') + '</td>\
+</tr>\
+<tr>\
+    <td colspan="2">' + (feature.properties['PH'] !== null ? autolinker.link(feature.properties['PH'].toLocaleString()) : '') + '</td>\
+</tr>\
+<tr>\
+    <td colspan="2">' + (feature.properties['PHSMP'] !== null ? autolinker.link(feature.properties['PHSMP'].toLocaleString()) : '') + '</td>\
+</tr>\
+<tr>\
+    <td colspan="2">' + (feature.properties['PHAGUA'] !== null ? autolinker.link(feature.properties['PHAGUA'].toLocaleString()) : '') + '</td>\
+</tr>\
+<tr>\
+    <td colspan="2">' + (feature.properties['AL'] !== null ? autolinker.link(feature.properties['AL'].toLocaleString()) : '') + '</td>\
+</tr>\
+<tr>\
+    <td colspan="2">' + (feature.properties['HAL'] !== null ? autolinker.link(feature.properties['HAL'].toLocaleString()) : '') + '</td>\
+</tr>\
+<tr>\
+    <td colspan="2">' + (feature.properties['H'] !== null ? autolinker.link(feature.properties['H'].toLocaleString()) : '') + '</td>\
+</tr>\
+<tr>\
+    <td colspan="2">' + (feature.properties['SATCA'] !== null ? autolinker.link(feature.properties['SATCA'].toLocaleString()) : '') + '</td>\
+</tr>\
+<tr>\
+    <td colspan="2">' + (feature.properties['SATMG'] !== null ? autolinker.link(feature.properties['SATMG'].toLocaleString()) : '') + '</td>\
+</tr>\
+<tr>\
+    <td colspan="2">' + (feature.properties['SATK'] !== null ? autolinker.link(feature.properties['SATK'].toLocaleString()) : '') + '</td>\
+</tr>\
+<tr>\
+    <td colspan="2">' + (feature.properties['SATNA'] !== null ? autolinker.link(feature.properties['SATNA'].toLocaleString()) : '') + '</td>\
+</tr>\
+<tr>\
+    <td colspan="2">' + (feature.properties['SATH'] !== null ? autolinker.link(feature.properties['SATH'].toLocaleString()) : '') + '</td>\
+</tr>\
+<tr>\
+    <td colspan="2">' + (feature.properties['SATURAL'] !== null ? autolinker.link(feature.properties['SATURAL'].toLocaleString()) : '') + '</td>\
+</tr>\
+<tr>\
+    <td colspan="2">' + (feature.properties['Corg'] !== null ? autolinker.link(feature.properties['Corg'].toLocaleString()) : '') + '</td>\
+</tr>\
+</table>';
+            layer.bindPopup(popupContent, { maxHeight: 400 });
+        }
+
+        function style_Resultados0a30_5_0() {
+            return {
+                pane: 'pane_Resultados0a30_5',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(243,166,178,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_Resultados0a30_5');
+        map.getPane('pane_Resultados0a30_5').style.zIndex = 405;
+        map.getPane('pane_Resultados0a30_5').style['mix-blend-mode'] = 'normal';
+        var layer_Resultados0a30_5 = new L.geoJson(json_Resultados0a30_5, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Resultados0a30_5',
+            layerName: 'layer_Resultados0a30_5',
+            pane: 'pane_Resultados0a30_5',
+            onEachFeature: pop_Resultados0a30_5,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_Resultados0a30_5_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_Resultados0a30_5);
+        map.addLayer(layer_Resultados0a30_5);
+        function pop_CALICATAS_6(feature, layer) {
+            layer.on({
+                mouseout: function (e) {
+                    if (typeof layer.closePopup == 'function') {
+                        layer.closePopup();
+                    } else {
+                        layer.eachLayer(function (feature) {
+                            feature.closePopup()
+                        });
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+            var popupContent = '<table>\
+<tr>\
+    <td colspan="2">' + (feature.properties['id'] !== null ? autolinker.link(feature.properties['id'].toLocaleString()) : '') + '</td>\
+</tr>\
+<tr>\
+    <td colspan="2">' + (feature.properties['X'] !== null ? autolinker.link(feature.properties['X'].toLocaleString()) : '') + '</td>\
+</tr>\
+<tr>\
+    <td colspan="2">' + (feature.properties['Y'] !== null ? autolinker.link(feature.properties['Y'].toLocaleString()) : '') + '</td>\
+</tr>\
+</table>';
+            layer.bindPopup(popupContent, { maxHeight: 400 });
+        }
+
+        function style_CALICATAS_6_0() {
+            return {
+                pane: 'pane_CALICATAS_6',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(19,58,19,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_CALICATAS_6');
+        map.getPane('pane_CALICATAS_6').style.zIndex = 406;
+        map.getPane('pane_CALICATAS_6').style['mix-blend-mode'] = 'normal';
+        var layer_CALICATAS_6 = new L.geoJson(json_CALICATAS_6, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_CALICATAS_6',
+            layerName: 'layer_CALICATAS_6',
+            pane: 'pane_CALICATAS_6',
+            onEachFeature: pop_CALICATAS_6,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_CALICATAS_6_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_CALICATAS_6);
+        map.addLayer(layer_CALICATAS_6);
+
+        var baseMaps = {};
+        var microLayerCtrl = L.control.layers(baseMaps, { '<img src="legend/CALICATAS_6.png" /> CALICATAS': layer_CALICATAS_6, '<img src="legend/Resultados0a30_5.png" /> Resultados 0  a 30': layer_Resultados0a30_5, '<img src="legend/Resultados30a60_4.png" /> Resultados 30 a 60': layer_Resultados30a60_4, '<img src="legend/Resultados60a90_3.png" /> Resultados 60 a 90': layer_Resultados60a90_3, "Recomendacion de KCL": layer_RecomendaciondeKCL_2, "Recomendacion de Fosforo": layer_RecomendaciondeFosforo_1, "ESRI SATÉLITE": layer_ESRISATLITE_0, }).addTo(map);
+        setBounds();
+
+        var microLegend = L.control({ position: "topleft" });
+
+
+        microLegend.onAdd = function () {
+            var div = L.DomUtil.create("div");
+            // here is Your part:
+            div.innerHTML =
+                '<p class="titulo-leyenda hidden-mobile">Capas, recomendaciones y calicatas</p>';
+            return div;
+        };
+        microLegend.addTo(map);
+
+        var microCtrlDiv = microLayerCtrl.getContainer();
+        microCtrlDiv.insertBefore(
+            microLegend.getContainer(),
+            microCtrlDiv.firstChild
+        );
+
+
+
+        var i = 0;
+        layer_Resultados60a90_3.eachLayer(function (layer) {
+            var context = {
+                feature: layer.feature,
+                variables: {}
+            };
+            layer.bindTooltip((layer.feature.properties['phh20'] !== null ? String('<div style="color: #323232; font-size: 10pt; font-family: \'MS Shell Dlg 2\', sans-serif;">' + layer.feature.properties['phh20']) + '</div>' : ''), { permanent: true, offset: [-0, -16], className: 'css_Resultados60a90_3' });
+            labels.push(layer);
+            totalMarkers += 1;
+            layer.added = true;
+            addLabel(layer, i);
+            i++;
+        });
+        var i = 0;
+        layer_Resultados30a60_4.eachLayer(function (layer) {
+            var context = {
+                feature: layer.feature,
+                variables: {}
+            };
+            layer.bindTooltip((layer.feature.properties['phh20'] !== null ? String('<div style="color: #323232; font-size: 10pt; font-family: \'MS Shell Dlg 2\', sans-serif;">' + layer.feature.properties['phh20']) + '</div>' : ''), { permanent: true, offset: [-0, -16], className: 'css_Resultados30a60_4' });
+            labels.push(layer);
+            totalMarkers += 1;
+            layer.added = true;
+            addLabel(layer, i);
+            i++;
+        });
+        var i = 0;
+        layer_Resultados0a30_5.eachLayer(function (layer) {
+            var context = {
+                feature: layer.feature,
+                variables: {}
+            };
+            layer.bindTooltip((layer.feature.properties['PHAGUA'] !== null ? String('<div style="color: #323232; font-size: 10pt; font-family: \'MS Shell Dlg 2\', sans-serif;">' + layer.feature.properties['PHAGUA']) + '</div>' : ''), { permanent: true, offset: [-0, -16], className: 'css_Resultados0a30_5' });
+            labels.push(layer);
+            totalMarkers += 1;
+            layer.added = true;
+            addLabel(layer, i);
+            i++;
+        });
+        L.ImageOverlay.include({
+            getBounds: function () {
+                return this._bounds;
+            }
+        });
+        resetLabels([layer_Resultados60a90_3, layer_Resultados30a60_4, layer_Resultados0a30_5, layer_CALICATAS_6]);
+        map.on("zoomend", function () {
+            resetLabels([layer_Resultados60a90_3, layer_Resultados30a60_4, layer_Resultados0a30_5, layer_CALICATAS_6]);
+        });
+        map.on("layeradd", function () {
+            resetLabels([layer_Resultados60a90_3, layer_Resultados30a60_4, layer_Resultados0a30_5, layer_CALICATAS_6]);
+        });
+        map.on("layerremove", function () {
+            resetLabels([layer_Resultados60a90_3, layer_Resultados30a60_4, layer_Resultados0a30_5, layer_CALICATAS_6]);
+        });
+    </script>
+</body>
+
+</html>
